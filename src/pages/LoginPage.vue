@@ -1,0 +1,159 @@
+<template>
+  <body>
+    <div>
+      <NavBar />
+    </div>
+    <section>
+      <div class="main_div">
+        <div class="title">Login Account</div>
+        <b-form class="form" @submit.prevent="handleSubmit">
+          <b-form-group class="input_box">
+            <b-form-input
+              class="input"
+              type="text"
+              v-model="username"
+              placeholder="Username"
+              required
+            />
+            <b-icon
+              class="icon"
+              animation="fade"
+              icon="people-fill"
+              font-scale="1.5"
+            ></b-icon>
+          </b-form-group>
+          <b-form-group class="input_box">
+            <b-form-input
+              class="input"
+              type="password"
+              v-model="username"
+              placeholder="Password"
+              required
+            />
+            <b-icon
+              class="icon"
+              animation="fade"
+              icon="unlock-fill"
+              font-scale="1.5"
+            ></b-icon>
+          </b-form-group>
+          <b-form-group class="input_box button">
+            <b-button class="input" type="submit">Login</b-button>
+            <!--<iput href="./books" type="submit" value="Login" />-->
+            <!--<router-link to="./books" type="submit" exact value="Login"></router-link>-->
+          </b-form-group>
+          <div class="sign_up">Not a member? <a href="#">Contact Admin</a></div>
+        </b-form>
+      </div>
+    </section>
+  </body>
+</template>
+
+<script>
+import NavBar from "../components/NavBar.vue";
+/*import axios from "axios";*/
+
+export default {
+  name: "LoginPage",
+  component: {
+    NavBar,
+  },
+  data() {
+    return {
+      username: "",
+      password: "",
+    };
+  },
+};
+</script>
+<style scoped>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  display: grid;
+  height: 100vh;
+  place-items: center;
+  background-image: url(../../src/assets/image/image18.jpeg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.main_div {
+  width: 365px;
+  background: #fff;
+  padding: 30px;
+  border-radius: 5px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.15);
+  margin-bottom: 140px;
+}
+.main_div .title {
+  text-align: center;
+  font-size: 30px;
+  font-weight: 600;
+}
+
+.form {
+  margin-top: 25px;
+}
+.form .input_box {
+  height: 50px;
+  width: 100%;
+  position: relative;
+  margin-top: 5px;
+}
+.input_box .input {
+  height: 100%;
+  width: 100%;
+  outline: none;
+  border: 1px solid lightgrey;
+  border-radius: 5px;
+  padding-left: 70px;
+  font-size: 20px;
+  transition: all 0.3s ease;
+}
+.input_box .input:focus {
+  border-color: #0639b9;
+}
+.input_box .icon {
+  position: absolute;
+  top: 35%;
+  left: 15px;
+  transform: translateY(-50%);
+  color: black;
+}
+
+.button .input {
+  padding-left: 0;
+  background: blue;
+  color: #fff;
+  border: none;
+  font-size: 20px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s linear;
+}
+.button .input:hover {
+  background: #30a1ed;
+}
+.form .sign_up {
+  text-align: center;
+  margin-top: 25px;
+}
+.sign_up a {
+  color: blue;
+}
+.form a {
+  text-decoration: none;
+}
+.form a:hover {
+  text-decoration: underline;
+}
+.navbar {
+  background-color: #ffffff;
+  height: 90px;
+}
+</style>
