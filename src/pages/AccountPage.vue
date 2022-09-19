@@ -1,7 +1,7 @@
 <template>
   <b-container fluid id="lib">
     <div class="nav">
-      <MySidebar />
+      <SidebarComponent />
     </div>
     <div class="main">
       <div class="head">
@@ -51,15 +51,11 @@
 </template>
 
 <script>
-import MySidebar from "../components/MySidebar.vue";
-import HeaderTitle from "../components/HeaderTitle.vue";
+import SidebarComponent from "@/components/SidebarComponent.vue";
 
 export default {
   name: "AccountPage",
-  component: {
-    MySidebar,
-    HeaderTitle,
-  },
+
   data() {
     return {
       rows: 100,
@@ -83,6 +79,7 @@ export default {
       },
     };
   },
+  components: {SidebarComponent},
 };
 </script>
 <style scope>

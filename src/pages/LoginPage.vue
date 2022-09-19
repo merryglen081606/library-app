@@ -1,7 +1,59 @@
 <template>
   <body>
     <div>
-      <NavBar />
+      <b-row id="header" class="d-flex fixed-top justify-content-center">
+        <b-navbar type="dark" variant="dark">
+          <a
+            class="navbar-brand"
+            style="
+              font-size: 30px;
+              font-weight: bolder;
+              font-family: montserrat;
+              color: #ffffff;
+              padding-left: 210px;
+            "
+            href="#"
+            >Lou Geh<span style="color: #eeb34b; font-family: montserrat">
+              Library System</span
+            ></a
+          >
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0 bg-dark">
+              <li class="nav-item">
+                <router-link to="/" class="nav-link" exact
+                  >Home</router-link
+                >
+              </li>
+              <li class="nav-item">
+                <router-link to="/search" class="nav-link" exact
+                  >Search</router-link
+                >
+              </li>
+              <li class="nav-item">
+                <router-link to="/login" class="nav-link" exact
+                  >Login</router-link
+                >
+              </li>
+              <li class="nav-item">
+                <router-link
+                  to="/login"
+                  class="btn btn-outline-success"
+                  role="button"
+                  style="
+                    font-family: montserrat;
+                    font-size: 20px;
+                    font-weight: 900;
+                    border-radius: 30px;
+                    color: #ffffff;
+                  "
+                  exact
+                  >CONTACT US</router-link
+                >
+              </li>
+            </ul>
+          </div>
+        </b-navbar>
+      </b-row>
     </div>
     <section>
       <div class="main_div">
@@ -50,14 +102,11 @@
 </template>
 
 <script>
-import NavBar from "../components/NavBar.vue";
 /*import axios from "axios";*/
 
 export default {
   name: "LoginPage",
-  component: {
-    NavBar,
-  },
+  component: {},
   data() {
     return {
       username: "",

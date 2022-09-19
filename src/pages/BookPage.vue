@@ -1,7 +1,7 @@
 <template style="background-color: #c5eeef">
   <b-container fluid id="lib">
     <div class="nav">
-      <MySidebar />
+      <SidebarComponent />
     </div>
     <div class="main">
       <div class="head">
@@ -168,19 +168,15 @@
 </template>
 
 <script>
-import MySidebar from "../components/MySidebar.vue";
+import SidebarComponent from "@/components/SidebarComponent.vue";
 
 export default {
   name: "BookPage",
-  component: {
-    MySidebar,
-  },
   data() {
     return {
       name: "",
       nameState: null,
       submittedNames: [],
-
       fields: [
         { key: "BookID", label: "Book ID", sortable: true },
         { key: "ISBN", label: "ISBN", sortable: true },
@@ -214,7 +210,6 @@ export default {
           PublisherID: "57",
           CategoryID: "57",
         },
-
         {
           isActive: false,
           BookID: 3,
@@ -238,7 +233,6 @@ export default {
           CategoryID: "57",
         },
       ],
-
       //items: {
       //BookID: null,
       //ISBN: null,
@@ -288,6 +282,7 @@ export default {
       });
     },
   },
+  components: { SidebarComponent },
 };
 </script>
 <style scope>

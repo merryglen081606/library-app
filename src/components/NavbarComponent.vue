@@ -52,10 +52,11 @@
 
 <script>
 export default {
-  name: "NavBar",
+  name: "NavBarComponent",
 };
 </script>
-<style scope>
+
+<style scoped>
 .nav-item {
   padding-right: 40px;
   justify-content: center;

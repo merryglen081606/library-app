@@ -77,7 +77,7 @@ const routes = [
         component: CityPage,
     }, 
     {
-        path: "/home",
+        path: "/",
         name: "HomePage",
         component: HomePage,
     },
