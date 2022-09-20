@@ -88,9 +88,7 @@
             ></b-icon>
           </b-form-group>
           <b-form-group class="input_box button">
-            <b-button href="/account" class="input" type="submit"
-              >Login</b-button
-            >
+            <b-button class="input" type="submit">Login</b-button>
             <!--<iput href="./books" type="submit" value="Login" />-->
             <!--<router-link to="./books" type="submit" exact value="Login"></router-link>-->
           </b-form-group>
@@ -115,12 +113,15 @@ export default {
   },
   methods: {
     async handleSubmit() {
-      const response = await axios.post("login", {
-        Username: this.Username,
-        Password: this.Password,
-      });
-      localStorage.setItem('token', response.data.token);
-      this.$router.push({name: "Account"});
+      const response = await axios.post(
+        "http://localhost:5000/api/accounts/login",
+        {
+          Username: this.Username,
+          Password: this.Password,
+        }
+      );
+      localStorage.setItem("token", response.data.token);
+      this.$router.push("/books");
     },
   },
 };
