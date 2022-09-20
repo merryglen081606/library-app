@@ -154,8 +154,7 @@ export default {
     // console.warn(res.data.librarianList);
 
     return {
-      list: undefined,
-      perPage: 2,
+      perPage: 10,
       currentPage: 1,
       filter: "",
       Firstname: "",
@@ -174,71 +173,6 @@ export default {
       ],
 
       items: [],
-      // items: [
-      //   // {
-      //   //   isActive: true,
-      //   //   UserID: 40,
-      //   //   Firstname: "Dicker",
-      //   //   Middlename: "Maald",
-      //   //   Lastname: "Macdonald",
-      //   //   RegisterDate: "Macdonald",
-      //   //   Gender: "Macdonald",
-      //   // },
-      //   // {
-      //   //   isActive: true,
-      //   //   UserID: 40,
-      //   //   Firstname: "Dickerson",
-      //   //   Middlename: "Mald",
-      //   //   Lastname: "Macdonald",
-      //   //   RegisterDate: "Macdonald",
-      //   //   Gender: "Macdonald",
-      //   // },
-      //   // {
-      //   //   isActive: true,
-      //   //   UserID: 40,
-      //   //   Firstname: "Dickerson",
-      //   //   Middlename: "Macdonald",
-      //   //   Lastname: "Macdonald",
-      //   //   RegisterDate: "Macdonald",
-      //   //   Gender: "Macdonald",
-      //   // },
-      //   // {
-      //   //   isActive: true,
-      //   //   UserID: 40,
-      //   //   Firstname: "WWW",
-      //   //   Middlename: "DDD",
-      //   //   Lastname: "FFF",
-      //   //   RegisterDate: "XXXX",
-      //   //   Gender: "Macdonald",
-      //   // },
-      //   // {
-      //   //   isActive: true,
-      //   //   UserID: 40,
-      //   //   Firstname: "SSSS",
-      //   //   Middlename: "CCCC",
-      //   //   Lastname: "AAA",
-      //   //   RegisterDate: "DDDDD",
-      //   //   Gender: "Macdonald",
-      //   // },
-      //   // {
-      //   //   isActive: true,
-      //   //   UserID: 40,
-      //   //   Firstname: "Dickerson",
-      //   //   Middlename: "Macdonald",
-      //   //   Lastname: "Macdonald",
-      //   //   RegisterDate: "Macdonald",
-      //   //   Gender: "Macdonald",
-      //   // },
-      // ],
-
-      // items: {
-      //   UserID: null,
-      //   Firstname: null,
-      //   Middlename: null,
-      //   Lastname: null,
-      //   RegisterDate: null,
-      //   Gender: null,
-      // },
     };
   },
 
