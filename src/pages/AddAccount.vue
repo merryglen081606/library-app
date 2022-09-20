@@ -17,14 +17,67 @@
                   <b-row>
                     <b-col cols="12" class="mt-3">
                       <b-form @submit.prevent="handleSubmit">
-                        <FormInput v-model="Username" label="Username" />
-                        <FormInput v-model="Password" label="Password" />
-                        <FormInput v-model="UserID" label="UserID" />
-                        <FormInput v-model="Roles" label="Roles" />
-                        <FormInput v-model="Status" label="Status" />
+                        <b-form-group class="input_box">
+                          <b-form-input
+                            class="input"
+                            type="text"
+                            v-model="Username"
+                            placeholder="Username"
+                            required
+                          />
+                        </b-form-group>
+                        <b-form-group class="input_box">
+                          <b-form-input
+                            class="input"
+                            type="password"
+                            v-model="Password"
+                            placeholder="Password"
+                            required
+                          />
+                        </b-form-group>
+                        <b-form-group class="input_box">
+                          <b-form-input
+                            class="input"
+                            type="number"
+                            v-model="UserID"
+                            placeholder="Password"
+                            required
+                          />
+                        </b-form-group>
+                        <b-form-group class="input_box">
+                          <b-form-input
+                            class="input"
+                            type="text"
+                            v-model="Roles"
+                            placeholder="Password"
+                            required
+                          />
+                        </b-form-group>
+                        <b-form-group class="input_box">
+                          <b-form-input
+                            class="input"
+                            type="text"
+                            v-model="Status"
+                            placeholder="Password"
+                            required
+                          />
+                        </b-form-group>
+                        <b-form-group class="input_box button">
+                          <b-button class="input" type="submit">Login</b-button>
+
+                          <router-link
+                            to="/librarians"
+                            class="btn btn-dark"
+                            exact
+                            >Back</router-link
+                          >
+
+                          <!--<iput href="./books" type="submit" value="Login" />-->
+                          <!--<router-link to="./books" type="submit" exact value="Login"></router-link>-->
+                        </b-form-group>
                       </b-form>
                     </b-col>
-                    <b-col>
+                    <!--<b-col>
                       <b-container
                         class="button-container d-flex justify-content-end"
                       >
@@ -36,7 +89,7 @@
                           >Back</router-link
                         >
                       </b-container>
-                    </b-col>
+                    </b-col>-->
                   </b-row>
                 </b-container>
               </b-col>
@@ -49,14 +102,12 @@
 </template>
 
 <script>
-import FormInput from "../components/FormInput.vue";
 import SidebarComponent from "../components/SidebarComponent.vue";
 import axios from "axios";
 
 export default {
   name: "AddAccount",
   components: {
-    FormInput,
     SidebarComponent,
   },
   data() {
@@ -70,22 +121,18 @@ export default {
   },
 
   methods: {
-    handleSubmit() {
-      const data = {
-        Username: this.Username,
-        Password: this.Password,
-        UserID: this.UserID,
-        Roles: this.Roles,
-        Status: this.Status,
-      };
-      axios
-        .post("http://localhost:8080/add-librarian", data)
-        .then((res) => {
-          console.log(res);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+    async handleSubmit() {
+      const response = await axios.post(
+        "http://localhost:5000/api/accounts/login",
+        {
+          Username: this.Username,
+          Password: this.Password,
+          UserID: this.UserID,
+          Roles: this.Roles,
+          Status: this.Status,
+        }
+      );
+      console.log(response);
     },
   },
 
