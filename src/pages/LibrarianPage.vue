@@ -84,7 +84,7 @@
                       >
                     </b-form-select>
                   </b-form-group>
-                  <b-form-group label="Status" label-for="Status-value">
+                  <!-- <b-form-group label="Status" label-for="Status-value">
                     <b-form-select
                       v-model="Status"
                       id="Status-select"
@@ -100,7 +100,7 @@
                         >Not Working</b-form-select-option
                       >
                     </b-form-select>
-                  </b-form-group>
+                  </b-form-group> -->
                   <b-button class="input" type="submit">Submit</b-button>
                 </form>
               </b-modal>
@@ -154,7 +154,7 @@ export default {
       Lastname: "",
       RegisterDate: "",
       Gender: "",
-      Status: "",
+      // Status: "",
       fields: [
         { key: "UserID", label: "User ID", sortable: true },
         { key: "Firstname", label: "Firstname", sortable: true },
@@ -235,17 +235,13 @@ export default {
 
   methods: {
     async handleSubmit() {
-      const response = await axios.post(
-        "http://localhost:5000/api/accounts/login",
-        {
-          Firstname: this.Firstname,
-          Middlename: this.Middlename,
-          Lastname: this.Lastname,
-          RegisterDate: this.RegisterDate,
-          Gender: this.Gender,
-          Status: this.Status,
-        }
-      );
+      const response = await axios.post("http://localhost:5000/api/librarian", {
+        Firstname: this.Firstname,
+        Middlename: this.Middlename,
+        Lastname: this.Lastname,
+        RegisterDate: this.RegisterDate,
+        Gender: this.Gender,
+      });
       console.log(response);
     },
   },

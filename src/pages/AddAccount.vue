@@ -122,16 +122,13 @@ export default {
 
   methods: {
     async handleSubmit() {
-      const response = await axios.post(
-        "http://localhost:5000/api/accounts/login",
-        {
-          Username: this.Username,
-          Password: this.Password,
-          UserID: this.UserID,
-          Roles: this.Roles,
-          Status: this.Status,
-        }
-      );
+      const response = await axios.post("http://localhost:5000/api/accounts/", {
+        Username: this.Username,
+        Password: this.Password,
+        UserID: this.UserID,
+        Roles: this.Roles,
+        Status: this.Status,
+      });
       console.log(response);
     },
   },
