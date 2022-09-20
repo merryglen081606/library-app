@@ -10,15 +10,102 @@
       <div class="content">
         <b-card bg-variant="light" class="card">
           <h1>Librarian Records</h1>
-          <router-link to="/add-librarian" class="btn btn-dark" exact
+          <!--<router-link to="/add-librarian" class="btn btn-dark" exact
             >Add Librarian</router-link
-          >
-          <b-form-fieldset
-            style="float: right; padding-bottom: 10px"
-            class="col-4"
-          >
-            <b-input v-model="filter" placeholder="search..."></b-input>
-          </b-form-fieldset>
+          >-->
+          <template>
+            <div>
+              <b-button v-b-modal.modal-prevent-closing>Add Book</b-button>
+              <b-form-fieldset
+                style="float: right; padding-bottom: 10px"
+                class="col-4"
+              >
+                <b-input v-model="filter" placeholder="search..."></b-input>
+              </b-form-fieldset>
+              <b-modal
+                id="modal-prevent-closing"
+                size="m"
+                ref="modal"
+                title="Register Book"
+                @hidden="resetModal"
+              >
+                <form ref="form" @submit.stop.prevent="handleSubmit">
+                  <b-form-group label="Firstname" label-for="Firstname-input">
+                    <b-form-input
+                      id="Firstname-input"
+                      v-model="Firstname"
+                      required
+                    >
+                    </b-form-input>
+                  </b-form-group>
+
+                  <b-form-group label="Middlename" label-for="Middlename-input">
+                    <b-form-input
+                      id="Middlename-input"
+                      v-model="Middlename"
+                      required
+                    >
+                    </b-form-input>
+                  </b-form-group>
+
+                  <b-form-group label="Lastname" label-for="Lastname-input">
+                    <b-form-input id="Lastname-input" v-model="Lastname">
+                    </b-form-input>
+                  </b-form-group>
+
+                  <b-form-group
+                    label="RegisterDate"
+                    label-for="RegisterDate-date"
+                    type="date"
+                  >
+                    <b-form-input
+                      type="date"
+                      id="RegisterDate-date"
+                      v-model="RegisterDate"
+                      required
+                    >
+                    </b-form-input>
+                  </b-form-group>
+
+                  <b-form-group label="Gender" label-for="Gender-value">
+                    <b-form-select
+                      v-model="Gender"
+                      id="Gender-select"
+                      class="mb-12"
+                    >
+                      <b-form-select-option
+                        >Please select an option</b-form-select-option
+                      >
+                      <b-form-select-option value="Female"
+                        >Female</b-form-select-option
+                      >
+                      <b-form-select-option value="Male"
+                        >Male</b-form-select-option
+                      >
+                    </b-form-select>
+                  </b-form-group>
+                  <b-form-group label="Status" label-for="Status-value">
+                    <b-form-select
+                      v-model="Status"
+                      id="Status-select"
+                      class="mb-12"
+                    >
+                      <b-form-select-option
+                        >Please select an option</b-form-select-option
+                      >
+                      <b-form-select-option value="Working"
+                        >Working</b-form-select-option
+                      >
+                      <b-form-select-option value="Not Working"
+                        >Not Working</b-form-select-option
+                      >
+                    </b-form-select>
+                  </b-form-group>
+                  <b-button class="input" type="submit">Submit</b-button>
+                </form>
+              </b-modal>
+            </div>
+          </template>
 
           <b-table
             responsive
@@ -54,7 +141,7 @@
 
 <script>
 import SidebarComponent from "../components/SidebarComponent.vue";
-
+import axios from "axios";
 export default {
   name: "LibrarianPage",
   data() {
@@ -62,6 +149,12 @@ export default {
       perPage: 2,
       currentPage: 1,
       filter: "",
+      Firstname: "",
+      Middlename: "",
+      Lastname: "",
+      RegisterDate: "",
+      Gender: "",
+      Status: "",
       fields: [
         { key: "UserID", label: "User ID", sortable: true },
         { key: "Firstname", label: "Firstname", sortable: true },
@@ -139,6 +232,24 @@ export default {
       // },
     };
   },
+
+  methods: {
+    async handleSubmit() {
+      const response = await axios.post(
+        "http://localhost:5000/api/accounts/login",
+        {
+          Firstname: this.Firstname,
+          Middlename: this.Middlename,
+          Lastname: this.Lastname,
+          RegisterDate: this.RegisterDate,
+          Gender: this.Gender,
+          Status: this.Status,
+        }
+      );
+      console.log(response);
+    },
+  },
+
   computed: {
     rows() {
       return this.items.length;
