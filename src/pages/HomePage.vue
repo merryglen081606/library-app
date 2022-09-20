@@ -1,11 +1,8 @@
 <template>
   <body>
-    <b-row id="header" class="d-flex fixed-top justify-content-center">
-      <b-row
-        id="header"
-        class="d-flex fixed-top justify-content-center width-100%"
-      >
-        <b-navbar class="top-nav" type="dark" variant="dark">
+    <div>
+      <b-row id="header" class="d-flex fixed-top justify-content-center">
+        <b-navbar type="dark" variant="dark">
           <a
             class="navbar-brand"
             style="
@@ -55,7 +52,7 @@
           </div>
         </b-navbar>
       </b-row>
-    </b-row>
+    </div>
 
     <section id="about" class="about section-padding">
       <div class="container">
@@ -161,6 +158,7 @@
         </b-col>
       </b-row>
     </section>
+  
   </body>
 </template>
 
@@ -240,4 +238,22 @@ export default {
   padding-right: 40px;
   color: #ffffff;
 }*/
+.navbar {
+  background-color: #ffffff;
+  height: 75px;
+
+}
+.nav-item {
+  padding-right: 40px;
+  justify-content: center;
+}
+.nav-item .nav-link {
+  font-family: montserrat;
+  font-size: 20px;
+  font-weight: 900;
+  padding-left: 40px;
+  padding-right: 40px;
+  color: #ffffff;
+  
+}
 </style>

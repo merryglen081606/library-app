@@ -1,5 +1,8 @@
 <template>
   <b-container fluid id="lib">
+    <div class="nav">
+      <SidebarComponent />
+    </div>
     <b-row>
       <b-col xl="10" lg="9" sm="9">
         <div class="head">
@@ -47,11 +50,13 @@
 
 <script>
 import FormInput from "../components/FormInput.vue";
+import SidebarComponent from "../components/SidebarComponent.vue";
 
 export default {
   name: "AddLibrarian",
   components: {
     FormInput,
+    SidebarComponent,
   },
   data() {
     return {
@@ -67,12 +72,14 @@ export default {
       ],
     };
   },
+
 };
 </script>
 
 <style scoped>
 nav {
   padding: 10px;
+  
 }
 
 div.py-2 {

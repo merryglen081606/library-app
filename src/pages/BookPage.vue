@@ -1,11 +1,11 @@
-<template style="background-color: #c5eeef">
+<template>
   <b-container fluid id="lib">
     <div class="nav">
       <SidebarComponent />
     </div>
     <div class="main">
       <div class="head">
-        <h4>Library System/<span>Add Book</span></h4>
+        <h4>Library System/<span>Book</span></h4>
       </div>
       <div class="content">
         <b-card bg-variant="light" class="card">
@@ -286,6 +286,7 @@ export default {
 };
 </script>
 <style scope>
+
 .nav {
   float: left;
 }

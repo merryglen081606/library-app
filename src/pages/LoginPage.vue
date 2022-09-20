@@ -20,9 +20,7 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0 bg-dark">
               <li class="nav-item">
-                <router-link to="/" class="nav-link" exact
-                  >Home</router-link
-                >
+                <router-link to="/" class="nav-link" exact>Home</router-link>
               </li>
               <li class="nav-item">
                 <router-link to="/search" class="nav-link" exact
@@ -63,7 +61,7 @@
             <b-form-input
               class="input"
               type="text"
-              v-model="username"
+              v-model="Username"
               placeholder="Username"
               required
             />
@@ -78,7 +76,7 @@
             <b-form-input
               class="input"
               type="password"
-              v-model="username"
+              v-model="Password"
               placeholder="Password"
               required
             />
@@ -90,7 +88,9 @@
             ></b-icon>
           </b-form-group>
           <b-form-group class="input_box button">
-            <b-button class="input" type="submit">Login</b-button>
+            <b-button href="/account" class="input" type="submit"
+              >Login</b-button
+            >
             <!--<iput href="./books" type="submit" value="Login" />-->
             <!--<router-link to="./books" type="submit" exact value="Login"></router-link>-->
           </b-form-group>
@@ -102,16 +102,26 @@
 </template>
 
 <script>
-/*import axios from "axios";*/
+import axios from "axios";
 
 export default {
   name: "LoginPage",
   component: {},
   data() {
     return {
-      username: "",
-      password: "",
+      Username: "",
+      Password: "",
     };
+  },
+  methods: {
+    async handleSubmit() {
+      const response = await axios.post("login", {
+        Username: this.Username,
+        Password: this.Password,
+      });
+      localStorage.setItem('token', response.data.token);
+      this.$router.push({name: "Account"});
+    },
   },
 };
 </script>
@@ -203,6 +213,18 @@ body {
 }
 .navbar {
   background-color: #ffffff;
-  height: 90px;
+  height: 75px;
+}
+.nav-item {
+  padding-right: 40px;
+  justify-content: center;
+}
+.nav-item .nav-link {
+  font-family: montserrat;
+  font-size: 20px;
+  font-weight: 900;
+  padding-left: 40px;
+  padding-right: 40px;
+  color: #ffffff;
 }
 </style>

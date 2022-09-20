@@ -14,6 +14,7 @@ import CityPage from "../pages/CityPage.vue"
 import HomePage from "../pages/HomePage.vue"
 import SearchPage from "../pages/SearchPage.vue"
 import LoginPage from "../pages/LoginPage.vue"
+import HomeVue from "../pages/HomeVue.vue"
 
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";
@@ -21,6 +22,11 @@ import "bootstrap-vue/dist/bootstrap-vue.css";
 Vue.use(VueRouter);
 
 const routes = [
+    {
+        path: "/homevue",
+        name: "HomeVue",
+        component: HomeVue,
+    },
     {
         path: "/librarians",
         name: "LibrarianPage",

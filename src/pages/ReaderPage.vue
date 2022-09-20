@@ -102,7 +102,7 @@ export default {
 }
 .main {
   float: right;
-  width: 80%;
+  width: 100%;
   margin-top: 20px;
 }
 .main .head {

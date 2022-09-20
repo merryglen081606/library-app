@@ -1,101 +1,88 @@
 <template>
-  <div>
-    <div class="nav">
-      <div class="side">
-        <div class="navigation">
-          <h4 class="sidebar-title"><span></span></h4>
+  <body>
+    <div class="side">
+      <div class="navigation">
+        <h4 class="sidebar-title"><span></span></h4>
 
-          <img src="../assets/LOGO1.png" alt="" class="lou-geh" />
-        </div>
-        <nav class="mb-2 sidebar">
-          <b-nav vertical>
-            <router-link
-              to="/dasboard"
-              class="nav-link align-items-center"
-              exact
-            >
-              <b-icon class="mr-3" icon="grid-fill" aria-hidden="true"></b-icon>
-              Dashboard
-            </router-link>
-
-            <router-link to="/account" class="nav-link" exact>
-              <b-icon
-                class="mr-3"
-                icon="person-circle"
-                aria-hidden="true"
-              ></b-icon>
-              Account
-            </router-link>
-
-            <router-link to="/librarians" class="nav-link" exact>
-              <b-icon
-                class="mr-3"
-                icon="person-lines-fill"
-                aria-hidden="true"
-              ></b-icon>
-              Librarian
-            </router-link>
-
-            <router-link to="/books" class="nav-link" exact>
-              <b-icon
-                class="mr-3"
-                icon="journal-bookmark-fill"
-                aria-hidden="true"
-              ></b-icon>
-              Book
-            </router-link>
-
-            <router-link to="/copies" class="nav-link" exact>
-              <b-icon
-                class="mr-3"
-                icon="folder2-open"
-                aria-hidden="true"
-              ></b-icon>
-              Book Copy
-            </router-link>
-
-            <router-link to="/readers" class="nav-link" exact>
-              <b-icon
-                class="mr-3"
-                icon="people-fill"
-                aria-hidden="true"
-              ></b-icon>
-              Reader
-            </router-link>
-
-            <router-link to="/borrow" class="nav-link" exact>
-              <b-icon class="mr-3" icon="stack" aria-hidden="true"></b-icon>
-              Borrow Book
-            </router-link>
-
-            <router-link to="/publisher" class="nav-link" exact>
-              <b-icon class="mr-3" icon="stack" aria-hidden="true"></b-icon>
-              Publisher
-            </router-link>
-
-            <router-link to="/author" class="nav-link" exact>
-              <b-icon class="mr-3" icon="stack" aria-hidden="true"></b-icon>
-              Author
-            </router-link>
-            <router-link to="/login" class="nav-link" exact>
-              <b-icon class="mr-3" icon="stack" aria-hidden="true"></b-icon>
-              Category
-            </router-link>
-
-            <router-link to="/login" class="nav-link" exact>
-              <b-icon class="mr-3" icon="stack" aria-hidden="true"></b-icon>
-              LogIN
-            </router-link>
-          </b-nav>
-        </nav>
-        <!--<b-img
-          src="https://picsum.photos/500/500/?image=54"
-          fluid
-          thumbnail
-        ></b-img>-->
+        <img src="../assets/LOGO1.png" alt="" class="lou-geh" />
       </div>
+      <nav class="mb-2 sidebar">
+        <b-nav vertical>
+          <router-link to="/homevue" class="nav-link" exact>
+            <b-icon
+              class="mr-3"
+              icon="person-circle"
+              aria-hidden="true"
+            ></b-icon>
+            Home
+          </router-link>
+          <router-link to="/account" class="nav-link" exact>
+            <b-icon
+              class="mr-3"
+              icon="person-circle"
+              aria-hidden="true"
+            ></b-icon>
+            Account
+          </router-link>
+
+          <router-link to="/librarians" class="nav-link" exact>
+            <b-icon
+              class="mr-3"
+              icon="person-lines-fill"
+              aria-hidden="true"
+            ></b-icon>
+            Librarian
+          </router-link>
+
+          <router-link to="/books" class="nav-link" exact>
+            <b-icon
+              class="mr-3"
+              icon="journal-bookmark-fill"
+              aria-hidden="true"
+            ></b-icon>
+            Book
+          </router-link>
+
+          <router-link to="/copies" class="nav-link" exact>
+            <b-icon
+              class="mr-3"
+              icon="folder2-open"
+              aria-hidden="true"
+            ></b-icon>
+            Book Copy
+          </router-link>
+
+          <router-link to="/readers" class="nav-link" exact>
+            <b-icon class="mr-3" icon="people-fill" aria-hidden="true"></b-icon>
+            Reader
+          </router-link>
+
+          <router-link to="/borrow" class="nav-link" exact>
+            <b-icon class="mr-3" icon="stack" aria-hidden="true"></b-icon>
+            Transaction
+          </router-link>
+
+          <router-link to="/publisher" class="nav-link" exact>
+            <b-icon class="mr-3" icon="stack" aria-hidden="true"></b-icon>
+            Publisher
+          </router-link>
+
+          <router-link to="/author" class="nav-link" exact>
+            <b-icon class="mr-3" icon="stack" aria-hidden="true"></b-icon>
+            Author
+          </router-link>
+          <router-link to="/login" class="nav-link" exact>
+            <b-icon class="mr-3" icon="stack" aria-hidden="true"></b-icon>
+            Category
+          </router-link>
+          <router-link to="/login" class="nav-link" exact>
+            <b-icon class="mr-3" icon="stack" aria-hidden="true"></b-icon>
+            Logout Account
+          </router-link>
+        </b-nav>
+      </nav>
     </div>
-  </div>
+  </body>
 </template>
 
 <script>
@@ -106,21 +93,20 @@ export default {
 
 <style scoped>
 .side {
+  position: fixed;
+  top: 0;
+  left: 0;
   height: 100%;
-  background-color: #11101d;
   width: 270px;
-  justify-content: center;
-  padding: 6px 14px;
-  position: sticky;
+  background: #11101d;
 }
+
 .lou-geh {
-  height: 150px;
-  width: 150px;
-  margin-top: 20px;
-  margin-left: 50px;
-}
-.navigation {
-  height: 100%;
+  justify-content: center;
+  height: 200px;
+  width: 200px;
+  margin-top: 10px;
+  margin-left: 20px;
 }
 .sidebar-title {
   color: #fff;
@@ -137,8 +123,7 @@ span {
   justify-content: center;
 }
 .sidebar {
-  margin-top: 50px;
-  padding-bottom: 269px;
+  margin-top: 30px;
 }
 .nav-link {
   color: #fff;
@@ -159,6 +144,7 @@ span {
   border-radius: 7px !important;
   padding-left: 80px;
   color: black;
+  width: 270px;
 }
 .mr-3 {
   margin-right: 5px;

@@ -1,17 +1,19 @@
 <template>
+<body>
   <b-container fluid id="lib">
     <div class="nav">
       <SidebarComponent />
     </div>
+    
     <div class="main">
       <div class="head">
-        <h4>Library System/<span>Book Copies</span></h4>
+        <h4>Library System/<span>Account</span></h4>
       </div>
       <div class="content">
         <b-card bg-variant="light" class="card">
           <h1>Book Records</h1>
-          <router-link to="/add-car" class="btn btn-dark" exact
-            >Add Book Copy</router-link
+          <router-link to="/add-librarian" class="btn btn-dark" exact
+            >Add Account</router-link
           >
           <b-form-fieldset
             style="float: right; padding-bottom: 10px"
@@ -47,7 +49,9 @@
         </b-card>
       </div>
     </div>
+  
   </b-container>
+</body>
 </template>
 
 <script>
@@ -85,12 +89,21 @@ export default {
 <style scope>
 .nav {
   float: left;
+  
 }
+body{
+  background-color: #E4E9F7;
+  width: 100%;
+}
+/*
 .main {
   float: right;
-  width: 80%;
+  width: 100%;
   margin-top: 20px;
+  background-color: #E4E9F7;
+  height: 100vh;
 }
+
 .main .head {
   background-attachment: fixed;
   background-color: #11101d;
@@ -121,9 +134,6 @@ h1 {
   text-align: center;
   font-family: "Courier New", Courier, monospace;
   color: #11101d;
-}
-.content {
-  width: 90%;
-  margin-left: 80px;
-}
+}*/
+
 </style>

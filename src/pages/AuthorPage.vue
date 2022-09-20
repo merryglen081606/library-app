@@ -129,7 +129,7 @@ export default {
       return this.items.length;
     },
   },
-  components: {SidebarComponent},
+  components: { SidebarComponent },
 };
 </script>
 <style scope>
