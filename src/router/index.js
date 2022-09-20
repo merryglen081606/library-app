@@ -4,7 +4,7 @@ import LibrarianPage from "../pages/LibrarianPage.vue";
 import BookPage from "../pages/BookPage.vue";
 import CopyPage from "../pages/CopyPage.vue";
 import ReaderPage from "../pages/ReaderPage.vue";
-import AddLibrarian from "../pages/AddLibrarian.vue";
+import AddAccount from "../pages/AddAccount.vue";
 import BorrowPage from "../pages/BorrowPage.vue";
 import AccountPage from "../pages/AccountPage.vue";
 import PublisherPage from "../pages/PublisherPage.vue";
@@ -44,8 +44,8 @@ const routes = [
     },
     {
         path: "/add-librarian",
-        name: "AddLibrarian",
-        component: AddLibrarian,
+        name: "AddAccount",
+        component: AddAccount,
     },
     {
         path: "/readers",
@@ -81,7 +81,7 @@ const routes = [
         path: "/city",
         name: "CityPage",
         component: CityPage,
-    }, 
+    },
     {
         path: "/",
         name: "HomePage",
