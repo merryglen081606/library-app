@@ -144,8 +144,17 @@ import SidebarComponent from "../components/SidebarComponent.vue";
 import axios from "axios";
 export default {
   name: "LibrarianPage",
+  async mounted() {
+    let res = await axios.get("http://localhost:5000/api/librarian");
+    console.warn(res.data.librarianList);
+    this.items = res.data.librarianList;
+  },
   data() {
+    // let res = await axios.get("http://localhost:5000/api/librarian");
+    // console.warn(res.data.librarianList);
+
     return {
+      list: undefined,
       perPage: 2,
       currentPage: 1,
       filter: "",
@@ -163,72 +172,72 @@ export default {
         { key: "RegisterDate", labe: "Register ate", sortable: true },
         { key: "Gender", label: "Gender", sortable: true },
       ],
-      items: [
-        {
-          isActive: true,
-          UserID: 40,
-          Firstname: "Dicker",
-          Middlename: "Maald",
-          Lastname: "Macdonald",
-          RegisterDate: "Macdonald",
-          Gender: "Macdonald",
-        },
-        {
-          isActive: true,
-          UserID: 40,
-          Firstname: "Dickerson",
-          Middlename: "Mald",
-          Lastname: "Macdonald",
-          RegisterDate: "Macdonald",
-          Gender: "Macdonald",
-        },
 
-        {
-          isActive: true,
-          UserID: 40,
-          Firstname: "Dickerson",
-          Middlename: "Macdonald",
-          Lastname: "Macdonald",
-          RegisterDate: "Macdonald",
-          Gender: "Macdonald",
-        },
-        {
-          isActive: true,
-          UserID: 40,
-          Firstname: "WWW",
-          Middlename: "DDD",
-          Lastname: "FFF",
-          RegisterDate: "XXXX",
-          Gender: "Macdonald",
-        },
-        {
-          isActive: true,
-          UserID: 40,
-          Firstname: "SSSS",
-          Middlename: "CCCC",
-          Lastname: "AAA",
-          RegisterDate: "DDDDD",
-          Gender: "Macdonald",
-        },
+      items: [],
+      // items: [
+      //   // {
+      //   //   isActive: true,
+      //   //   UserID: 40,
+      //   //   Firstname: "Dicker",
+      //   //   Middlename: "Maald",
+      //   //   Lastname: "Macdonald",
+      //   //   RegisterDate: "Macdonald",
+      //   //   Gender: "Macdonald",
+      //   // },
+      //   // {
+      //   //   isActive: true,
+      //   //   UserID: 40,
+      //   //   Firstname: "Dickerson",
+      //   //   Middlename: "Mald",
+      //   //   Lastname: "Macdonald",
+      //   //   RegisterDate: "Macdonald",
+      //   //   Gender: "Macdonald",
+      //   // },
+      //   // {
+      //   //   isActive: true,
+      //   //   UserID: 40,
+      //   //   Firstname: "Dickerson",
+      //   //   Middlename: "Macdonald",
+      //   //   Lastname: "Macdonald",
+      //   //   RegisterDate: "Macdonald",
+      //   //   Gender: "Macdonald",
+      //   // },
+      //   // {
+      //   //   isActive: true,
+      //   //   UserID: 40,
+      //   //   Firstname: "WWW",
+      //   //   Middlename: "DDD",
+      //   //   Lastname: "FFF",
+      //   //   RegisterDate: "XXXX",
+      //   //   Gender: "Macdonald",
+      //   // },
+      //   // {
+      //   //   isActive: true,
+      //   //   UserID: 40,
+      //   //   Firstname: "SSSS",
+      //   //   Middlename: "CCCC",
+      //   //   Lastname: "AAA",
+      //   //   RegisterDate: "DDDDD",
+      //   //   Gender: "Macdonald",
+      //   // },
+      //   // {
+      //   //   isActive: true,
+      //   //   UserID: 40,
+      //   //   Firstname: "Dickerson",
+      //   //   Middlename: "Macdonald",
+      //   //   Lastname: "Macdonald",
+      //   //   RegisterDate: "Macdonald",
+      //   //   Gender: "Macdonald",
+      //   // },
+      // ],
 
-        {
-          isActive: true,
-          UserID: 40,
-          Firstname: "Dickerson",
-          Middlename: "Macdonald",
-          Lastname: "Macdonald",
-          RegisterDate: "Macdonald",
-          Gender: "Macdonald",
-        },
-      ],
-
-      //items: {
-      //UserID: null,
-      //Firstname: null,
-      //Middlename: null,
-      //Lastname: null,
-      //RegisterDate: null,
-      //Gender: null,
+      // items: {
+      //   UserID: null,
+      //   Firstname: null,
+      //   Middlename: null,
+      //   Lastname: null,
+      //   RegisterDate: null,
+      //   Gender: null,
       // },
     };
   },
