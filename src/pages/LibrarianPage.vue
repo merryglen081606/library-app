@@ -10,9 +10,7 @@
       <div class="content">
         <b-card bg-variant="light" class="card">
           <h1>Librarian Records</h1>
-          <!--<router-link to="/add-librarian" class="btn btn-dark" exact
-            >Add Librarian</router-link
-          >-->
+
           <template>
             <div>
               <b-button v-b-modal.modal-prevent-closing>Add Book</b-button>
@@ -23,10 +21,11 @@
                 <b-input v-model="filter" placeholder="search..."></b-input>
               </b-form-fieldset>
               <b-modal
+                hide-footer
                 id="modal-prevent-closing"
                 size="m"
                 ref="modal"
-                title="Register Book"
+                title="Register Librarian"
                 @hidden="resetModal"
               >
                 <form ref="form" @submit.stop.prevent="handleSubmit">
@@ -71,7 +70,7 @@
                     <b-form-select
                       v-model="Gender"
                       id="Gender-select"
-                      class="mb-12"
+                      class="select"
                     >
                       <b-form-select-option
                         >Please select an option</b-form-select-option
@@ -84,24 +83,14 @@
                       >
                     </b-form-select>
                   </b-form-group>
-                  <!-- <b-form-group label="Status" label-for="Status-value">
-                    <b-form-select
-                      v-model="Status"
-                      id="Status-select"
-                      class="mb-12"
+                  <div class="buttons">
+                    <b-button class="btn-success" type="submit"
+                      >Submit</b-button
                     >
-                      <b-form-select-option
-                        >Please select an option</b-form-select-option
-                      >
-                      <b-form-select-option value="Working"
-                        >Working</b-form-select-option
-                      >
-                      <b-form-select-option value="Not Working"
-                        >Not Working</b-form-select-option
-                      >
-                    </b-form-select>
-                  </b-form-group> -->
-                  <b-button class="input" type="submit">Submit</b-button>
+                    <b-button class="close" block @click="hideModal"
+                      >Close</b-button
+                    >
+                  </div>
                 </form>
               </b-modal>
             </div>
@@ -145,7 +134,7 @@ import axios from "axios";
 export default {
   name: "LibrarianPage",
   async mounted() {
-    let res = await axios.get("http://localhost:5000/api/librarian");
+    let res = await axios.get("http://172.16.4.182:5000/api/librarian");
     console.warn(res.data.librarianList);
     this.items = res.data.librarianList;
   },
@@ -178,13 +167,16 @@ export default {
 
   methods: {
     async handleSubmit() {
-      const response = await axios.post("http://localhost:5000/api/librarian", {
-        Firstname: this.Firstname,
-        Middlename: this.Middlename,
-        Lastname: this.Lastname,
-        RegisterDate: this.RegisterDate,
-        Gender: this.Gender,
-      });
+      const response = await axios.post(
+        "http://172.16.4.182:5000/api/librarian",
+        {
+          Firstname: this.Firstname,
+          Middlename: this.Middlename,
+          Lastname: this.Lastname,
+          RegisterDate: this.RegisterDate,
+          Gender: this.Gender,
+        }
+      );
       console.log(response);
     },
   },
@@ -197,6 +189,7 @@ export default {
   components: { SidebarComponent },
 };
 </script>
+
 <style scope>
 .nav {
   float: left;
@@ -246,5 +239,18 @@ h1 {
 }
 .btn {
   margin-bottom: 10px;
+}
+.select {
+  width: 463px;
+  height: 40px;
+  border-radius: 8px;
+  border-color: light;
+  margin-bottom: 10px;
+}
+.buttons {
+  float: right;
+}
+.close {
+  margin-left: 10px;
 }
 </style>

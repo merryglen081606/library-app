@@ -11,7 +11,7 @@
       </div>
       <div class="content">
         <b-card bg-variant="light" class="card">
-          <h1>Book Records</h1>
+          <h1>Account Records</h1>
           <router-link to="/add-librarian" class="btn btn-dark" exact
             >Add Account</router-link
           >

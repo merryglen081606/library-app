@@ -27,11 +27,11 @@
                   >Search</router-link
                 >
               </li>
-              <li class="nav-item">
+              <!-- <li class="nav-item">
                 <router-link to="/login" class="nav-link" exact
                   >Login</router-link
                 >
-              </li>
+              </li> -->
               <li class="nav-item">
                 <router-link
                   to="/login"
@@ -43,9 +43,11 @@
                     font-weight: 900;
                     border-radius: 30px;
                     color: #ffffff;
+                    padding-right: 20px;
+                    padding-left: 20px;
                   "
                   exact
-                  >CONTACT US</router-link
+                  >LOGIN ACCOUNT</router-link
                 >
               </li>
             </ul>
@@ -114,7 +116,7 @@ export default {
   methods: {
     async handleSubmit() {
       const response = await axios.post(
-        "http://localhost:5000/api/accounts/login",
+        "http://172.16.4.182::5000/api/accounts/login",
         {
           Username: this.Username,
           Password: this.Password,

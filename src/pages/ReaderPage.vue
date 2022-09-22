@@ -10,21 +10,121 @@
       <div class="content">
         <b-card bg-variant="light" class="card">
           <h1>Reader Records</h1>
-          <router-link to="/add-librarian" class="btn btn-dark" exact
+          <!-- <router-link to="/add-librarian" class="btn btn-dark" exact
             >Add Reader</router-link
-          >
+          > -->
           <b-form-fieldset
             style="float: right; padding-bottom: 10px"
             class="col-4"
           >
             <b-input v-model="filter" placeholder="search..."></b-input>
           </b-form-fieldset>
+
+          <template>
+            <div>
+              <b-button v-b-modal.modal-prevent-closing>Add Book</b-button>
+              <b-modal
+                hide-footer
+                id="modal-prevent-closing"
+                size="m"
+                ref="modal"
+                title="Register Reader"
+                @hidden="resetModal"
+              >
+                <form ref="form" @submit.stop.prevent="handleSubmit">
+                  <b-form-group label="Reader No" label-for="ReaderNo-input">
+                    <b-form-input
+                      id="ReaderNo-input"
+                      v-model="ReaderNo"
+                      required
+                    >
+                    </b-form-input>
+                  </b-form-group>
+
+                  <b-form-group label="Firstname" label-for="Firstname-input">
+                    <b-form-input
+                      id="Firstname-input"
+                      v-model="Firstname"
+                      required
+                    >
+                    </b-form-input>
+                  </b-form-group>
+
+                  <b-form-group label="Middlename" label-for="Middlename-input">
+                    <b-form-input id="Middlename-input" v-model="Middlename">
+                    </b-form-input>
+                  </b-form-group>
+
+                  <b-form-group label="Lastname" label-for="Lastname-input">
+                    <b-form-input id="Lastname-input" v-model="Lastname">
+                    </b-form-input>
+                  </b-form-group>
+
+                  <b-form-group label="Birthdate" label-for="Birthdate-input">
+                    <b-form-input id="Birthdate-input" v-model="Birthdate">
+                    </b-form-input>
+                  </b-form-group>
+
+                  <b-form-group
+                    label="Register Date"
+                    label-for="RegisterDate-input"
+                  >
+                    <b-form-input
+                      id="RegisterDate-input"
+                      v-model="RegisterDate"
+                      type="date"
+                    >
+                    </b-form-input>
+                  </b-form-group>
+
+                  <b-form-group label="Contact No" label-for="ContactNo-input">
+                    <b-form-input id="ContactNo-input" v-model="ContactNo">
+                    </b-form-input>
+                  </b-form-group>
+
+                  <b-form-group label="Status" label-for="Gender-value">
+                    <b-form-select
+                      v-model="Status"
+                      id="Status-select"
+                      class="select"
+                    >
+                      <b-form-select-option
+                        >Please select an option</b-form-select-option
+                      >
+                      <b-form-select-option value="Female"
+                        >Acvtive</b-form-select-option
+                      >
+                      <b-form-select-option value="Male"
+                        >Not Active</b-form-select-option
+                      >
+                    </b-form-select>
+                  </b-form-group>
+
+                  <b-form-group label="City ID" label-for="CityID-input">
+                    <b-form-input id="CityID-input" v-model="CityID">
+                    </b-form-input>
+                  </b-form-group>
+
+                  <div class="buttons">
+                    <b-button class="btn-success" type="submit"
+                      >Submit</b-button
+                    >
+                    <b-button class="close" block @click="hideModal"
+                      >Close</b-button
+                    >
+                  </div>
+                </form>
+              </b-modal>
+            </div>
+          </template>
+
           <b-table
             responsive
             striped
             bordered
             hover
             id="my-table"
+            class="w-auto"
             :items="items"
             :filter="filter"
             :fields="fields"
@@ -138,7 +238,7 @@ h1 {
   color: #11101d;
 }
 .content {
-  width: 90%;
+  width: 100%;
   margin-left: 80px;
 }
 </style>

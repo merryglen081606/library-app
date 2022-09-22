@@ -27,11 +27,11 @@
                   >Search</router-link
                 >
               </li>
-              <li class="nav-item">
+              <!-- <li class="nav-item">
                 <router-link to="/login" class="nav-link" exact
                   >Login</router-link
                 >
-              </li>
+              </li> -->
               <li class="nav-item">
                 <router-link
                   to="/login"
@@ -43,9 +43,11 @@
                     font-weight: 900;
                     border-radius: 30px;
                     color: #ffffff;
+                    padding-right: 20px;
+                    padding-left: 20px;
                   "
                   exact
-                  >CONTACT US</router-link
+                  >LOGIN ACCOUNT</router-link
                 >
               </li>
             </ul>
@@ -158,7 +160,6 @@
         </b-col>
       </b-row>
     </section>
-  
   </body>
 </template>
 
@@ -241,7 +242,6 @@ export default {
 .navbar {
   background-color: #ffffff;
   height: 75px;
-
 }
 .nav-item {
   padding-right: 40px;
@@ -254,6 +254,5 @@ export default {
   padding-left: 40px;
   padding-right: 40px;
   color: #ffffff;
-  
 }
 </style>

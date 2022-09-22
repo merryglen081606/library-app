@@ -10,15 +10,51 @@
       <div class="content">
         <b-card bg-variant="light" class="card">
           <h1>Book Records</h1>
-          <router-link to="/add-car" class="btn btn-dark" exact
-            >Add Book Copy</router-link
-          >
           <b-form-fieldset
             style="float: right; padding-bottom: 10px"
             class="col-4"
           >
             <b-input v-model="filter" placeholder="search..."></b-input>
           </b-form-fieldset>
+          <template>
+            <div>
+              <b-button v-b-modal.modal-prevent-closing>Add Book Copies</b-button>
+              <b-modal
+                hide-footer
+                id="modal-prevent-closing"
+                size="m"
+                ref="modal"
+                title="Register Book Copies"
+                @hidden="resetModal"
+              >
+                <form ref="form" @submit.stop.prevent="handleSubmit">
+                  <b-form-group label="Copy No.*" label-for="CopyNo-input">
+                    <b-form-input id="CopyNo-input" v-model="CopyNo" required>
+                    </b-form-input>
+                  </b-form-group>
+
+                  <b-form-group label="Book ID.*" label-for="BookID-input">
+                    <b-form-input id="BookID-input" v-model="BookID" required>
+                    </b-form-input>
+                  </b-form-group>
+
+                  <b-form-group label="Shelf ID.*" label-for="ShelfID-input">
+                    <b-form-input id="ShelfID-input" v-model="ShelfID" required>
+                    </b-form-input>
+                  </b-form-group>
+
+                  <div class="buttons">
+                    <b-button class="btn-success" type="submit"
+                      >Submit</b-button
+                    >
+                    <b-button class="close" block @click="hideModal"
+                      >Close</b-button
+                    >
+                  </div>
+                </form>
+              </b-modal>
+            </div>
+          </template>
 
           <b-table
             responsive

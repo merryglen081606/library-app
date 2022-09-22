@@ -10,15 +10,76 @@
       <div class="content">
         <b-card bg-variant="light" class="card">
           <h1>Publisher Records</h1>
-          <router-link to="/add-librarian" class="btn btn-dark" exact
+          <!-- <router-link to="/add-librarian" class="btn btn-dark" exact
             >Add Publisher</router-link
-          >
-          <b-form-fieldset
-            style="float: right; padding-bottom: 10px"
-            class="col-4"
-          >
-            <b-input v-model="filter" placeholder="search..."></b-input>
-          </b-form-fieldset>
+          > -->
+
+          <template>
+            <div>
+              <b-button v-b-modal.modal-prevent-closing>Add Publisher</b-button>
+              <b-form-fieldset
+                style="float: right; padding-bottom: 10px"
+                class="col-4"
+              >
+                <b-input v-model="filter" placeholder="search..."></b-input>
+              </b-form-fieldset>
+              <b-modal
+                hide-footer
+                id="modal-prevent-closing"
+                size="m"
+                ref="modal"
+                title="Register Publisher"
+                @hidden="resetModal"
+              >
+                <form ref="form" @submit.stop.prevent="handleSubmit">
+                  <b-form-group label="Firstname" label-for="Firstname-input">
+                    <b-form-input
+                      id="Firstname-input"
+                      v-model="Firstname"
+                      required
+                    >
+                    </b-form-input>
+                  </b-form-group>
+
+                  <b-form-group label="Middlename" label-for="Middlename-input">
+                    <b-form-input
+                      id="Middlename-input"
+                      v-model="Middlename"
+                      required
+                    >
+                    </b-form-input>
+                  </b-form-group>
+
+                  <b-form-group label="Lastname" label-for="Lastname-input">
+                    <b-form-input
+                      id="Lastname-input"
+                      v-model="Lastname"
+                      required
+                    >
+                    </b-form-input>
+                  </b-form-group>
+
+                  <b-form-group label="Location" label-for="Location-input">
+                    <b-form-input
+                      id="Location-input"
+                      v-model="Location"
+                      required
+                    >
+                    </b-form-input>
+                  </b-form-group>
+
+                  <div class="buttons">
+                    <b-button class="btn-success" type="submit"
+                      >Submit</b-button
+                    >
+                    <b-button class="close" block @click="hideModal"
+                      >Close</b-button
+                    >
+                  </div>
+                </form>
+              </b-modal>
+            </div>
+          </template>
 
           <b-table
             responsive
@@ -128,5 +189,8 @@ h1 {
 .content {
   width: 90%;
   margin-left: 80px;
+}
+.buttons{
+  margin-top:10px;
 }
 </style>

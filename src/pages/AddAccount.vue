@@ -6,18 +6,18 @@
     <b-row>
       <b-col xl="10" lg="9" sm="9">
         <div class="head">
-          <h4>Library System/<span>Librarian</span></h4>
+          <h4>Library System/ <span>Add Librarian Account</span></h4>
         </div>
         <b-container fluid class="pt-2">
           <b-row class="d-flex justify-content-center my-3">
             <b-col xl="6" class="py-2">
               <b-col class="">
                 <b-container class="container-card rounded p-3">
-                  <h4 class="px-3">Add Librarian</h4>
-                  <b-row>
+                  <h4 class="px-3">Add Librarian Account</h4>
+                  <b-row class="form">
                     <b-col cols="12" class="mt-3">
                       <b-form @submit.prevent="handleSubmit">
-                        <b-form-group class="input_box">
+                        <b-form-group label="Username:*" class="input_box">
                           <b-form-input
                             class="input"
                             type="text"
@@ -26,7 +26,7 @@
                             required
                           />
                         </b-form-group>
-                        <b-form-group class="input_box">
+                        <b-form-group label="Password:*" class="input_box">
                           <b-form-input
                             class="input"
                             type="password"
@@ -35,35 +35,37 @@
                             required
                           />
                         </b-form-group>
-                        <b-form-group class="input_box">
+                        <b-form-group label="User ID:*" class="input_box">
                           <b-form-input
                             class="input"
                             type="number"
                             v-model="UserID"
-                            placeholder="Password"
+                            placeholder="User ID"
                             required
                           />
                         </b-form-group>
-                        <b-form-group class="input_box">
+                        <b-form-group label="Roles:*" class="input_box">
                           <b-form-input
                             class="input"
                             type="text"
                             v-model="Roles"
-                            placeholder="Password"
+                            placeholder="Roles"
                             required
                           />
                         </b-form-group>
-                        <b-form-group class="input_box">
+                        <b-form-group label="Status:*" class="input_box">
                           <b-form-input
                             class="input"
                             type="text"
                             v-model="Status"
-                            placeholder="Password"
+                            placeholder="Status"
                             required
                           />
                         </b-form-group>
                         <b-form-group class="input_box button">
-                          <b-button class="input" type="submit">Login</b-button>
+                          <b-button class="input" type="submit"
+                            >Submit</b-button
+                          >
 
                           <router-link
                             to="/librarians"
@@ -71,25 +73,9 @@
                             exact
                             >Back</router-link
                           >
-
-                          <!--<iput href="./books" type="submit" value="Login" />-->
-                          <!--<router-link to="./books" type="submit" exact value="Login"></router-link>-->
                         </b-form-group>
                       </b-form>
                     </b-col>
-                    <!--<b-col>
-                      <b-container
-                        class="button-container d-flex justify-content-end"
-                      >
-                        <b-button variant="success" type="submit"
-                          >Save Info</b-button
-                        >
-
-                        <router-link to="/librarians" class="btn btn-dark" exact
-                          >Back</router-link
-                        >
-                      </b-container>
-                    </b-col>-->
                   </b-row>
                 </b-container>
               </b-col>
@@ -132,23 +118,6 @@ export default {
       console.log(response);
     },
   },
-
-  /*data() {
-    return {
-      value: "",
-      fields: ["ID", "firstname", "middlename", "lastname", "actions"],
-      items: [
-        {
-          ID: 1,
-          Username: "",
-          Password: "",
-          UserID: "",
-          Roles: "",
-          Status: "",
-        },
-      ],
-    };
-  },*/
 };
 </script>
 
@@ -179,11 +148,24 @@ div.py-2 {
 }
 .container-card {
   background-color: #d4f0f7;
+  align-content: center;
+  justify-content: center;
+  margin-left: 120px;
 }
 .button-container {
   margin-right: 50px;
 }
 .btn {
   margin-left: 5px;
+}
+.input_box {
+  margin-bottom: 2px;
+}
+.px-3 {
+  text-align: center;
+}
+.form {
+  align-content: center;
+  justify-content: center;
 }
 </style>

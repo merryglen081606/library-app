@@ -8,14 +8,14 @@
       </div>
       <nav class="mb-2 sidebar">
         <b-nav vertical>
-          <router-link to="/homevue" class="nav-link" exact>
+          <!-- <router-link to="/homevue" class="nav-link" exact>
             <b-icon
               class="mr-3"
               icon="person-circle"
               aria-hidden="true"
             ></b-icon>
             Home
-          </router-link>
+          </router-link> -->
           <router-link to="/account" class="nav-link" exact>
             <b-icon
               class="mr-3"
@@ -58,25 +58,37 @@
           </router-link>
 
           <router-link to="/borrow" class="nav-link" exact>
-            <b-icon class="mr-3" icon="stack" aria-hidden="true"></b-icon>
+            <b-icon class="mr-3" icon="folder-plus" aria-hidden="true"></b-icon>
             Transaction
           </router-link>
 
           <router-link to="/publisher" class="nav-link" exact>
-            <b-icon class="mr-3" icon="stack" aria-hidden="true"></b-icon>
+            <b-icon
+              class="mr-3"
+              icon="file-earmark-person"
+              aria-hidden="true"
+            ></b-icon>
             Publisher
           </router-link>
 
           <router-link to="/author" class="nav-link" exact>
-            <b-icon class="mr-3" icon="stack" aria-hidden="true"></b-icon>
+            <b-icon
+              class="mr-3"
+              icon="person-lines-fill"
+              aria-hidden="true"
+            ></b-icon>
             Author
           </router-link>
           <router-link to="/login" class="nav-link" exact>
             <b-icon class="mr-3" icon="stack" aria-hidden="true"></b-icon>
             Category
           </router-link>
-          <router-link to="/login" class="nav-link" exact>
-            <b-icon class="mr-3" icon="stack" aria-hidden="true"></b-icon>
+          <router-link to="/" class="nav-link" exact>
+            <b-icon
+              class="mr-3"
+              icon="door-open-fill"
+              aria-hidden="true"
+            ></b-icon>
             Logout Account
           </router-link>
         </b-nav>
