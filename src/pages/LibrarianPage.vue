@@ -1,148 +1,222 @@
 <template>
   <b-container fluid id="lib">
-    <div class="nav">
-      <SidebarComponent />
-    </div>
-    <div class="main">
-      <div class="head">
-        <h4>Library System/<span>Librarian</span></h4>
+    <b-col class="cl">
+      <div class="navigation">
+        <SidebarComponent />
       </div>
-      <div class="content">
-        <b-card bg-variant="light" class="card">
-          <h1>Librarian Records</h1>
+    </b-col>
+    <b-row>
+      <div fluid class="main-tab">
+        <b-col>
+          <div class="header">
+            <h4>Library System/<span>Librarian</span></h4>
+          </div>
+        </b-col>
+        <b-col fluid class="cd">
+          <div class="contents">
+            <b-card bg-variant="light" class="cards">
+              <div class="title">Librarian Records</div>
 
-          <template>
-            <div>
-              <b-button v-b-modal.modal-prevent-closing>Add Book</b-button>
-              <b-form-fieldset
-                style="float: right; padding-bottom: 10px"
-                class="col-4"
-              >
-                <b-input v-model="filter" placeholder="search..."></b-input>
-              </b-form-fieldset>
-              <b-modal
-                hide-footer
-                id="modal-prevent-closing"
-                size="m"
-                ref="modal"
-                title="Register Librarian"
-                @hidden="resetModal"
-              >
-                <form ref="form" @submit.stop.prevent="handleSubmit">
-                  <b-form-group label="Firstname" label-for="Firstname-input">
-                    <b-form-input
-                      id="Firstname-input"
-                      v-model="Firstname"
-                      required
-                    >
-                    </b-form-input>
-                  </b-form-group>
-
-                  <b-form-group label="Middlename" label-for="Middlename-input">
-                    <b-form-input
-                      id="Middlename-input"
-                      v-model="Middlename"
-                      required
-                    >
-                    </b-form-input>
-                  </b-form-group>
-
-                  <b-form-group label="Lastname" label-for="Lastname-input">
-                    <b-form-input id="Lastname-input" v-model="Lastname">
-                    </b-form-input>
-                  </b-form-group>
-
-                  <b-form-group
-                    label="RegisterDate"
-                    label-for="RegisterDate-date"
-                    type="date"
+              <!--Start  Modal Insert Data Code-->
+              <template>
+                <div>
+                  <b-button v-b-modal.modal-prevent-closing>Add Book</b-button>
+                  <b-form-fieldset
+                    style="float: right; padding-bottom: 10px"
+                    class="col-4"
                   >
-                    <b-form-input
-                      type="date"
-                      id="RegisterDate-date"
-                      v-model="RegisterDate"
-                      required
-                    >
-                    </b-form-input>
-                  </b-form-group>
-
-                  <b-form-group label="Gender" label-for="Gender-value">
-                    <b-form-select
-                      v-model="Gender"
-                      id="Gender-select"
-                      class="select"
-                    >
-                      <b-form-select-option
-                        >Please select an option</b-form-select-option
+                    <b-input
+                      v-model="filter"
+                      placeholder="Type here to Search..."
+                    ></b-input>
+                  </b-form-fieldset>
+                  <b-modal
+                    hide-footer
+                    id="modal-prevent-closing"
+                    size="m"
+                    ref="modal"
+                    title="Register Librarian"
+                  >
+                    <form ref="form" v-on:submit.stop.prevent="librarianSubmit">
+                      <b-form-group
+                        label="Firstname"
+                        label-for="Firstname-input"
                       >
-                      <b-form-select-option value="Female"
-                        >Female</b-form-select-option
-                      >
-                      <b-form-select-option value="Male"
-                        >Male</b-form-select-option
-                      >
-                    </b-form-select>
-                  </b-form-group>
-                  <div class="buttons">
-                    <b-button class="btn-success" type="submit"
-                      >Submit</b-button
-                    >
-                    <b-button class="close" block @click="hideModal"
-                      >Close</b-button
-                    >
-                  </div>
-                </form>
-              </b-modal>
-            </div>
-          </template>
+                        <b-form-input
+                          id="Firstname-input"
+                          v-model="$v.Firstname.$model"
+                          :class="{
+                            'is-invalid': validationStatus($v.Firstname),
+                          }"
+                        >
+                        </b-form-input>
+                        <div
+                          v-if="!$v.Firstname.required"
+                          class="invalid-feedback"
+                        >
+                          Please enter Firstname.(Required Failed)
+                        </div>
+                      </b-form-group>
 
-          <b-table
-            responsive
-            striped
-            bordered
-            hover
-            id="my-table"
-            :items="items"
-            :filter="filter"
-            :fields="fields"
-            primary-key
-            label-sort-asc=""
-            label-sort-desc=""
-            label-sort-clear=""
-            :per-page="perPage"
-            :current-page="currentPage"
-          >
-          </b-table>
+                      <b-form-group
+                        label="Middlename"
+                        label-for="Middlename-input"
+                      >
+                        <b-form-input
+                          id="Middlename-input"
+                          v-model="Middlename"
+                        >
+                        </b-form-input>
+                      </b-form-group>
 
-          <b-pagination
-            v-model="currentPage"
-            pills
-            :total-rows="rows"
-            :per-page="perPage"
-            aria-controls="my-table"
-          ></b-pagination>
-          <p class="mt-3">Current Page: {{ currentPage }}</p>
-        </b-card>
+                      <b-form-group label="Lastname" label-for="Lastname-input">
+                        <b-form-input
+                          id="Lastname-input"
+                          v-model="$v.Lastname.$model"
+                          :class="{
+                            'is-invalid': validationStatus($v.Lastname),
+                          }"
+                        >
+                        </b-form-input>
+                        <div
+                          v-if="!$v.Lastname.required"
+                          class="invalid-feedback"
+                        >
+                          Please enter Lastname.(Required Failed)
+                        </div>
+                      </b-form-group>
+
+                      <b-form-group
+                        label="RegisterDate"
+                        label-for="RegisterDate-date"
+                        type="date"
+                      >
+                        <b-form-input
+                          type="date"
+                          id="RegisterDate-date"
+                          v-model="$v.RegisterDate.$model"
+                          :class="{
+                            'is-invalid': validationStatus($v.RegisterDate),
+                          }"
+                        >
+                        </b-form-input>
+                        <div
+                          v-if="!$v.RegisterDate.required"
+                          class="invalid-feedback"
+                        >
+                          Please select Registrtation Date.(Required Failed)
+                        </div>
+                      </b-form-group>
+
+                      <b-form-group label="Gender" label-for="Gender-value">
+                        <b-form-select
+                          class="form-control"
+                          v-model="$v.Gender.$model"
+                          :class="{
+                            'is-invalid': validationStatus($v.Gender),
+                          }"
+                          id="Gender-select"
+                        >
+                          <b-form-select-option
+                            >Please select an option</b-form-select-option
+                          >
+                          <b-form-select-option value="Female"
+                            >Female</b-form-select-option
+                          >
+                          <b-form-select-option value="Male"
+                            >Male</b-form-select-option
+                          >
+                        </b-form-select>
+                        <div
+                          v-if="!$v.Gender.required"
+                          class="invalid-feedback"
+                        >
+                          Please Select Gender.(Required Failed)
+                        </div>
+                      </b-form-group>
+                      <div class="buttons">
+                        <b-button class="btn-success" @click="librarianSubmit()"
+                          >Submit</b-button
+                        >
+                        <b-button class="close" href="/librarians"
+                          >Close</b-button
+                        >
+                      </div>
+                    </form>
+                  </b-modal>
+                </div>
+              </template>
+              <!--End  Modal Insert Code-->
+
+              <!--Start  DataTable Code-->
+              <b-table
+                responsive
+                striped
+                bordered
+                hover
+                id="my-table"
+                :items="librarians"
+                :filter="filter"
+                :fields="fields"
+                primary-key
+                label-sort-asc=""
+                label-sort-desc=""
+                label-sort-clear=""
+                :per-page="perPage"
+                :current-page="currentPage"
+              >
+                  <template v-slot:cell(Action)="data">
+                    <router-link
+                      tag="button"
+                      :to="'/editlibrarian/' + data.item.UserID"
+                      class="btn btn-success edits"
+                      >UPDATE
+                      <b-icon class="edit-btn" icon="pencil-square"></b-icon>
+                    </router-link>
+                    <!-- <router-link :to="
+                  {
+                    name: 'EditLibrarian',
+                    params: {UserID: data.item._id}
+                  }"
+                  tag="button"
+                
+                  class="btn btn-success edits" >Update
+                  <b-icon class="edit-btn" icon="pencil-square"></b-icon>
+                  </router-link>  -->
+                  </template>
+              </b-table>
+              <!--End  DataTable Code-->
+
+              <b-pagination
+                v-model="currentPage"
+                pills
+                :total-rows="rows"
+                :per-page="perPage"
+                aria-controls="my-table"
+              ></b-pagination>
+
+              <p class="currentpage">Current Page: {{ currentPage }}</p>
+            </b-card>
+          </div>
+        </b-col>
       </div>
-    </div>
+    </b-row>
   </b-container>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import SidebarComponent from "../components/SidebarComponent.vue";
-import axios from "axios";
+// import axios from "axios";
+import moment from "moment";
+import { required } from "vuelidate/lib/validators";
+
 export default {
   name: "LibrarianPage",
-  async mounted() {
-    let res = await axios.get("http://172.16.4.182:5000/api/librarian");
-    console.warn(res.data.librarianList);
-    this.items = res.data.librarianList;
-  },
-  data() {
-    // let res = await axios.get("http://localhost:5000/api/librarian");
-    // console.warn(res.data.librarianList);
 
+  data() {
     return {
+      show: false,
       perPage: 10,
       currentPage: 1,
       filter: "",
@@ -151,68 +225,115 @@ export default {
       Lastname: "",
       RegisterDate: "",
       Gender: "",
+      Action: "",
+      button: "",
+
       // Status: "",
       fields: [
         { key: "UserID", label: "User ID", sortable: true },
         { key: "Firstname", label: "Firstname", sortable: true },
         { key: "Middlename", label: "Middlename", sortable: true },
         { key: "Lastname", label: "Lastname", sortable: true },
-        { key: "RegisterDate", labe: "Register ate", sortable: true },
+        { key: "RegisterDate", labe: "Register ate", sortable: true ,
+      formatter: (value) => {
+            return moment(value).format("MMM DD, YYYY");
+          },},
         { key: "Gender", label: "Gender", sortable: true },
+        { key: "Action", label: "Action", sortable: true },
       ],
-
-      items: [],
     };
   },
 
+  computed: {
+    ...mapGetters({ librarians: "librarians" }),
+
+    rows() {
+      return this.librarians.length;
+    },
+  },
+
+  async mounted() {
+    if (localStorage.getItem("token") === null) {
+      this.$router.push("/login");
+    }
+    return await this.$store.dispatch("fetchLibrarian");
+  },
+
+  validations: {
+    Firstname: { required },
+    Lastname: { required },
+    RegisterDate: { required },
+    Gender: { required },
+  },
+
   methods: {
-    async handleSubmit() {
-      const response = await axios.post(
-        "http://172.16.4.182:5000/api/librarian",
-        {
+    validationStatus: function (validation) {
+      return typeof validation != "undefined" ? validation.$error : false;
+    },
+    async librarianSubmit() {
+      this.$v.$touch();
+      if (this.$v.$pendding || this.$v.$error) return;
+      try {
+        console.log("newsup", this.librarianList);
+        this.$store.dispatch("librarianSubmit", {
           Firstname: this.Firstname,
           Middlename: this.Middlename,
           Lastname: this.Lastname,
           RegisterDate: this.RegisterDate,
           Gender: this.Gender,
-        }
-      );
-      console.log(response);
+        });
+        alert("Data Successfully Submitted");
+      } catch (error) {
+        alert("Invalid User");
+      }
     },
   },
 
-  computed: {
-    rows() {
-      return this.items.length;
-    },
-  },
   components: { SidebarComponent },
 };
 </script>
 
 <style scope>
-.nav {
-  float: left;
+.main-tab {
+  padding-left: auto;
 }
-.main {
-  float: right;
-  width: 85%;
-  margin-top: 20px;
-}
-.main .head {
-  background-attachment: fixed;
+.header {
+  margin-top: 10px;
+  margin-left: auto;
+  padding-top: 15px;
+  padding-left: 15px;
+  padding-right: 15px;
+  width: 80%;
+  height: 60px;
   background-color: #11101d;
   border-radius: 10px;
-  margin-bottom: 20px;
-  margin-right: 50px;
+  color: #ffffff;
 }
-.main .head h4 {
+.contents {
+  padding-left: 310px;
+  padding-right: 10px;
+  margin-top: 20px;
+  margin-left: auto;
+}
+
+.cards {
+  margin-top: 30px;
+  margin-left: auto;
+}
+
+.title {
+  text-align: center;
+  color: #11101d;
+  font-family: monospace;
+  font-weight: bolder;
+  font-size: 30px;
+}
+.main-tab .header h4 {
   font-family: montserrat;
   color: rgb(240, 240, 240);
-  padding-top: 10px;
-  padding: 15px;
+  padding-top: 3px;
 }
-.main h4 span {
+.main-tab h4 span {
   color: #eeb34b;
   font-family: montserrat;
 }
@@ -222,14 +343,8 @@ export default {
 .button .btn {
   width: auto;
 }
-
-.main h5 {
-  text-align: center;
-  padding-top: 20px;
-}
 h1 {
   text-align: center;
-  font-family: "Courier New", Courier, monospace;
   color: #11101d;
 }
 .main .content {
@@ -240,17 +355,39 @@ h1 {
 .btn {
   margin-bottom: 10px;
 }
-.select {
-  width: 463px;
-  height: 40px;
-  border-radius: 8px;
-  border-color: light;
-  margin-bottom: 10px;
-}
 .buttons {
   float: right;
 }
 .close {
   margin-left: 10px;
+}
+@media (max-width: 1284px) {
+  .header {
+    width: 76%;
+  }
+}
+@media (max-width: 1174px) {
+  .header {
+    margin-left: 90px;
+    width: 90%;
+  }
+  .contents {
+    padding-left: 90px;
+    padding-right: 20px;
+  }
+}
+@media (max-width: 759px) {
+  .header {
+    margin-left: 90px;
+    width: 87%;
+    padding-right: 30px;
+  }
+}
+@media (max-width: 501px) {
+  .header {
+    margin-left: 90px;
+    width: 80%;
+    padding-right: 30px;
+  }
 }
 </style>

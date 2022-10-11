@@ -4,12 +4,18 @@ import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue'
 import router from './router';
 import './axios'
 import store from './store'
+import Vuelidate from "vuelidate"
+
+
+
 
 import { FormSelectPlugin } from 'bootstrap-vue'
 
 Vue.use(FormSelectPlugin)
 Vue.use(BootstrapVue)
 Vue.use(BootstrapVueIcons)
+Vue.use(Vuelidate);
+
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'

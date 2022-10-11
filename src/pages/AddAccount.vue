@@ -16,61 +16,146 @@
                   <h4 class="px-3">Add Librarian Account</h4>
                   <b-row class="form">
                     <b-col cols="12" class="mt-3">
-                      <b-form @submit.prevent="handleSubmit">
+                      <b-form v-on:submit.prevent="handleSubmit">
                         <b-form-group label="Username:*" class="input_box">
                           <b-form-input
                             class="input"
                             type="text"
-                            v-model="Username"
+                            v-model="$v.Username.$model"
+                            :class="{
+                              'is-invalid': validationStatus($v.Username),
+                            }"
                             placeholder="Username"
-                            required
                           />
+                          {{ BookID }}
+                          <div
+                            v-if="!$v.Username.required"
+                            class="invalid-feedback"
+                          >
+                            The full name field is required.
+                          </div>
+                          <div
+                            v-if="!$v.Username.minLength"
+                            class="invalid-feedback"
+                          >
+                            Username must have atleast{{
+                              $v.Username.$params.minLength.min
+                            }}
+                          </div>
+                          <div
+                            v-if="!$v.Username.maxLength"
+                            class="invalid-feedback"
+                          >
+                            Username must not have greater then
+                            {{ $v.Username.$params.maxLength.min }}
+                          </div>
                         </b-form-group>
                         <b-form-group label="Password:*" class="input_box">
                           <b-form-input
                             class="input"
                             type="password"
-                            v-model="Password"
+                            v-model="$v.Password.$model"
+                            :class="{
+                              'is-invalid': validationStatus($v.Password),
+                            }"
                             placeholder="Password"
-                            required
                           />
+                          <div
+                            v-if="!$v.Password.required"
+                            class="invalid-feedback"
+                          >
+                            The Password name field is required.
+                          </div>
+                          <div
+                            v-if="!$v.Password.minLength"
+                            class="invalid-feedback"
+                          >
+                            Password must have atleast{{
+                              $v.Password.$params.minLength.min
+                            }}
+                          </div>
+                          <div
+                            v-if="!$v.Password.maxLength"
+                            class="invalid-feedback"
+                          >
+                            Password must not have greater then
+                            {{ $v.Password.$params.maxLength.min }}
+                          </div>
                         </b-form-group>
                         <b-form-group label="User ID:*" class="input_box">
                           <b-form-input
                             class="input"
                             type="number"
-                            v-model="UserID"
+                            v-model="$v.UserID.$model"
+                            :class="{
+                              'is-invalid': validationStatus($v.UserID),
+                            }"
                             placeholder="User ID"
-                            required
                           />
+                          <div
+                            v-if="!$v.UserID.required"
+                            class="invalid-feedback"
+                          >
+                            The Password name field is required.
+                          </div>
                         </b-form-group>
-                        <b-form-group label="Roles:*" class="input_box">
-                          <b-form-input
-                            class="input"
-                            type="text"
-                            v-model="Roles"
-                            placeholder="Roles"
-                            required
-                          />
+                        <b-form-group label="Roles:*">
+                          <b-form-select
+                            v-model="$v.Roles.$model"
+                            class="form-control"
+                            :class="{
+                              'is-invalid': validationStatus($v.Roles),
+                            }"
+                          >
+                            <b-form-select-option :value="null"
+                              >Please select an option</b-form-select-option
+                            >
+                            <b-form-select-option value="Admin"
+                              >Admin</b-form-select-option
+                            >
+                            <b-form-select-option value="User"
+                              >User</b-form-select-option
+                            >
+                          </b-form-select>
+                          <div
+                            v-if="!$v.Roles.required"
+                            class="invalid-feedback"
+                          >
+                            The Roles field is required.
+                          </div>
                         </b-form-group>
-                        <b-form-group label="Status:*" class="input_box">
-                          <b-form-input
-                            class="input"
-                            type="text"
-                            v-model="Status"
-                            placeholder="Status"
-                            required
-                          />
+                        <b-form-group label="Status:*">
+                          <b-form-select
+                            class="form-control"
+                            v-model="$v.Status.$model"
+                            :class="{
+                              'is-invalid': validationStatus($v.Status),
+                            }"
+                            id="Status-select"
+                          >
+                            <b-form-select-option
+                              >Please select an option</b-form-select-option
+                            >
+                            <b-form-select-option value="Working"
+                              >Working</b-form-select-option
+                            >
+                            <b-form-select-option value="Not Working"
+                              >Not Working</b-form-select-option
+                            >
+                          </b-form-select>
+                          <div
+                            v-if="!$v.Status.required"
+                            class="invalid-feedback"
+                          >
+                            The Password name field is required.
+                          </div>
                         </b-form-group>
-                        <b-form-group class="input_box button">
+                        <b-form-group class="input_button button">
                           <b-button class="input" type="submit"
                             >Submit</b-button
                           >
 
-                          <router-link
-                            to="/librarians"
-                            class="btn btn-dark"
-                            exact
+                          <router-link to="/account" class="btn btn-dark" exact
                             >Back</router-link
                           >
                         </b-form-group>
@@ -89,7 +174,10 @@
 
 <script>
 import SidebarComponent from "../components/SidebarComponent.vue";
+
 import axios from "axios";
+// import { required, minLength, maxLength } from ".././vuelidate/lib/validators"
+import { required, minLength, maxLength } from "vuelidate/lib/validators";
 
 export default {
   name: "AddAccount",
@@ -106,19 +194,49 @@ export default {
     };
   },
 
+  validations: {
+    Username: { required, minLength: minLength(6), maxLength: maxLength(18) },
+    Password: { required, minLength: minLength(8), maxLength: maxLength(18) },
+    UserID: { required },
+    Roles: { required },
+    Status: { required },
+  },
+
   methods: {
+    validationStatus: function (validation) {
+      return typeof validation != "undefined" ? validation.$error : false;
+    },
     async handleSubmit() {
-      const response = await axios.post("http://localhost:5000/api/accounts/", {
-        Username: this.Username,
-        Password: this.Password,
-        UserID: this.UserID,
-        Roles: this.Roles,
-        Status: this.Status,
-      });
-      console.log(response);
+      this.$v.$touch();
+      if (this.$v.$pendding || this.$v.$error) return;
+      try {
+        await axios.post("http://172.16.4.182:5000/api/accounts/", {
+          Username: this.Username,
+          Password: this.Password,
+          UserID: this.UserID,
+          Roles: this.Roles,
+          Status: this.Status,
+        });
+        alert("Data Successfully Submitted");
+      } catch (error) {
+        alert("Invalid User");
+      }
     },
   },
 };
+
+// methods: {
+//   async handleSubmit() {
+//     const response = await axios.post("http://localhost:5000/api/accounts/", {
+//       Username: this.Username,
+//       Password: this.Password,
+//       UserID: this.UserID,
+//       Roles: this.Roles,
+//       Status: this.Status,
+//     });
+//     console.log(response);
+//   },
+// },
 </script>
 
 <style scoped>
@@ -167,5 +285,14 @@ div.py-2 {
 .form {
   align-content: center;
   justify-content: center;
+}
+.selects {
+  width: 840px;
+  height: 35px;
+  border-radius: 5px;
+  border-color: gray;
+}
+.input_button {
+  float: right;
 }
 </style>

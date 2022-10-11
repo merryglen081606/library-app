@@ -1,8 +1,8 @@
 <template>
   <b-container fluid id="lib">
-    <div class="nav">
-      <SidebarComponent />
-    </div>
+      <div class="navigation">
+        <SideBar />
+      </div>
     <div class="main">
       <div class="head">
         <h4>Library System/<span>Book Copies</span></h4>
@@ -14,11 +14,12 @@
             style="float: right; padding-bottom: 10px"
             class="col-4"
           >
-            <b-input v-model="filter" placeholder="search..."></b-input>
+            <b-input v-model="filter" placeholder="Type here to Search..."></b-input>
           </b-form-fieldset>
           <template>
             <div>
               <b-button v-b-modal.modal-prevent-closing>Add Book Copies</b-button>
+              <b-button href="/shelves" style="margin-left:5px;">Book Shelves</b-button>
               <b-modal
                 hide-footer
                 id="modal-prevent-closing"
@@ -27,24 +28,60 @@
                 title="Register Book Copies"
                 @hidden="resetModal"
               >
-                <form ref="form" @submit.stop.prevent="handleSubmit">
-                  <b-form-group label="Copy No.*" label-for="CopyNo-input">
-                    <b-form-input id="CopyNo-input" v-model="CopyNo" required>
-                    </b-form-input>
-                  </b-form-group>
+                <form ref="form" v-on:submit.stop.prevent="bookcopySubmit">
 
-                  <b-form-group label="Book ID.*" label-for="BookID-input">
-                    <b-form-input id="BookID-input" v-model="BookID" required>
-                    </b-form-input>
-                  </b-form-group>
+                    <b-form-group label="Copy NO" label-for="copyNo-input">
+                      <b-form-input
+                        id="Copy No-input"
+                        v-model="$v.copyNo.$model"
+                        :class="{
+                          'is-invalid': validationStatus($v.copyNo),
+                        }"
+                      >
+                      </b-form-input>
+                      <div
+                        v-if="!$v.copyNo.required"
+                        class="invalid-feedback"
+                      >
+                        The Copy No is required.
+                      </div>
+                    </b-form-group>
 
-                  <b-form-group label="Shelf ID.*" label-for="ShelfID-input">
-                    <b-form-input id="ShelfID-input" v-model="ShelfID" required>
-                    </b-form-input>
-                  </b-form-group>
+                      <b-form-group label="Book Title" label-for="b_bookID-input">
+                      <b-form-input
+                        id="b_bookID-input"
+                        v-model="$v.b_bookID.$model"
+                        :class="{
+                          'is-invalid': validationStatus($v.b_bookID),
+                        }"
+                      >
+                      </b-form-input>
+                      <div
+                        v-if="!$v.b_bookID.required"
+                        class="invalid-feedback"
+                      >
+                        The Book title No is required.
+                      </div>
+                    </b-form-group>
 
+                      <b-form-group label="Shelf" label-for="b_shelfID-input">
+                      <b-form-input
+                        id="b_shelfID-input"
+                        v-model="$v.b_shelfID.$model"
+                        :class="{
+                          'is-invalid': validationStatus($v.b_shelfID),
+                        }"
+                      >
+                      </b-form-input>
+                      <div
+                        v-if="!$v.b_shelfID.required"
+                        class="invalid-feedback"
+                      >
+                        The Shelf title No is required.
+                      </div>
+                    </b-form-group>
                   <div class="buttons">
-                    <b-button class="btn-success" type="submit"
+                    <b-button class="btn-success" @click="bookcopySubmit()"
                       >Submit</b-button
                     >
                     <b-button class="close" block @click="hideModal"
@@ -62,7 +99,7 @@
             bordered
             hover
             id="my-table"
-            :items="items"
+            :items="bookcopy"
             :filter="filter"
             :fields="fields"
             primary-key
@@ -87,7 +124,9 @@
 </template>
 
 <script>
-import SidebarComponent from "../components/SidebarComponent.vue";
+import SideBar from "../components/SideBar.vue";
+import { required } from "vuelidate/lib/validators";
+import { mapGetters } from "vuex";
 
 export default {
   name: "CopyPage",
@@ -97,27 +136,68 @@ export default {
       perPage: 2,
       currentPage: 1,
       filter: "",
+      copyID: null,
+      copyNo: null,
+      b_bookID: null,
+      b_shelfID: null,
       fields: [
-        { key: "CopyID", label: "Copy ID", sortable: true },
-        { key: "CopyNo", label: "Copy No", sortable: true },
-        { key: "BookID", label: "Book ID", sortable: true },
-        { key: "ShelfID", label: "Shelf ID", sortable: true },
+        { key: "copyID", label: "Copy ID", sortable: true },
+        { key: "copyNo", label: "Copy No", sortable: true },
+        { key: "b_bookID", label: "Book ID", sortable: true },
+        { key: "b_shelfID", label: "Shelf ID", sortable: true },
       ],
-      items: {
-        CopyID: null,
-        CopyNo: null,
-        BookID: null,
-        ShelfID: null,
-      },
+      // items: {
+      //   CopyID: null,
+      //   CopyNo: null,
+      //   BookID: null,
+      //   ShelfID: null,
+      // },
     };
   },
-  components: { SidebarComponent },
+  
+  computed: {
+    ...mapGetters({ bookcopy: "bookcopy" }),
+
+    rows() {
+      return this.bookcopy.length;
+    },
+  },
+
+  async mounted() {
+    return await this.$store.dispatch("fetchBookcopy");
+  },
+
+  validations: {
+    copyNo: { required },
+    b_bookID: { required },
+    b_shelfID: { required },
+  },
+
+  methods: {
+    validationStatus: function (validation) {
+      return typeof validation != "undefined" ? validation.$error : false;
+    },
+    async bookcopySubmit() {
+      this.$v.$touch();
+      if (this.$v.$pendding || this.$v.$error) return;
+      try {
+        console.log("newsup", this.librarianList);
+        this.$store.dispatch("bookcopySubmit", {
+          copyNo: this.copyNo,
+          b_bookID: this.b_bookID,
+          b_shelfID: this.b_shelfID,
+        });
+        alert("Data Successfully Submitted");
+      } catch (error) {
+        alert("Invalid User");
+      }
+    },
+  },
+  components: { SideBar },
 };
 </script>
 <style scope>
-.nav {
-  float: left;
-}
+
 .main {
   float: right;
   width: 80%;

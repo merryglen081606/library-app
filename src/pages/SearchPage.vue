@@ -87,18 +87,22 @@
             :per-page="perPage"
             :current-page="currentPage"
           >
+
           </b-table>
-          <b-pagination
+          <b-pagination-hide
             v-model="currentPage"
             pills
             :total-rows="rows"
             :per-page="perPage"
             aria-controls="my-table"
-          ></b-pagination>
-          <p class="mt-3">Current Page: {{ currentPage }}</p>
+          ></b-pagination-hide>
+          <!-- <p  class="mt-3">Current Page: {{ currentPage }}</p> -->
         </b-card>
       </div>
     </div>
+
+    
+  
   </body>
 </template>
 
@@ -108,43 +112,41 @@ export default {
   data() {
     return {
       name: "",
-      nameState: null,
-      submittedNames: [],
-      fields: [
-        { key: "ISBN", label: "ISBN", sortable: true },
-        { key: "BookTitle", label: "Book Title", sortable: true },
-        { key: "AuthorID", label: "Author", sortable: true },
-        { key: "PageNo", label: "Page No.", sortable: true },
-        { key: "YearPiblish", label: "Year Piblish", sortable: true },
-        { key: "PublisherID", labe: "Publisher", sortable: true },
-        { key: "CategoryID", label: "Category", sortable: true },
-      ],
-      items: [
-        {
-          isActive: true,
-          ISBN: "Dick",
+       ISBN: "Dick",
           BookTitle: "Macdon",
           AuthorID: "Mac",
           PageNo: "578",
           YearPiblish: "1967",
           Publisher: "576",
           CategoryID: "587",
-        },
+      nameState: null,
+      submittedNames: [],
+      fields: [
+        { key: "ISBN", label: "ISBN", sortable: true },
+        { key: "BookTitle", label: "Book Title", sortable: true },
+        { key: "AuthorID", label: "Author", sortable: true },
+
+      ],
+      
+      items: [
+        
+      
+        
         {
           isActive: true,
           BookID: 2,
-          ISBN: "Di",
+          ISBN: "XXXXXX",
           BookTitle: "Mald",
           AuthorID: "Macdonald",
           PageNo: "57",
           YearPiblish: "1957",
-          PublisherID: "57",
+          Publisher: "Allan",
           CategoryID: "57",
         },
         {
           isActive: false,
           BookID: 3,
-          ISBN: "Dickerson",
+          ISBN: "XXXXXX",
           BookTitle: "Macdonald",
           AuthorID: "Macdonald",
           PageNo: "57",
@@ -155,7 +157,18 @@ export default {
         {
           isActive: true,
           BookID: 4,
-          ISBN: "Dickerson",
+          ISBN: "XXXXXX",
+          BookTitle: "Macdonald",
+          AuthorID: "Macdonald",
+          PageNo: "57",
+          YearPiblish: "1957",
+          PublisherID: "57",
+          CategoryID: "57",
+        },
+                {
+          isActive: true,
+          BookID: 4,
+          ISBN: "XXXXXX",
           BookTitle: "Macdonald",
           AuthorID: "Macdonald",
           PageNo: "57",
@@ -261,5 +274,8 @@ body {
 }
 h1 {
   margin-bottom: 30px;
+}
+.content{
+  margin-left: 40px;
 }
 </style>

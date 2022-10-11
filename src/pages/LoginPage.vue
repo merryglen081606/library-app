@@ -1,233 +1,257 @@
 <template>
   <body>
-    <div>
-      <b-row id="header" class="d-flex fixed-top justify-content-center">
-        <b-navbar type="dark" variant="dark">
-          <a
-            class="navbar-brand"
-            style="
-              font-size: 30px;
-              font-weight: bolder;
-              font-family: montserrat;
-              color: #ffffff;
-              padding-left: 210px;
-            "
-            href="#"
-            >Lou Geh<span style="color: #eeb34b; font-family: montserrat">
-              Library System</span
-            ></a
+    <section fluid id="libra">
+      <div class="navs">
+        <a
+          class="navbar-brand"
+          style="
+            font-size: 30px;
+            font-weight: bolder;
+            font-family: montserrat;
+            color: #ffffff;
+            padding-left: 70px;
+            padding-top: 20px;
+          "
+          href="#"
+          >Lou Geh<span
+            style="color: #eeb34b; font-family: montserrat; padding-top: 20px"
           >
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0 bg-dark">
-              <li class="nav-item">
-                <router-link to="/" class="nav-link" exact>Home</router-link>
-              </li>
-              <li class="nav-item">
-                <router-link to="/search" class="nav-link" exact
+            Library System</span
+          ></a
+        >
+
+        <nav>
+          <ul>
+            <li class="nav-item">
+              <a
+                ><router-link to="/" class="nav-link" exact
+                  >Home</router-link
+                ></a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                ><router-link to="/search" class="nav-link" exact
                   >Search</router-link
-                >
-              </li>
-              <!-- <li class="nav-item">
-                <router-link to="/login" class="nav-link" exact
+                ></a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                ><router-link to="/login" class="nav-link" exact
                   >Login</router-link
-                >
-              </li> -->
-              <li class="nav-item">
-                <router-link
-                  to="/login"
-                  class="btn btn-outline-success"
-                  role="button"
-                  style="
-                    font-family: montserrat;
-                    font-size: 20px;
-                    font-weight: 900;
-                    border-radius: 30px;
-                    color: #ffffff;
-                    padding-right: 20px;
-                    padding-left: 20px;
-                  "
-                  exact
-                  >LOGIN ACCOUNT</router-link
-                >
-              </li>
-            </ul>
-          </div>
-        </b-navbar>
+                ></a
+              >
+            </li>
+            <!-- <li class="nav-item">
+                      <router-link to="/login" class="nav-link" exact
+                        >Login</router-link
+                      >
+                    </li> -->
+          </ul>
+        </nav>
+      </div>
+      <b-row class="rw">
+        <b-col class="d-flex justify-content-center">
+          <b-form class="form" v-on:submit.stop.prevent="handleSubmit">
+            <b-form-group class="input_box">
+              <b-input-group size="md">
+                <b-input-group-prepend is-text>
+                  <b-icon class="envelope" icon="person"></b-icon>
+                </b-input-group-prepend>
+                <b-form-input
+                  type="text"
+                  placeholder="Enter Username"
+                  v-model="$v.Username.$model"
+                  :class="{
+                    'is-invalid': validationStatus($v.Username),
+                  }"
+                ></b-form-input>
+                <div v-if="!$v.Username.required" class="invalid-feedback">
+                  Please enter Username. (Required Failed)
+                </div>
+              </b-input-group>
+            </b-form-group>
+            <b-form-group class="input_box">
+              <b-input-group size="md">
+                <b-input-group-prepend is-text>
+                  <b-icon class="envelope" icon="envelope"></b-icon>
+                </b-input-group-prepend>
+                <b-form-input
+                  type="text"
+                  placeholder="Enter Password"
+                  v-model="$v.Password.$model"
+                  :class="{
+                    'is-invalid': validationStatus($v.Password),
+                  }"
+                ></b-form-input>
+                <div v-if="!$v.Password.required" class="invalid-feedback">
+                  Please enter Password. (Required Failed)
+                </div>
+              </b-input-group>
+            </b-form-group>
+
+            <b-form-group>
+              <b-button
+                class="button"
+                @click="handleSubmit()"
+                onClick="refreshPage()"
+                >Login</b-button
+              >
+
+              <!--<iput href="./books" type="submit" value="Login" />-->
+              <!--<router-link to="./books" type="submit" exact value="Login"></router-link>-->
+            </b-form-group>
+          </b-form>
+        </b-col>
       </b-row>
-    </div>
-    <section>
-      <div class="main_div">
-        <div class="title">Login Account</div>
-        <b-form class="form" @submit.prevent="handleSubmit">
-          <b-form-group class="input_box">
-            <b-form-input
-              class="input"
-              type="text"
-              v-model="Username"
-              placeholder="Username"
-              required
-            />
+      <!-- <v-container>
+            <v-form>
+              <v-text-field v-model="loginInfo.Username" label="Username"/>
+                <v-text-field v-model="loginInfo.Password" label="Passwword"/>
+            </v-form>
+          </v-container> -->
+
+      <div class="alert-container d-flex justify-content-end">
+        <b-alert
+          class="alert"
+          v-model="alert.showAlert"
+          @dismissed="alert.showAlert = null"
+          :variant="alert.variant"
+        >
+          <div>
             <b-icon
-              class="icon"
-              animation="fade"
-              icon="people-fill"
-              font-scale="1.5"
-            ></b-icon>
-          </b-form-group>
-          <b-form-group class="input_box">
-            <b-form-input
-              class="input"
-              type="password"
-              v-model="Password"
-              placeholder="Password"
-              required
-            />
-            <b-icon
-              class="icon"
-              animation="fade"
-              icon="unlock-fill"
-              font-scale="1.5"
-            ></b-icon>
-          </b-form-group>
-          <b-form-group class="input_box button">
-            <b-button class="input" type="submit">Login</b-button>
-            <!--<iput href="./books" type="submit" value="Login" />-->
-            <!--<router-link to="./books" type="submit" exact value="Login"></router-link>-->
-          </b-form-group>
-          <div class="sign_up">Not a member? <a href="#">Contact Admin</a></div>
-        </b-form>
+              class="mr-2"
+              :icon="
+                alert.variant == 'success'
+                  ? 'check-lg'
+                  : 'exclamation-triangle-fill'
+              "
+              fill="black"
+            >
+            </b-icon>
+            {{ alert.message }}
+          </div>
+        </b-alert>
       </div>
     </section>
   </body>
 </template>
 
 <script>
-import axios from "axios";
-
+import { required } from "vuelidate/lib/validators";
 export default {
   name: "LoginPage",
   component: {},
   data() {
     return {
+      alert: {
+        dismissSecs: 0,
+        showAlert: 0,
+        variant: "",
+        message: "",
+      },
+
       Username: "",
       Password: "",
     };
   },
+
+  validations: {
+    Username: { required },
+    Password: { required },
+  },
+
   methods: {
-    async handleSubmit() {
-      const response = await axios.post(
-        "http://172.16.4.182::5000/api/accounts/login",
-        {
-          Username: this.Username,
-          Password: this.Password,
-        }
-      );
-      localStorage.setItem("token", response.data.token);
-      this.$router.push("/books");
+    showAlert(message, variant) {
+      this.alert = {
+        dismissSecs: 10,
+        showAlert: 5,
+        message,
+        variant,
+      };
     },
+
+    validationStatus: function (validation) {
+      return typeof validation != "undefined" ? validation.$error : false;
+    },
+    async handleSubmit() {
+      this.$v.$touch();
+
+      if (this.$v.$pendding || this.$v.$error) {
+        this.showAlert("Invalid", "danger");
+      } else {
+        try {
+          console.log("newsup", this.account);
+          this.$store.dispatch("handleSubmit", {
+            Username: this.Username,
+            Password: this.Password,
+          });
+
+          //       // if (this.account.Username == "!==") {
+          //       //   this.errors.push("Username/Password Invalid");
+          //       // }
+        } catch (error) {
+          alert("Invalid User");
+        }
+      }
+    },
+  },
+  refreshPage() {
+    window.location.reload();
+  },
+  async mounted() {
+    if (localStorage.getItem("token") !== null) {
+      this.$router.push("/books");
+    }
   },
 };
 </script>
 <style scoped>
 * {
-  margin: 0;
   padding: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
+  margin: 0;
 }
-
-body {
-  display: grid;
-  height: 100vh;
-  place-items: center;
-  background-image: url(../../src/assets/image/image18.jpeg);
-  background-repeat: no-repeat;
+#libra {
+  background: url(../assets/image/lib-background.jpeg);
+  width: 100%;
   background-size: cover;
-}
-.main_div {
-  width: 365px;
-  background: #fff;
-  padding: 30px;
-  border-radius: 5px;
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.15);
-  margin-bottom: 140px;
-}
-.main_div .title {
-  text-align: center;
-  font-size: 30px;
-  font-weight: 600;
+  background-position: center;
+  height: 100vh;
 }
 
 .form {
-  margin-top: 25px;
-}
-.form .input_box {
-  height: 50px;
-  width: 100%;
-  position: relative;
-  margin-top: 5px;
-}
-.input_box .input {
-  height: 100%;
-  width: 100%;
-  outline: none;
-  border: 1px solid lightgrey;
+  width: 25%;
+  height: auto;
+  background-color: rgb(187, 215, 239);
+  align-content: center;
+
+  margin-top: 10%;
+  /* margin-left: 30%; */
+  padding-top: 80px;
+  padding-left: 25px;
+  padding-right: 25px;
   border-radius: 5px;
-  padding-left: 70px;
-  font-size: 20px;
-  transition: all 0.3s ease;
+  padding-bottom: 20px;
+  align-content: center;
 }
-.input_box .input:focus {
-  border-color: #0639b9;
+/* .input{
+height: 45px;
+width: 60px;
+} */
+
+.input_box {
+  margin-bottom: 30px;
 }
-.input_box .icon {
-  position: absolute;
-  top: 35%;
-  left: 15px;
-  transform: translateY(-50%);
-  color: black;
+.envelope {
+  height: 30px;
 }
 
-.button .input {
-  padding-left: 0;
-  background: blue;
-  color: #fff;
-  border: none;
-  font-size: 20px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s linear;
+.alert-container {
+  margin-top: 100px !important;
+  padding: 20px !important;
 }
-.button .input:hover {
-  background: #30a1ed;
-}
-.form .sign_up {
-  text-align: center;
-  margin-top: 25px;
-}
-.sign_up a {
-  color: blue;
-}
-.form a {
-  text-decoration: none;
-}
-.form a:hover {
-  text-decoration: underline;
-}
-.navbar {
-  background-color: #ffffff;
-  height: 75px;
-}
-.nav-item {
-  padding-right: 40px;
-  justify-content: center;
-}
-.nav-item .nav-link {
-  font-family: montserrat;
-  font-size: 20px;
-  font-weight: 900;
-  padding-left: 40px;
-  padding-right: 40px;
-  color: #ffffff;
+.alert {
+  width: 500px !important;
 }
 </style>

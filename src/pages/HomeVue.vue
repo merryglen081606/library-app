@@ -7,10 +7,13 @@
 
       <div class="main">
         <div class="head">
-          <h4>Library System/<span>Home</span></h4>
-          <h4 v-if="!user" class="user">You are not yet recognized</h4>
-          <h3 v-if="user">{{ user.Username }} {{ user.Password }}</h3>
+          <h4>Library System/<span> Home</span></h4>
+          <!-- <h4 v-if="!user" class="user">You are not yet recognized</h4>
+          <h3 v-if="user">{{ user.Username }} {{ user.Password }}</h3> -->
         </div>
+         <div class="box">
+              <h1>Number</h1>
+         </div>
       </div>
     </b-container>
   </body>

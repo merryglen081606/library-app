@@ -5,30 +5,28 @@
     </div>
     <div class="main">
       <div class="head">
-        <h4>Library System/<span>Author</span></h4>
+        <h4>Library System/<span> Author</span></h4>
       </div>
       <div class="content">
         <b-card bg-variant="light" class="card">
-          <h1>Librarian Records</h1>
+          <h1>Author Records</h1>
           <!-- <router-link to="/add-librarian" class="btn btn-dark" exact
-            >Add Author</router-link
+            >Add Publisher</router-link
           > -->
-          <b-form-fieldset
-            style="float: right; padding-bottom: 10px"
-            class="col-4"
-          >
-            <b-input v-model="filter" placeholder="search..."></b-input>
-          </b-form-fieldset>
-
           <template>
             <div>
-              <b-button v-b-modal.modal-prevent-closing>Add Author</b-button>
-              <!-- <b-form-fieldset
+              <b-button variant="dark" v-b-modal.modal-prevent-closing
+                >Add Author</b-button
+              >
+              <b-form-fieldset
                 style="float: right; padding-bottom: 10px"
                 class="col-4"
               >
-                <b-input v-model="filter" placeholder="search..."></b-input>
-              </b-form-fieldset> -->
+                <b-input
+                  v-model="filter"
+                  placeholder="Type here to Search..."
+                ></b-input>
+              </b-form-fieldset>
               <b-modal
                 hide-footer
                 id="modal-prevent-closing"
@@ -37,36 +35,45 @@
                 title="Register Publisher"
                 @hidden="resetModal"
               >
-                <form ref="form" @submit.stop.prevent="handleSubmit">
-                  <b-form-group label="Firstname" label-for="Firstname-input">
+                <form ref="form" v-on:submit.stop.prevent="authorSubmit">
+                  <b-form-group label="Firstname" label-for="firstname-input">
                     <b-form-input
-                      id="Firstname-input"
-                      v-model="Firstname"
-                      required
+                      id="firstname-input"
+                      v-model="$v.firstname.$model"
+                      :class="{
+                        'is-invalid': validationStatus($v.firstname),
+                      }"
+                    >
+                    </b-form-input>
+                    <div v-if="!$v.firstname.required" class="invalid-feedback">
+                     Please enter Firstname.(Required Failed)
+                    </div>
+                  </b-form-group>
+
+                  <b-form-group label="Middlename" label-for="middlename-input">
+                    <b-form-input
+                      id="middlename-input"
+                      v-model="$v.middlename.$model"
                     >
                     </b-form-input>
                   </b-form-group>
 
-                  <b-form-group label="Middlename" label-for="Middlename-input">
+                  <b-form-group label="Lastname" label-for="lastname-input">
                     <b-form-input
-                      id="Middlename-input"
-                      v-model="Middlename"
-                      required
+                      id="lastname-input"
+                      v-model="$v.lastname.$model"
+                      :class="{
+                        'is-invalid': validationStatus($v.lastname),
+                      }"
                     >
                     </b-form-input>
-                  </b-form-group>
-
-                  <b-form-group label="Lastname" label-for="Lastname-input">
-                    <b-form-input
-                      id="Lastname-input"
-                      v-model="Lastname"
-                      required
-                    >
-                    </b-form-input>
+                    <div v-if="!$v.lastname.required" class="invalid-feedback">
+                      Please enter Lastname. (Required Failed)
+                    </div>
                   </b-form-group>
 
                   <div class="buttons">
-                    <b-button class="btn-success" type="submit"
+                    <b-button class="btn-success" @click="authorSubmit()"
                       >Submit</b-button
                     >
                     <b-button class="close" block @click="hideModal"
@@ -84,7 +91,7 @@
             bordered
             hover
             id="my-table"
-            :items="items"
+            :items="authors"
             :filter="filter"
             :fields="fields"
             primary-key
@@ -93,9 +100,7 @@
             label-sort-clear=""
             :per-page="perPage"
             :current-page="currentPage"
-          >
-          </b-table>
-
+          ></b-table>
           <b-pagination
             v-model="currentPage"
             pills
@@ -103,89 +108,80 @@
             :per-page="perPage"
             aria-controls="my-table"
           ></b-pagination>
-          <p class="mt-3">Current Page: {{ currentPage }}</p>
+          <p class="currentpage">Current Page: {{ currentPage }}</p>
         </b-card>
       </div>
     </div>
+ 
   </b-container>
 </template>
 
 <script>
 import SidebarComponent from "../components/SidebarComponent.vue";
+import { required } from "vuelidate/lib/validators";
+import { mapGetters } from "vuex";
 
 export default {
   name: "AuthorPage",
-
   data() {
     return {
-      perPage: 2,
+      firstname: "",
+      middlename: "",
+      lastname: "",
+      location: "",
+      perPage: 10,
       currentPage: 1,
-      filter: "",
       fields: [
         { key: "AuthorID", label: "Author ID", sortable: true },
         { key: "Firstname", label: "Firstname", sortable: true },
         { key: "Middlename", label: "Middlename", sortable: true },
         { key: "Lastname", label: "Lastname", sortable: true },
+        { key: "action", label: "Action", sortable: true },
       ],
-      items: [
-        {
-          isActive: true,
-          AuthorID: 40,
-          Firstname: "Dickerson",
-          Middlename: "Mald",
-          Lastname: "Macdonald",
-        },
-        {
-          isActive: true,
-          AuthorID: 40,
-          Firstname: "Dickerson",
-          Middlename: "Mald",
-          Lastname: "Macdonald",
-        },
-
-        {
-          isActive: true,
-          AuthorID: 40,
-          Firstname: "Dickerson",
-          Middlename: "Mald",
-          Lastname: "Macdonald",
-        },
-        {
-          isActive: true,
-          AuthorID: 40,
-          Firstname: "Dickerson",
-          Middlename: "Mald",
-          Lastname: "Macdonald",
-        },
-        {
-          isActive: true,
-          AuthorID: 40,
-          Firstname: "Dickerson",
-          Middlename: "Mald",
-          Lastname: "Macdonald",
-        },
-
-        {
-          isActive: true,
-          AuthorID: 40,
-          Firstname: "Dickerson",
-          Middlename: "Mald",
-          Lastname: "Macdonald",
-        },
-      ],
-
-      //items: {
-      //AuthorID: null,
-      //Firstname: null,
-      //Middlename: null,
-      //Lastname: null,
+      // items: {
+      //   publisherID: null,
+      //   firstname: null,
+      //   middlename: null,
+      //   lastname: null,
+      //   location: null,
       // },
     };
   },
-  computed: {
-    rows() {
-      return this.items.length;
+  validations: {
+    firstname: { required },
+    middlename: {},
+    lastname: { required },
+  },
+
+  methods: {
+    validationStatus: function (validation) {
+      return typeof validation != "undefined" ? validation.$error : false;
     },
+    async authorSubmit() {
+      this.$v.$touch();
+      if (this.$v.$pendding || this.$v.$error) return;
+      try {
+        console.log("newsup", this.authorList);
+        this.$store.dispatch("authorSubmit", {
+          firstname: this.firstname,
+          middlename: this.middlename,
+          lastname: this.lastname,
+        });
+        alert("Data Successfully Submitted");
+      } catch (error) {
+        alert("Invalid User");
+      }
+    },
+  },
+
+  computed: {
+    ...mapGetters({ authors: "authors" }),
+    rows() {
+      return this.authors.length;
+    },
+  },
+  async mounted() {
+    return await this.$store.dispatch("fetchAuthor");
   },
   components: { SidebarComponent },
 };
@@ -196,7 +192,7 @@ export default {
 }
 .main {
   float: right;
-  width: 80%;
+  width: 85%;
   margin-top: 20px;
 }
 .main .head {
@@ -204,6 +200,7 @@ export default {
   background-color: #11101d;
   border-radius: 10px;
   margin-bottom: 40px;
+  display: flex;
 }
 .main .head h4 {
   font-family: montserrat;
@@ -232,10 +229,44 @@ h1 {
   color: #11101d;
 }
 .content {
-  width: 100%;
+  width: 90%;
   margin-left: 80px;
 }
-.btn {
-  margin-bottom: 10px;
+.buttons {
+  margin-top: 10px;
+}
+.addbox {
+  /* margin-left: 300px; */
+  justify-content: center;
+  /* margin-left:350px;
+ margin-bottom: 30px; */
+  display: flex;
+}
+.addcon {
+  height: 400px;
+  width: 60%;
+  margin-bottom: 30px;
+  background-color: #11101d;
+  border-radius: 40px;
+}
+.logo .lou-geh {
+  height: 350px;
+  width: 370px;
+  margin-top: 10px;
+  float: left;
+}
+.input-type {
+  /* float:right; */
+  display: flex;
+}
+.fgroup {
+  font-size: 20px;
+  color: white;
+}
+
+.fgroup .input {
+  width: 300px;
+  justify-content: center;
+  display: flex;
 }
 </style>
