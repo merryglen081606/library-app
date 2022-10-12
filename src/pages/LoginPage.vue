@@ -322,5 +322,6 @@ h1 {
 }
 .button {
   width: 100%;
+  height:40px;
 }
 </style>
