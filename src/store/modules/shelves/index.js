@@ -40,6 +40,25 @@ export default {
                 })
                 .catch(err => err);
         },
+        async updateShelf({ commit }, { shelfname, location, CategoryID, shelfID }) {
+            console.log("look", shelfname, location, CategoryID, shelfID);
+            return await axios({
+                method: "PATCH",
+                url: `${api.apiurl}shelfs/` + shelfID,
+
+                data: {
+                    shelfname, location, CategoryID, shelfID
+                }
+            })
+                .then(res => {
+                    console.log("newsup", res);
+
+                    commit("ADD_SHELF", res.data.posted);
+
+                    return res;
+                })
+                .catch(err => err);
+        },
 
     },
 

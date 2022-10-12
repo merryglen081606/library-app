@@ -26,7 +26,7 @@ export default {
 nav {
   width: 83%;
   height: 58px;
-  background-color: #020202;
+  background-color: #11101d;
   float: rigt;
   justify-content: space-between;
   position: sticky;
@@ -37,12 +37,15 @@ nav {
   padding: 10px 25px 10px 25px;
   margin-top: 5px;
   border-radius: 5px;
+
+ 
 }
 .breadcrumb-item {
   font-family: montserrat;
   text-decoration: none;
   font-size: 25px;
   font-weight: bolder;
+  
 }
 span {
   color: #eeb34b;

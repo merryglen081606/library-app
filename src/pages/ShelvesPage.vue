@@ -126,18 +126,15 @@
                 :per-page="perPage"
                 :current-page="currentPage"
               >
-                <template v-slot:cell(Action)="data">
-                  <router-link
-                    :to="{
-                      name: 'EditLibrarian',
-                      params: { UserID: data.item._id },
-                    }"
-                    tag="button"
-                    class="btn btn-success edits"
-                    >Update
-                    <b-icon class="edit-btn" icon="pencil-square"></b-icon>
-                  </router-link>
-                </template>
+               <template v-slot:cell(Action)="data">
+                    <router-link
+                      tag="button"
+                      :to="'/editshelf/' + data.item.shelfID"
+                      class="btn btn-success edits"
+                      >UPDATE
+                      <b-icon class="edit-btn" icon="pencil-square"></b-icon>
+                    </router-link>
+                    </template>
               </b-table>
               <!--End  DataTable Code-->
 

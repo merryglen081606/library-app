@@ -50,6 +50,27 @@ export default {
                 })
                 .catch(err => err);
         },
+        async updateAccount({ commit }, { Username, Password, UserID, Roles, Status, AccountID }) {
+            console.log("look", Username, Password, UserID, Roles, Status, AccountID);
+
+            return await axios({
+                method: "PATCH",
+                // url: `${API_URL}/api/librarian/${this.$route.params.UserID}`,
+                url: `${api.apiurl}accounts/` + AccountID,
+                data: {
+                    Username, Password, UserID, Roles, Status, AccountID
+                }
+            })
+
+                .then(res => {
+                    console.log("supnew", res);
+
+                    commit("UPDATE_ACCOUNT", res.data.posted);
+
+                    return res;
+                })
+                .catch(err => err);
+        },
 
 
     },
@@ -63,6 +84,10 @@ export default {
         },
         accountSubmit: (state, accountList) => state.accountList.unshift(accountList),
         ADD_ACCOUNT(state, accounts) {
+            state.accountsState.push(accounts);
+        },
+        updateAccount: (state, accountList) => state.accountList.unshift(accountList),
+        UPDATE_ACCOUNT(state, accounts) {
             state.accountsState.push(accounts);
         },
     },

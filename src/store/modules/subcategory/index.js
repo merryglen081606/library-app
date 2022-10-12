@@ -40,6 +40,25 @@ export default {
                 })
                 .catch(err => err);
         },
+        async updateSubCategory({ commit }, { name, subcategoryID }) {
+            console.log("look", name, subcategoryID);
+            return await axios({
+                method: "PATCH",
+                url: `${api.apiurl}book-subcat/` + subcategoryID,
+
+                data: {
+                    name, subcategoryID
+                }
+            })
+                .then(res => {
+                    console.log("newsup", res);
+
+                    commit("UPDATE_SUBCATEGORY", res.data.posted);
+
+                    return res;
+                })
+                .catch(err => err);
+        },
     },
     mutations: {
         SET_SUBCATEGORY(state, bookSubCatList) {
@@ -48,6 +67,10 @@ export default {
 
         subcatSubmit: (state, bookSubCatList) => state.bookSubCatList.unshift(bookSubCatList),
         ADD_SUBCATEGORY(state, subcategory) {
+            state.customersState.push(subcategory);
+        },
+        updateSubCategory: (state, bookSubCatList) => state.bookSubCatList.unshift(bookSubCatList),
+        UPDATE_SUBCATEGORY(state, subcategory) {
             state.customersState.push(subcategory);
         },
     },

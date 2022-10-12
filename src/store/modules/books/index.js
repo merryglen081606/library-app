@@ -64,7 +64,25 @@ export default {
                 })
                 .catch(err => err);
         },
+        async updateBook({ commit }, { ISBN, Title, AuthorID, PublisherID, YearPublish, PageNo, bookID }) {
+            console.log("look", ISBN, Title, AuthorID, PublisherID, YearPublish, PageNo, bookID);
+            return await axios({
+                method: "PATCH",
+                url: `${api.apiurl}books/` + bookID,
 
+                data: {
+                    ISBN, Title, AuthorID, PublisherID, YearPublish, PageNo, bookID
+                }
+            })
+                .then(res => {
+                    console.log("supnew", res);
+
+                    commit("UPDATE_BOOK", res.data.posted);
+
+                    return res;
+                })
+                .catch(err => err);
+        },
 
     },
 
@@ -80,6 +98,10 @@ export default {
         },
         bookSubmit: (state, bookList) => state.bookList.unshift(bookList),
         ADD_BOOK(state, books) {
+            state.booksState.push(books);
+        },
+        updateBook: (state, bookList) => state.bookList.unshift(bookList),
+        UPDATE_BOOK(state, books) {
             state.booksState.push(books);
         },
     },

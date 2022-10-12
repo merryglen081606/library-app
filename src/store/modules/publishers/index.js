@@ -44,7 +44,25 @@ export default {
                 })
                 .catch(err => err);
         },
+        async updatePublisher({ commit }, { firstname, middlename, lastname, location, publisherID }) {
+            console.log("look", firstname, middlename, lastname, location, publisherID);
+            return await axios({
+                method: "PATCH",
+                url: `${api.apiurl}publishers/` + publisherID,
 
+                data: {
+                    firstname, middlename, lastname, location, publisherID
+                }
+            })
+                .then(res => {
+                    console.log("newsup", res);
+
+                    commit("UPDATE_PUBLISHER", res.data.posted);
+
+                    return res;
+                })
+                .catch(err => err);
+        },
 
         // async updateLibrarian({ commit }, { Firstname, Middlename, Lastname, RegisterDate, Gender, UserID }) {
         //     console.log("look", Firstname, Middlename, Lastname, RegisterDate, Gender, UserID);
@@ -77,6 +95,10 @@ export default {
  
         publisherSubmit: (state, publisherList) => state.publisherList.unshift(publisherList),
         ADD_PUBLISHER(state, publishers) {
+            state.customersState.push(publishers);
+        },
+        updatePublisher: (state, publisherList) => state.publisherList.unshift(publisherList),
+        UPDATE_PUBLISHER(state, publishers) {
             state.customersState.push(publishers);
         },
  

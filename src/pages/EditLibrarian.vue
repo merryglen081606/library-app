@@ -6,14 +6,14 @@
     <b-row>
       <b-col xl="10" lg="9" sm="9">
         <div class="head">
-          <h4>Library System/ <span>UpdateLibrarian</span></h4>
+          <h4>Library System/ <span>Update Librarian</span></h4>
         </div>
         <b-container fluid class="pt-2">
           <b-row class="d-flex justify-content-center my-3">
             <b-col xl="6" class="py-2">
               <b-col class="">
                 <b-container class="container-card rounded p-3">
-                  <h4 class="px-3">Update Librarian Information</h4>
+                  <h4 class="px-3">Librarian Information</h4>
                   <b-row class="form">
                     <b-col cols="12" class="mt-3">
                       <b-form v-on:submit.prevent="updateLibrarian">
@@ -103,17 +103,6 @@
                             >
                           </b-form-select>
                         </b-form-group>
-
-                        <!-- <b-form-group class="input_button button">
-                          <b-button class="inputs" @click="updateLibrarian()"
-                            >Update</b-button>
-
-                          <router-link
-                            to="/librarians"
-                            class="btn btn-dark"
-                            exact
-                            >Back</router-link>
-                        </b-form-group> -->
                         <div class="buttons">
                           <b-button
                             class="btn-success"
@@ -142,7 +131,6 @@ import SidebarComponent from "../components/SidebarComponent.vue";
 import axios from "axios";
 import api from "../../api";
 import { mapGetters } from "vuex";
-// import { required, minLength, maxLength } from ".././vuelidate/lib/validators"
 import { required } from "vuelidate/lib/validators";
 
 export default {
@@ -204,27 +192,7 @@ export default {
         alert(error);
       }
     },
-    // async updateLibrarianID() {
-    //   this.$v.$touch();
 
-    //   if (this.$v.$pendding || this.$v.$error) return;
-    //   try {
-    //     //  update
-    //     console.log("newsup", this.librarianList);
-    //     this.$store.dispatch("fetchLibrarianID", {
-    //       Firstname: this.Firstname,
-    //       Middlename: this.Middlename,
-    //       Lastname: this.Lastname,
-    //       RegisterDate: this.RegisterDate,
-    //       Gender: this.Gender,
-    //       UserID: this.UserID,
-    //     });
-
-    //     alert("Data Successfully Updated");
-    //   } catch (error) {
-    //     alert(error);
-    //   }
-    // },
   },
   beforeCreate() {
     this.$store.dispatch("librarians");
@@ -233,7 +201,6 @@ export default {
     const res = await axios.get(
       `${api.apiurl}librarian/` + this.$route.params.UserID
     );
-    // console.warn(this.$route.params.UserID)
     let date = new Date(res.data.response.RegisterDate);
 
     let newdate = date.toISOString().split("T")[0];
@@ -244,18 +211,7 @@ export default {
     this.RegisterDate = newdate;
     this.Gender = res.data.response.Gender;
   },
-  // async mounted() {
 
-  //  const res = await this.$store.dispatch("fetchLibrarians");
-  //  this.Firstname = res.Firstname;
-
-  // },
-  //   async mounted() {
-  //   if (localStorage.getItem("token") === null) {
-  //     this.$router.push("/login");
-  //   }
-  //   return await this.$store.dispatch("fetchLibrarian");
-  // },
   computed: {
     ...mapGetters({ librarians: "librarians" }),
 
@@ -263,21 +219,7 @@ export default {
       return this.librarians.length;
     },
   },
-  //   async mounted() {
-  //     const res = await this.$store.dispatch("fetchLibrarian"  + this.$route.params.UserID);
-  //     {
-  //  let date = new Date(res.data.response.RegisterDate);
 
-  //     let newdate = date.toISOString().split("T")[0];
-  //     this.UserID = res.data.response.UserID;
-  //     this.Firstname = res.data.response.Firstname;
-  //     this.Middlename = res.data.response.Middlename;
-  //     this.Lastname = res.data.response.Lastname;
-  //     this.RegisterDate = newdate;
-  //     this.Gender = res.data.response.Gender;
-  //     }
-
-  //   },
 };
 </script>
 

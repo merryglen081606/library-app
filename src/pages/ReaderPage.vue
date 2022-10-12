@@ -18,20 +18,15 @@
                       <b-row>
                         <b-button
                           v-b-modal.modal-1
-                          style="
-                            width: fit-content;
-                            height: fit-content;
-                            margin-top: 30px;
-                          "
-                          >Librarian</b-button
-                        >
+                          style=" width:fit-content;height: fit-content;margin-top: 30px; "
+                          >Librarian
+                          </b-button>
 
                         <b-modal id="modal-1" title="Librarian List">
                           <b-container class="tebs">
                             <b-form-fieldset
                               style="float: right; padding-bottom: 2px"
-                              class="col-4"
-                            >
+                              class="col-4">
                               <b-input
                                 v-model="filterS"
                                 placeholder="Type here to Search..."
@@ -331,23 +326,14 @@
               :current-page="currentPage"
             >
               <template v-slot:cell(Action)="data">
-                <router-link
-                  tag="button"
-                  :to="'/editlibrarian/' + data.item.UserID"
-                  class="btn btn-success edits"
-                  >UPDATE
-                  <b-icon class="edit-btn" icon="pencil-square"></b-icon>
-                </router-link>
-                <!-- <router-link :to="
-                  {
-                    name: 'EditLibrarian',
-                    params: {UserID: data.item._id}
-                  }"
-                  tag="button"
-                
-                  class="btn btn-success edits" >Update
-                  <b-icon class="edit-btn" icon="pencil-square"></b-icon>
-                  </router-link>  -->
+                  <router-link
+                      tag="button"
+                      :to="'/editreader/' + data.item.ReaderID"
+                      class="btn btn-success edits"
+                      >UPDATE
+                      <b-icon class="edit-btn" icon="pencil-square"></b-icon>
+                    </router-link>
+               
               </template>
             </b-table>
             <!--End  DataTable Code-->
@@ -409,19 +395,28 @@ export default {
         { key: "ReaderNo", label: "Reader No", sortable: true },
         { key: "Firstname", label: "Firstname", sortable: true },
         { key: "Lastname", label: "Lastname", sortable: true },
-        { key: "Birthdate", label: "Birthdate", sortable: true ,
-      formatter: (value) => {
+        {
+          key: "Birthdate",
+          label: "Birthdate",
+          sortable: true,
+          formatter: (value) => {
             return moment(value).format("MMM DD, YYYY");
-          },},
+          },
+        },
         { key: "Gender", label: "Gender", sortable: true },
         { key: "LibrarianID", labe: "Register Librarian", sortable: true },
-        { key: "RegisterDate", labe: "Register Date", sortable: true ,
-       formatter: (value) => {
+        {
+          key: "RegisterDate",
+          labe: "Register Date",
+          sortable: true,
+          formatter: (value) => {
             return moment(value).format("MMM DD, YYYY");
-          },},
+          },
+        },
         { key: "ContactNo", label: "ContactNo", sortable: true },
         { key: "Status", label: "Status", sortable: true },
         { key: "City", label: "Address", sortable: true },
+        { key: "Action", label: "Action", sortable: true },
       ],
     };
   },

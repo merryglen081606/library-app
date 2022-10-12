@@ -173,16 +173,6 @@
                       >UPDATE
                       <b-icon class="edit-btn" icon="pencil-square"></b-icon>
                     </router-link>
-                    <!-- <router-link :to="
-                  {
-                    name: 'EditLibrarian',
-                    params: {UserID: data.item._id}
-                  }"
-                  tag="button"
-                
-                  class="btn btn-success edits" >Update
-                  <b-icon class="edit-btn" icon="pencil-square"></b-icon>
-                  </router-link>  -->
                   </template>
               </b-table>
               <!--End  DataTable Code-->

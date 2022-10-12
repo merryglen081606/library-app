@@ -65,17 +65,10 @@
                         <b-form-input
                           id="b_subcatergoryID-input"
                           v-model="$v.b_subcategoryID.$model"
-                          :class="{
-                            'is-invalid': validationStatus($v.b_subcategoryID),
-                          }"
+                         
                         >
                         </b-form-input>
-                        <div
-                          v-if="!$v.b_subcategoryID.required"
-                          class="invalid-feedback"
-                        >
-                          The Subcategory is required.
-                        </div>
+                      
                       </b-form-group>
                        <!-- <select v-model="b_subcategoryID"  name="country" class="form-control" @change="myFunction()">
         <option b_subcategoryID  disabled>Select Country</option>
@@ -88,9 +81,9 @@
                         <b-button class="btn-success" @click="categorySubmit()"
                           >Submit</b-button
                         >
-                        <b-button class="close" href="/category"
-                          >Close</b-button
-                        >
+                         <b-button class="btn-dark" to="/category">
+                            Back
+                          </b-button>
                       </div>
                     </form>
                   </b-modal>
@@ -115,7 +108,7 @@
                 :per-page="perPage"
                 :current-page="currentPage"
               >
-                <template v-slot:cell(Action)="data">
+                <!-- <template v-slot:cell(Action)="data">
                   <router-link
                     :to="{
                       name: 'EditLibrarian',
@@ -123,10 +116,20 @@
                     }"
                     tag="button"
                     class="btn btn-success edits"
-                    >Update
+                    >
                     <b-icon class="edit-btn" icon="pencil-square"></b-icon>
                   </router-link>
-                </template>
+                </template> -->
+                   <template v-slot:cell(Action)="data">
+                  <router-link
+                      tag="button"
+                      :to="'/editcategory/' + data.item.categoryID"
+                      class="btn btn-success edits"
+                      >
+                      <b-icon class="edit-btn" icon="pencil-square"></b-icon>
+                    </router-link>
+               
+              </template>
               </b-table>
               <!--End  DataTable Code-->
 
@@ -190,7 +193,7 @@ export default {
 
   validations: {
     categoryName: { required },
-    b_subcategoryID: { required },
+    b_subcategoryID: { },
   },
 
   methods: {

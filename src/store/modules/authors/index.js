@@ -40,6 +40,25 @@ export default {
                 })
                 .catch(err => err);
         },
+        async updateAuthor({ commit }, { firstname, middlename, lastname, AuthorID }) {
+            console.log("look", firstname, middlename, lastname, AuthorID);
+            return await axios({
+                method: "PATCH",
+                url: `${api.apiurl}authors/` + AuthorID,
+
+                data: {
+                    firstname, middlename, lastname, AuthorID
+                }
+            })
+                .then(res => {
+                    console.log("newsup", res);
+
+                    commit("UPDATE_AUTHOR", res.data.posted);
+
+                    return res;
+                })
+                .catch(err => err);
+        },
 
     },
 
@@ -50,6 +69,10 @@ export default {
 
         authorSubmit: (state, authorList) => state.authorList.unshift(authorList),
         ADD_AUTHOR(state, authors) {
+            state.customersState.push(authors);
+        },
+        updateAuthor: (state, authorList) => state.authorList.unshift(authorList),
+        UPDATE_AUTHOR(state, authors) {
             state.customersState.push(authors);
         },
 

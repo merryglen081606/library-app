@@ -1,63 +1,22 @@
 <template>
-  <b-container fluid id="lib">
-    <div class="nav">
+  <b-container fluid id="hero">
+    <b-row>
       <SidebarComponent />
-    </div>
-    <div class="main">
-      <div class="head">
-        <h4>Library System/<span>Publisher</span></h4>
-      </div>
-      <!-- <template>  <div class="addbox ">
-        <div class="addcon ">
-          <div class="logo">
-          <img src="../assets/LOGO1.png" alt="" class="lou-geh" />
-          </div>
-          <b-form-group class="input-type">
-            <b-form-group class="fgroup" label="Firstname" >
-              <b-form-input  class="input d-flex" name="firstname">
+      <b-col>
+        <HeaderCom title="Account" />
 
-              </b-form-input>
-            </b-form-group>
-                <b-form-group class="fgroup" label="Firstname" >
-              <b-form-input  class="input" name="firstname">
-
-              </b-form-input>
-            </b-form-group>
-                <b-form-group class="fgroup" label="Firstname" >
-              <b-form-input  class="input" name="firstname">
-
-              </b-form-input>
-            </b-form-group>
-                <b-form-group class="fgroup" label="Firstname" >
-              <b-form-input  class="input" name="firstname">
-
-              </b-form-input>
-            </b-form-group>
-          
-          </b-form-group>
-        </div>
-      </div></template> -->
-
-      <div class="content">
-        <b-card bg-variant="light" class="card">
-          <h1>Publisher Records</h1>
-          <!-- <router-link to="/add-librarian" class="btn btn-dark" exact
-            >Add Publisher</router-link
-          > -->
-          <template>
-            <div>
+        <b-col class="">
+          <b-container d-flex class="AddAccount">
+           
+             
+               
+                  <!-- <FormInput label="Invoice Number" /> -->
+               <b-container class="tebs">
+                <h1>Publisher Records</h1>
+                <div>
               <b-button variant="dark" v-b-modal.modal-prevent-closing
                 >Add Publisher</b-button
               >
-              <b-form-fieldset
-                style="float: right; padding-bottom: 10px"
-                class="col-4"
-              >
-                <b-input
-                  v-model="filter"
-                  placeholder="Type here to Search..."
-                ></b-input>
-              </b-form-fieldset>
               <b-modal
                 hide-footer
                 id="modal-prevent-closing"
@@ -128,70 +87,111 @@
                 </form>
               </b-modal>
             </div>
-          </template>
+                        <b-form-fieldset
+                          style="float: right; padding-bottom: 2px"
+                          class="col-4"
+                        >
+                          <b-input
+                            v-model="filter"
+                            placeholder="Type here to Search..."
+                          ></b-input>
+                        </b-form-fieldset>
+                        <br /><br />
+                        <b-table
+                          responsive
+                          striped
+                          bordered
+                          hover
+                          id="my-table"
+                        :items="publishers"
+                          :filter="filter"
+                          :fields="fields"
+                          primary-key
+                          label-sort-asc=""
+                          label-sort-desc=""
+                          label-sort-clear=""
+                          :per-page="perPage"
+                          :current-page="currentPage"
+                        >
+                       
+                       <template v-slot:cell(Action)="data">
+                          <router-link
+                                tag="button"
+                                :to="'/editpublisher/' + data.item.publisherID"
+                                class="btn btn-success edits"
+                                >UPDATE
+                                <b-icon class="edit-btn" icon="pencil-square"></b-icon>
+                            </router-link> 
+                      
+                        </template>
+                        </b-table>
+                
 
-          <b-table
-            responsive
-            striped
-            bordered
-            hover
-            id="my-table"
-            :items="publishers"
-            :filter="filter"
-            :fields="fields"
-            primary-key
-            label-sort-asc=""
-            label-sort-desc=""
-            label-sort-clear=""
-            :per-page="perPage"
-            :current-page="currentPage"
-          ></b-table>
-          <b-pagination
-            v-model="currentPage"
-            pills
-            :total-rows="rows"
-            :per-page="perPage"
-            aria-controls="my-table"
-          ></b-pagination>
-          <p class="currentpage">Current Page: {{ currentPage }}</p>
-        </b-card>
-      </div>
-    </div>
+                        <b-pagination
+                          v-model="currentPage"
+                          style="float: right;"
+                          pills
+                          :total-rows="rows"
+                          :per-page="perPage"
+                          aria-controls="my-table"
+                        ></b-pagination>
+
+                        <p class="currentpage">Current Page: {{ currentPage }}</p>
+              </b-container>
+          </b-container>
+          </b-col>
+      </b-col>
+    </b-row>
   </b-container>
 </template>
-
 <script>
 import SidebarComponent from "../components/SidebarComponent.vue";
-import { required } from "vuelidate/lib/validators";
-import { mapGetters } from "vuex";
+import HeaderCom from "../layout/HeaderCom.vue";
 
+
+import { required } from "vuelidate/lib/validators";
+
+import { mapGetters } from "vuex";
 export default {
-  name: "PublisherPage",
+  name: "PageAccount",
+  components: { SidebarComponent, HeaderCom },
   data() {
     return {
+      perPage: 5,
+      currentPage: 1,
+      filter: "",
       firstname: "",
       middlename: "",
       lastname: "",
       location: "",
-      perPage: 10,
-      currentPage: 1,
-      fields: [
+
+      // Status: "",
+     fields: [
         { key: "publisherID", label: "Publisher ID", sortable: true },
         { key: "Firstname", label: "Firstname", sortable: true },
         { key: "Middlename", label: "Middlename", sortable: true },
         { key: "Lastname", label: "Lastname", sortable: true },
         { key: "Location", label: "Location", sortable: true },
-        { key: "action", label: "Action", sortable: true },
+        { key: "Action", label: "Action", sortable: true },
       ],
-      // items: {
-      //   publisherID: null,
-      //   firstname: null,
-      //   middlename: null,
-      //   lastname: null,
-      //   location: null,
-      // },
     };
   },
+
+  computed: {
+    ...mapGetters({ publishers:  "publishers" }),
+
+    rows() {
+        return this.publishers.length;
+    },
+  },
+
+ async mounted() {
+    if (localStorage.getItem("token") === null) {
+      this.$router.push("/login");
+    }
+    return await this.$store.dispatch("fetchPublisher");
+  },
+
   validations: {
     firstname: { required },
     middlename: {},
@@ -203,13 +203,13 @@ export default {
     validationStatus: function (validation) {
       return typeof validation != "undefined" ? validation.$error : false;
     },
-    async publisherSubmit() {
+    async publisherSubmit()  {
       this.$v.$touch();
       if (this.$v.$pendding || this.$v.$error) return;
       try {
         console.log("newsup", this.publisherList);
         this.$store.dispatch("publisherSubmit", {
-          firstname: this.firstname,
+       firstname: this.firstname,
           middlename: this.middlename,
           lastname: this.lastname,
           location: this.location,
@@ -220,103 +220,42 @@ export default {
       }
     },
   },
-
-  computed: {
-    ...mapGetters({ publishers: "publishers" }),
-    rows() {
-      return this.publishers.length;
-    },
-  },
-  async mounted() {
-    if (localStorage.getItem("token") === null) {
-      this.$router.push("/login");
-    }
-    return await this.$store.dispatch("fetchPublisher");
-  },
-  components: { SidebarComponent },
 };
 </script>
-<style scope>
-.nav {
+<style scoped>
+.AddAccount {
   float: left;
-}
-.main {
-  float: right;
-  width: 85%;
-  margin-top: 20px;
-}
-.main .head {
-  background-attachment: fixed;
-  background-color: #11101d;
-  border-radius: 10px;
-  margin-bottom: 40px;
-  display: flex;
-}
-.main .head h4 {
-  font-family: montserrat;
-  color: rgb(240, 240, 240);
-  padding-top: 10px;
-  padding: 15px;
-}
-.main h4 span {
-  color: #eeb34b;
-  font-family: montserrat;
-}
-.button {
-  padding: 50px;
-}
-.button .btn {
-  width: auto;
+  margin-left: 20%;
+  width: 30%;
 }
 
-.main h5 {
-  text-align: center;
+.from {
+  margin-left: 30%;
+  display: grid;
+  padding-left: 15px;
+  padding-right: 15px;
   padding-top: 20px;
-}
-h1 {
-  text-align: center;
-  font-family: "Courier New", Courier, monospace;
-  color: #11101d;
-}
-.content {
-  width: 90%;
-  margin-left: 80px;
-}
-.buttons {
-  margin-top: 10px;
-}
-.addbox {
-  /* margin-left: 300px; */
-  justify-content: center;
-  /* margin-left:350px;
- margin-bottom: 30px; */
-  display: flex;
-}
-.addcon {
-  height: 400px;
-  width: 60%;
-  margin-bottom: 30px;
-  background-color: #11101d;
-  border-radius: 40px;
-}
-.logo .lou-geh {
-  height: 350px;
-  width: 370px;
-  margin-top: 10px;
-  float: left;
-}
-.input-type {
-  /* float:right; */
-  display: flex;
-}
-.fgroup {
-  font-size: 20px;
-  color: white;
+  margin-right: 30px;
+  margin-top: 50px;
+  background-color: #f4f4ff;
+  border-radius: 5px;
+
+  outline-style: solid;
+  outline-color: #6d6d6f;
 }
 
-.fgroup .input {
-  width: 300px;
-  justify-content: center;
-  display: flex;
+.tebs {
+  background-color: #f4f4ff;
+  padding: 15px 15px 15px 15px;
+  border-radius: 5px;
+  margin-top: 50px;
+  width: 1050px;
+  /* outline-style: solid;
+  outline-color: #6d6d6f; */
+  margin-right: 60px;
+}
+.pill {
+  width: 220px;
+  margin-top: 10px;
 }
 </style>

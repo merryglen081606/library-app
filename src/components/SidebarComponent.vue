@@ -91,14 +91,14 @@
               </b-navbar-nav>
             </b-collapse>
           </b-navbar-brand> -->
-          <button @click.prevent="handleClick" class="nav-link" exact>
+          <!-- <button @click.prevent="handleClick" class="nav-link" exact>
             <b-icon
               class="mr-3"
               icon="door-open-fill"
               aria-hidden="true"
             ></b-icon>
             <span class="text">Logout</span>
-          </button>
+          </button> -->
         </b-nav>
       </nav>
     </div>

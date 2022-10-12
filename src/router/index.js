@@ -25,6 +25,16 @@ import SubcatPage from "../pages/SubcatPage.vue";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";
 import EditAccount from "../pages/EditAccount.vue";
+import EditReader from "../pages/EditReader.vue";
+import EditBook from "../pages/EditBook.vue";
+import EditBorrower from "../pages/EditBorrower.vue";
+import EditPublisher from "../pages/EditPublisher.vue";
+import EditAuthor from "../pages/EditAuthor.vue";
+import EditBookCopy from "../pages/EditBookCopy.vue";
+import EditShelf from "../pages/EditShelf.vue";
+import EditCategory from "../pages/EditCategory.vue";
+import EditSubCategory from "../pages/EditSubCategory.vue";
+
 
 Vue.use(VueRouter);
 
@@ -123,6 +133,51 @@ const routes = [
         path: "/editlibrarian/:UserID",
         name: "EditLibrarian",
         component: EditLibrarian,
+    },
+    {
+        path: "/editreader/:ReaderID",
+        name: "EditReader",
+        component: EditReader,
+    },
+    {
+        path: "/editbook/:bookID",
+        name: "EditBook",
+        component: EditBook,
+    },
+    {
+        path: "/edittransaction/:BorrowerID",
+        name: "EditBorrower",
+        component: EditBorrower,
+    },
+    {
+        path: "/editpublisher/:publisherID",
+        name: "EditPublisher",
+        component: EditPublisher,
+    },
+    {
+        path: "/editauthor/:AuthorID",
+        name: "EditAuthor",
+        component: EditAuthor,
+    },
+    {
+        path: "/editbookcopy/:copyID",
+        name: "EditBookCopy",
+        component: EditBookCopy,
+    },
+    {
+        path: "/editshelf/:shelfID",
+        name: "EditShelf",
+        component: EditShelf,
+    },
+    {
+        path: "/editcategory/:categoryID",
+        name: "EditCategory",
+        component: EditCategory,
+    },
+    {
+        path: "/editsubcategory/:subcategoryID",
+        name: "EditSubCategory",
+        component: EditSubCategory,
     },
     {
         path: "/page",

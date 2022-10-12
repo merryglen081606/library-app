@@ -20,7 +20,7 @@ export default {
             console.log(response.data.readerList);
             commit("SET_READER", response.data.readerList);
         },
-        async readerSubmit({ commit }, { ReaderNo, Firstname, Lastname, Birthdate, Gender, LibrarianID, RegisterDate, ContactNo, City, Status}) {
+        async readerSubmit({ commit }, { ReaderNo, Firstname, Lastname, Birthdate, Gender, LibrarianID, RegisterDate, ContactNo, City, Status }) {
             console.log("look", ReaderNo, Firstname, Lastname, Birthdate, Gender, LibrarianID, RegisterDate, ContactNo, City, Status);
             return await axios({
                 method: "POST",
@@ -39,6 +39,25 @@ export default {
                 })
                 .catch(err => err);
         },
+        async updateReader({ commit }, { ReaderNo, Firstname, Lastname, Birthdate, Gender, LibrarianID, RegisterDate, ContactNo, City, Status, ReaderID }) {
+            console.log("look", ReaderNo, Firstname, Lastname, Birthdate, Gender, LibrarianID, RegisterDate, ContactNo, City, Status, ReaderID);
+            return await axios({
+                method: "PATCH",
+                url: `${api.apiurl}reader/` + ReaderID,
+
+                data: {
+                    ReaderNo, Firstname, Lastname, Birthdate, Gender, LibrarianID, RegisterDate, ContactNo, City, Status, ReaderID
+                }
+            })
+                .then(res => {
+                    console.log("supnew", res);
+
+                    commit("UPDATE_READER", res.data.posted);
+
+                    return res;
+                })
+                .catch(err => err);
+        },
 
 
     },
@@ -50,6 +69,10 @@ export default {
         bookSubmit: (state, readerList) => state.readerList.unshift(readerList),
         ADD_READER(state, readers) {
             state.readersState.push(readers);
+        },
+        updateReader: (state, readerList) => state.readerList.unshift(readerList),
+        UPDATE_READER(state, readers) {
+            state.customersState.push(readers);
         },
     },
 };

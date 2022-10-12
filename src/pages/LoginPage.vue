@@ -54,6 +54,8 @@
       <b-row class="rw">
         <b-col class="d-flex justify-content-center">
           <b-form class="form" v-on:submit.stop.prevent="handleSubmit">
+            <h2>Login Account</h2>
+            <h1>Welcome to Lou Geh Library System</h1>
             <b-form-group class="input_box">
               <b-input-group size="md">
                 <b-input-group-prepend is-text>
@@ -98,7 +100,7 @@
                 onClick="refreshPage()"
                 >Login</b-button
               >
-
+              <img src="../assets//login.jpg" alt="" class="login" />
               <!--<iput href="./books" type="submit" value="Login" />-->
               <!--<router-link to="./books" type="submit" exact value="Login"></router-link>-->
             </b-form-group>
@@ -212,6 +214,48 @@ export default {
   padding: 0;
   margin: 0;
 }
+.navs {
+  padding-top: 15px;
+  background-color: #11101d;
+  padding-bottom: 15px;
+  position: sticky;
+}
+nav {
+  align-items: center;
+  justify-content: space-between;
+  float: right;
+  padding-left: 10%;
+  padding-right: 10%;
+  position: sticky;
+}
+
+nav ul li {
+  display: inline-block;
+  list-style-type: none;
+  padding: 0px 20px;
+}
+.nav-item .nav-link {
+  font-family: montserrat;
+  font-size: 20px;
+  font-weight: 900;
+  padding-left: 20px;
+  padding-right: 10px;
+  color: #ffffff;
+}
+nav ul .nav-item a.router-link-active {
+  color: #ffffff;
+  font-weight: bolder;
+  border: 1px solid #eeb34b;
+  outline-style: solid;
+  outline-color: #eeb34b;
+  outline-width: thin;
+  width: 100px;
+}
+ul {
+  padding-left: 2rem;
+  padding-top: 8px;
+}
+
 #libra {
   background: url(../assets/image/lib-background.jpeg);
   width: 100%;
@@ -220,20 +264,26 @@ export default {
   height: 100vh;
 }
 
+.login {
+  width: 100%;
+  align-content: center;
+  display: flex;
+  text-align: center;
+}
 .form {
   width: 25%;
   height: auto;
-  background-color: rgb(187, 215, 239);
+  background-color: rgb(255, 255, 255);
   align-content: center;
-
-  margin-top: 10%;
+  margin-top: 8%;
   /* margin-left: 30%; */
-  padding-top: 80px;
+  padding-top: 30px;
   padding-left: 25px;
   padding-right: 25px;
   border-radius: 5px;
   padding-bottom: 20px;
   align-content: center;
+  box-shadow: 0 8px 8px -4px lightblue;
 }
 /* .input{
 height: 45px;
@@ -242,6 +292,7 @@ width: 60px;
 
 .input_box {
   margin-bottom: 30px;
+  border-radius: 30px;
 }
 .envelope {
   height: 30px;
@@ -253,5 +304,23 @@ width: 60px;
 }
 .alert {
   width: 500px !important;
+}
+h2 {
+  font-size: 45px;
+  font-weight: bolder;
+  padding-bottom: 10px;
+  color: #11101d;
+  text-align: center;
+}
+h1 {
+  font-size: 16px;
+  font-weight: bolder;
+  padding-top: 20px;
+  padding-bottom: 30px;
+  color: #11101d;
+  text-align: center;
+}
+.button {
+  width: 100%;
 }
 </style>

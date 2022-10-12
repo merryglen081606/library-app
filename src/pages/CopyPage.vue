@@ -108,7 +108,17 @@
             label-sort-clear=""
             :per-page="perPage"
             :current-page="currentPage"
-          ></b-table>
+          >
+           <template v-slot:cell(Action)="data">
+                    <router-link
+                      tag="button"
+                      :to="'/editbookcopy/' + data.item.copyID"
+                      class="btn btn-success edits"
+                      >UPDATE
+                      <b-icon class="edit-btn" icon="pencil-square"></b-icon>
+                    </router-link>
+                    </template>
+          </b-table>
           <b-pagination
             v-model="currentPage"
             pills
@@ -140,11 +150,13 @@ export default {
       copyNo: null,
       b_bookID: null,
       b_shelfID: null,
+      Action:null,
       fields: [
         { key: "copyID", label: "Copy ID", sortable: true },
         { key: "copyNo", label: "Copy No", sortable: true },
         { key: "b_bookID", label: "Book ID", sortable: true },
         { key: "b_shelfID", label: "Shelf ID", sortable: true },
+        { key: "Action", label: "Action", sortable: true },
       ],
       // items: {
       //   CopyID: null,
@@ -181,7 +193,7 @@ export default {
       this.$v.$touch();
       if (this.$v.$pendding || this.$v.$error) return;
       try {
-        console.log("newsup", this.librarianList);
+        console.log("newsup", this.bookCopyList);
         this.$store.dispatch("bookcopySubmit", {
           copyNo: this.copyNo,
           b_bookID: this.b_bookID,

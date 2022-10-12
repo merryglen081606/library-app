@@ -41,6 +41,25 @@ export default {
                 })
                 .catch(err => err);
         },
+        async updateBookCopy({ commit }, { copyNo, b_bookID, b_shelfID, copyID }) {
+            console.log("look", copyNo, b_bookID, b_shelfID, copyID);
+            return await axios({
+                method: "PATCH",
+                url: `${api.apiurl}bookcopy/` + copyID ,
+
+                data: {
+                    copyNo, b_bookID, b_shelfID, copyID
+                }
+            })
+                .then(res => {
+                    console.log("newsup", res);
+
+                    commit("UPDATE_BOOKCOPY", res.data.posted);
+
+                    return res;
+                })
+                .catch(err => err);
+        },
 
 
     },
@@ -50,11 +69,15 @@ export default {
             state.bookCopyList = bookCopyList;
         },
 
-        bookcopySubmit: (state, bookCopyList) => state.publisherList.unshift(bookCopyList),
-        ADD_BOOKCOPY(state, publishers) {
-            state.customersState.push(publishers);
+        bookcopySubmit: (state, bookCopyList) => state.bookCopyList.unshift(bookCopyList),
+        ADD_BOOKCOPY(state, bookcopy) {
+            state.customersState.push(bookcopy);
         },
 
+        updateBookCopy: (state, bookCopyList) => state.bookCopyList.unshift(bookCopyList),
+        UPDATE_BOOKCOPY(state, bookcopy) {
+            state.customersState.push(bookcopy);
+        },
     },
 };
 

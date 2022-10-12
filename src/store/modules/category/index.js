@@ -1,5 +1,5 @@
 import axios from "axios";
-const API_URL = "http://172.16.4.182:5000";
+import api from "../../../../api";
 
 export default {
     state: {
@@ -12,7 +12,7 @@ export default {
 
     actions: {
         async fetchCategory({ commit }) {
-            const response = await axios.get(`${API_URL}/api/book-cat/`, {
+            const response = await axios.get(`${api.apiurl}book-cat/`, {
                 headers: {
                     Authorization: 'Bearer ' + localStorage.getItem('token')
                 }
@@ -24,7 +24,7 @@ export default {
             console.log("look", categoryName, b_subcategoryID);
             return await axios({
                 method: "POST",
-                url: `${API_URL}/api/book-cat/`,
+                url: `${api.apiurl}book-cat/`,
 
                 data: {
                     categoryName, b_subcategoryID
@@ -34,6 +34,25 @@ export default {
                     console.log("newsup", res);
 
                     commit("ADD_CATEGORY", res.data.posted);
+
+                    return res;
+                })
+                .catch(err => err);
+        },
+        async updateCategory({ commit }, { categoryName, b_subcategoryID, categoryID }) {
+            console.log("look", categoryName, b_subcategoryID, categoryID);
+            return await axios({
+                method: "PATCH",
+                url: `${api.apiurl}book-cat/` + categoryID,
+
+                data: {
+                    categoryName, b_subcategoryID, categoryID
+                }
+            })
+                .then(res => {
+                    console.log("newsup", res);
+
+                    commit("UPDATE_CATEGORY", res.data.posted);
 
                     return res;
                 })
@@ -49,6 +68,10 @@ export default {
 
         categorySubmit: (state, bookCatList) => state.bookCatList.unshift(bookCatList),
         ADD_CATEGORY(state, category) {
+            state.customersState.push(category);
+        },
+        updateCategory: (state, bookCatList) => state.bookCatList.unshift(bookCatList),
+        UPDATE_CATEGORY(state, category) {
             state.customersState.push(category);
         },
 

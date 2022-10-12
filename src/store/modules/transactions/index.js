@@ -57,7 +57,7 @@ export default {
             console.log("look", ReaderID, LibrarianID, CopyID, DateIssued, DateReturned, DueDate, Penalty, Status, remarks);
             return await axios({
                 method: "POST",
-                url: `${api.apiurl}borrowers/`,
+                url: `${api.apiurl}borrowers/` ,
 
                 data: {
                     ReaderID, LibrarianID, CopyID, DateIssued, DueDate, DateReturned, Penalty, Status, remarks
@@ -72,6 +72,26 @@ export default {
                 })
                 .catch(err => err);
         },
+        async updateBorrower({ commit }, { ReaderID, LibrarianID, CopyID, DateIssued, DueDate, DateReturned, Penalty, Status, remarks, BorrowerID }) {
+            console.log("look", ReaderID, LibrarianID, CopyID, DateIssued, DateReturned, DueDate, Penalty, Status, remarks, BorrowerID);
+            return await axios({
+                method: "PATCH",
+                url: `${api.apiurl}borrowers/` + BorrowerID,
+
+                data: {
+                    ReaderID, LibrarianID, CopyID, DateIssued, DueDate, DateReturned, Penalty, Status, remarks, BorrowerID
+                }
+            })
+                .then(res => {
+                    console.log("supnew", res);
+
+                    commit("UPDATE_TRANSACTION", res.data.posted);
+
+                    return res;
+                })
+                .catch(err => err);
+        },
+
 
 
     },
@@ -90,6 +110,10 @@ export default {
         },
         transactionSubmit: (state, borrowerList) => state.borrowerList.unshift(borrowerList),
         ADD_TRANSACTION(state, transactions) {
+            state.transactionsState.push(transactions);
+        },
+        updateBorrower: (state, borrowerList) => state.borrowerList.unshift(borrowerList),
+        UPDATE_TRANSACTION(state, transactions) {
             state.transactionsState.push(transactions);
         },
     },

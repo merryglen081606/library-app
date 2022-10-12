@@ -1,25 +1,87 @@
 <template>
-  <b-container fluid id="lib">
-    <div class="nav">
+  <b-container fluid id="hero">
+    <b-row>
       <SidebarComponent />
-    </div>
-    <div class="main">
-      <div class="head">
-        <h4>Library System/<span> Author</span></h4>
-      </div>
-      <div class="content">
-        <b-card bg-variant="light" class="card">
-          <h1>Author Records</h1>
-          <!-- <router-link to="/add-librarian" class="btn btn-dark" exact
-            >Add Publisher</router-link
-          > -->
-          <template>
-            <div>
-              <b-button variant="dark" v-b-modal.modal-prevent-closing
-                >Add Author</b-button
-              >
+      <b-col>
+        <HeaderCom title="Author" />
+
+        <b-col class="">
+          <b-container d-flex class="AddAccount">
+            <!-- <FormInput label="Invoice Number" /> -->
+            <b-container class="tebs">
+              <h1>Author Records</h1>
+              <div>
+                <b-button variant="dark" v-b-modal.modal-prevent-closing
+                  >Add Publisher</b-button
+                >
+                <b-modal
+                  hide-footer
+                  id="modal-prevent-closing"
+                  size="m"
+                  ref="modal"
+                  title="Register Publisher"
+                  @hidden="resetModal"
+                >
+                  <form ref="form" v-on:submit.stop.prevent="authorSubmit">
+                    <b-form-group label="Firstname" label-for="firstname-input">
+                      <b-form-input
+                        id="firstname-input"
+                        v-model="$v.firstname.$model"
+                        :class="{
+                          'is-invalid': validationStatus($v.firstname),
+                        }"
+                      >
+                      </b-form-input>
+                      <div
+                        v-if="!$v.firstname.required"
+                        class="invalid-feedback"
+                      >
+                        Please enter Firstname. (Required Failed)
+                      </div>
+                    </b-form-group>
+
+                    <b-form-group
+                      label="Middlename"
+                      label-for="middlename-input"
+                    >
+                      <b-form-input
+                        id="middlename-input"
+                        v-model="$v.middlename.$model"
+                      >
+                      </b-form-input>
+                    </b-form-group>
+
+                    <b-form-group label="Lastname" label-for="lastname-input">
+                      <b-form-input
+                        id="lastname-input"
+                        v-model="$v.lastname.$model"
+                        :class="{
+                          'is-invalid': validationStatus($v.lastname),
+                        }"
+                      >
+                      </b-form-input>
+                      <div
+                        v-if="!$v.lastname.required"
+                        class="invalid-feedback"
+                      >
+                        Please enter Lastname. (Failed Required)
+                      </div>
+                    </b-form-group>
+
+
+                    <div class="buttons">
+                      <b-button class="btn-success" @click="authorSubmit()"
+                        >Submit</b-button
+                      >
+                      <b-button class="close" block @click="hideModal"
+                        >Close</b-button
+                      >
+                    </div>
+                  </form>
+                </b-modal>
+              </div>
               <b-form-fieldset
-                style="float: right; padding-bottom: 10px"
+                style="float: right; padding-bottom: 2px"
                 class="col-4"
               >
                 <b-input
@@ -27,108 +89,66 @@
                   placeholder="Type here to Search..."
                 ></b-input>
               </b-form-fieldset>
-              <b-modal
-                hide-footer
-                id="modal-prevent-closing"
-                size="m"
-                ref="modal"
-                title="Register Publisher"
-                @hidden="resetModal"
+              <br /><br />
+              <b-table
+                responsive
+                striped
+                bordered
+                hover
+                id="my-table"
+                :items="authors"
+                :filter="filter"
+                :fields="fields"
+                primary-key
+                label-sort-asc=""
+                label-sort-desc=""
+                label-sort-clear=""
+                :per-page="perPage"
+                :current-page="currentPage"
               >
-                <form ref="form" v-on:submit.stop.prevent="authorSubmit">
-                  <b-form-group label="Firstname" label-for="firstname-input">
-                    <b-form-input
-                      id="firstname-input"
-                      v-model="$v.firstname.$model"
-                      :class="{
-                        'is-invalid': validationStatus($v.firstname),
-                      }"
-                    >
-                    </b-form-input>
-                    <div v-if="!$v.firstname.required" class="invalid-feedback">
-                     Please enter Firstname.(Required Failed)
-                    </div>
-                  </b-form-group>
-
-                  <b-form-group label="Middlename" label-for="middlename-input">
-                    <b-form-input
-                      id="middlename-input"
-                      v-model="$v.middlename.$model"
-                    >
-                    </b-form-input>
-                  </b-form-group>
-
-                  <b-form-group label="Lastname" label-for="lastname-input">
-                    <b-form-input
-                      id="lastname-input"
-                      v-model="$v.lastname.$model"
-                      :class="{
-                        'is-invalid': validationStatus($v.lastname),
-                      }"
-                    >
-                    </b-form-input>
-                    <div v-if="!$v.lastname.required" class="invalid-feedback">
-                      Please enter Lastname. (Required Failed)
-                    </div>
-                  </b-form-group>
-
-                  <div class="buttons">
-                    <b-button class="btn-success" @click="authorSubmit()"
-                      >Submit</b-button
-                    >
-                    <b-button class="close" block @click="hideModal"
-                      >Close</b-button
-                    >
-                  </div>
-                </form>
-              </b-modal>
-            </div>
-          </template>
-
-          <b-table
-            responsive
-            striped
-            bordered
-            hover
-            id="my-table"
-            :items="authors"
-            :filter="filter"
-            :fields="fields"
-            primary-key
-            label-sort-asc=""
-            label-sort-desc=""
-            label-sort-clear=""
-            :per-page="perPage"
-            :current-page="currentPage"
-          ></b-table>
-          <b-pagination
-            v-model="currentPage"
-            pills
-            :total-rows="rows"
-            :per-page="perPage"
-            aria-controls="my-table"
-          ></b-pagination>
-          <p class="currentpage">Current Page: {{ currentPage }}</p>
-        </b-card>
-      </div>
-    </div>
- 
+               <template v-slot:cell(Action)="data">
+                 <router-link
+                      tag="button"
+                      :to="'/editauthor/' + data.item.AuthorID"
+                      class="btn btn-success edits"
+                      >UPDATE
+                      <b-icon class="edit-btn" icon="pencil-square"></b-icon>
+                    </router-link> 
+            
+               </template>
+              </b-table>
+              <b-pagination
+                v-model="currentPage"
+                pills
+                :total-rows="rows"
+                :per-page="perPage"
+                aria-controls="my-table"
+              ></b-pagination>
+              <p class="currentpage">Current Page: {{ currentPage }}</p>
+            </b-container>
+          </b-container>
+        </b-col>
+      </b-col>
+    </b-row>
   </b-container>
 </template>
-
 <script>
 import SidebarComponent from "../components/SidebarComponent.vue";
-import { required } from "vuelidate/lib/validators";
-import { mapGetters } from "vuex";
+import HeaderCom from "../layout/HeaderCom.vue";
 
+import { required } from "vuelidate/lib/validators";
+
+import { mapGetters } from "vuex";
 export default {
   name: "AuthorPage",
+  components: { SidebarComponent, HeaderCom },
   data() {
     return {
+      filter: "",
       firstname: "",
       middlename: "",
       lastname: "",
-      location: "",
+      action: "",
       perPage: 10,
       currentPage: 1,
       fields: [
@@ -136,17 +156,26 @@ export default {
         { key: "Firstname", label: "Firstname", sortable: true },
         { key: "Middlename", label: "Middlename", sortable: true },
         { key: "Lastname", label: "Lastname", sortable: true },
-        { key: "action", label: "Action", sortable: true },
+        { key: "Action", label: "Action", sortable: true },
       ],
-      // items: {
-      //   publisherID: null,
-      //   firstname: null,
-      //   middlename: null,
-      //   lastname: null,
-      //   location: null,
-      // },
     };
   },
+
+  computed: {
+    ...mapGetters({ authors: "authors" }),
+
+    rows() {
+      return this.authors.length;
+    },
+  },
+
+  async mounted() {
+    if (localStorage.getItem("token") === null) {
+      this.$router.push("/login");
+    }
+    return await this.$store.dispatch("fetchAuthor");
+  },
+
   validations: {
     firstname: { required },
     middlename: {},
@@ -173,100 +202,42 @@ export default {
       }
     },
   },
-
-  computed: {
-    ...mapGetters({ authors: "authors" }),
-    rows() {
-      return this.authors.length;
-    },
-  },
-  async mounted() {
-    return await this.$store.dispatch("fetchAuthor");
-  },
-  components: { SidebarComponent },
 };
 </script>
-<style scope>
-.nav {
+<style scoped>
+.AddAccount {
   float: left;
-}
-.main {
-  float: right;
-  width: 85%;
-  margin-top: 20px;
-}
-.main .head {
-  background-attachment: fixed;
-  background-color: #11101d;
-  border-radius: 10px;
-  margin-bottom: 40px;
-  display: flex;
-}
-.main .head h4 {
-  font-family: montserrat;
-  color: rgb(240, 240, 240);
-  padding-top: 10px;
-  padding: 15px;
-}
-.main h4 span {
-  color: #eeb34b;
-  font-family: montserrat;
-}
-.button {
-  padding: 50px;
-}
-.button .btn {
-  width: auto;
+  margin-left: 20%;
+  width: 30%;
 }
 
-.main h5 {
-  text-align: center;
+.from {
+  margin-left: 30%;
+  display: grid;
+  padding-left: 15px;
+  padding-right: 15px;
   padding-top: 20px;
-}
-h1 {
-  text-align: center;
-  font-family: "Courier New", Courier, monospace;
-  color: #11101d;
-}
-.content {
-  width: 90%;
-  margin-left: 80px;
-}
-.buttons {
-  margin-top: 10px;
-}
-.addbox {
-  /* margin-left: 300px; */
-  justify-content: center;
-  /* margin-left:350px;
- margin-bottom: 30px; */
-  display: flex;
-}
-.addcon {
-  height: 400px;
-  width: 60%;
-  margin-bottom: 30px;
-  background-color: #11101d;
-  border-radius: 40px;
-}
-.logo .lou-geh {
-  height: 350px;
-  width: 370px;
-  margin-top: 10px;
-  float: left;
-}
-.input-type {
-  /* float:right; */
-  display: flex;
-}
-.fgroup {
-  font-size: 20px;
-  color: white;
+  margin-right: 30px;
+  margin-top: 50px;
+  background-color: #f4f4ff;
+  border-radius: 5px;
+
+  outline-style: solid;
+  outline-color: #6d6d6f;
 }
 
-.fgroup .input {
-  width: 300px;
-  justify-content: center;
-  display: flex;
+.tebs {
+  background-color: #f4f4ff;
+  padding: 15px 15px 15px 15px;
+  border-radius: 5px;
+  margin-top: 50px;
+  width: 1050px;
+  /* outline-style: solid;
+  outline-color: #6d6d6f; */
+  margin-right: 60px;
+}
+.pill {
+  width: 220px;
+  margin-top: 10px;
 }
 </style>

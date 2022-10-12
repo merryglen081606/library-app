@@ -3,7 +3,7 @@
     <b-row>
       <SidebarComponent />
       <b-col>
-        <HeaderCom title="Account" />
+        <HeaderCom title="Book" />
 
         <b-col class="">
           <b-container d-flex class="AddAccount">
@@ -71,13 +71,9 @@
                     </b-container>
                   </b-modal>
                   <b-button
+                    class="dmodal"
                     v-b-modal.modal-1
-                    style="
-                      width: fit-content;
-                      height: fit-content;
-                      margin-top: 10px;
-                      width: 150px;
-                    "
+                   
                     >Publisher List</b-button
                   >
                   <b-modal id="modal-1" title="Librarian List">
@@ -246,7 +242,11 @@
         </b-col>
         <b-row>
           <b-container class="tebs">
-            <h1>Account Records</h1>
+            <h1>Book Records</h1>
+            <b-button class="selectbtn" to="/copies" >Book Copy</b-button>
+              <b-button  class="selectbtn" to="/shelves" >Book Shelf</b-button>
+               <b-button class="selectbtn" to="/category" >Book Category</b-button>
+                <b-button class="selectbtn" to="/subcategory" >Book Sub-category</b-button>
             <b-form-fieldset
               style="float: right; padding-bottom: 2px"
               class="col-4"
@@ -276,7 +276,7 @@
               <template v-slot:cell(Action)="data">
                 <router-link
                   tag="button"
-                  :to="'/editlibrarian/' + data.item.UserID"
+                  :to="'/editbook/' + data.item.bookID"
                   class="btn btn-success edits"
                   >UPDATE
                   <b-icon class="edit-btn" icon="pencil-square"></b-icon>
@@ -346,7 +346,7 @@ export default {
 
       // Status: "",
       fields: [
-        { key: "bookID", label: "User ID", sortable: true },
+        { key: "bookID", label: "ID", sortable: true },
         { key: "ISBN", label: "ISBN", sortable: true },
         { key: "Title", label: "Book Title", sortable: true },
         { key: "AuthorID", label: "Author", sortable: true },
@@ -468,4 +468,15 @@ export default {
   width: 220px;
   margin-top: 10px;
 }
+.dmodal{
+width: fit-content;
+height: fit-content;
+ margin-top: 10px;
+  width: 150px;
+}
+.selectbtn{
+  margin-right:5px;
+}
 </style>
+
+               

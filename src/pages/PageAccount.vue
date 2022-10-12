@@ -22,8 +22,7 @@
                             height: 42px;
                             margin-top: 30px;
                             margin-left: 10px;
-                            margin-right: 10px;
-                          "
+                            margin-right: 10px;    "
                           id="UserID-input"
                           v-model="$v.UserID.$model"
                           :class="{
@@ -237,15 +236,25 @@
               :per-page="perPage"
               :current-page="currentPage"
             >
-             <template v-slot:cell(Action)="data">
+                    <template v-slot:cell(Action)="data">
                     <router-link
                       tag="button"
-                      :to="'/editaccounts/' + data.item.AccountID"
+                      :to="'/editaccount/' + data.item.AccountID"
                       class="btn btn-success edits"
-                      >
+                      >UPDATE
                       <b-icon class="edit-btn" icon="pencil-square"></b-icon>
                     </router-link>
-                    </template>
+                    <!-- <router-link :to="
+                  {
+                    name: 'EditLibrarian',
+                    params: {UserID: data.item._id}
+                  }"
+                  tag="button"
+                
+                  class="btn btn-success edits" >Update
+                  <b-icon class="edit-btn" icon="pencil-square"></b-icon>
+                  </router-link>  -->
+                  </template>
               <!-- <template v-b-modal @click="showEditModal(account)">
                 <div class="d-flex justify-content-center">
                           <div>
@@ -327,6 +336,7 @@ export default {
         { key: "Lastname", label: "Lastname", sortable: true },
       ],
       fields: [
+        { key: "AccountID", label: "ID", sortable: true },
         { key: "Username", label: "Username", sortable: true },
         { key: "UserID", label: "Librarian", sortable: true },
         { key: "Roles", label: "Roles", sortable: true },

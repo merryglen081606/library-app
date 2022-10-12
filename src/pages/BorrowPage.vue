@@ -124,15 +124,8 @@
                   </b-modal>
                   <b-button
                     v-b-modal.modal-3
-                    style="
-                      width: fit-content;
-                      height: fit-content;
-                      margin-top: 10px;
-                      margin-right: 5px;
-                      width: 110px;
-                    "
-                    >Book Copy</b-button
-                  >
+                    style=" width: fit-content; height: fit-content; margin-top: 10px;margin-right: 5px; width: 110px;"
+                    >Book Copy</b-button>
 
                   <b-modal id="modal-3" title="Librarian List">
                     <b-container class="tebs">
@@ -345,26 +338,17 @@
               :per-page="perPage"
               :current-page="currentPage"
             >
-              <!-- <template v-slot:cell(Action)="data">
-                <router-link
-                  tag="button"
-                  :to="'/editlibrarian/' + data.item.UserID"
-                  class="btn btn-success edits"
-                  >UPDATE
-                  <b-icon class="edit-btn" icon="pencil-square"></b-icon>
-                </router-link> -->
-                <!-- <router-link :to="
-                  {
-                    name: 'EditLibrarian',
-                    params: {UserID: data.item._id}
-                  }"
-                  tag="button"
-                
-                  class="btn btn-success edits" >Update
-                  <b-icon class="edit-btn" icon="pencil-square"></b-icon>
-                  </router-link>  -->
-              <!-- </template> -->
-            </b-table>
+               <template v-slot:cell(Action)="data">
+                 <router-link
+                      tag="button"
+                      :to="'/edittransaction/' + data.item.BorrowerID"
+                      class="btn btn-success edits"
+                      >UPDATE
+                      <b-icon class="edit-btn" icon="pencil-square"></b-icon>
+                    </router-link> 
+            
+               </template>
+             </b-table>
             <!--End  DataTable Code-->
 
             <b-pagination
