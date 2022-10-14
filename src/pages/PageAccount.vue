@@ -3,7 +3,7 @@
     <b-row>
       <SidebarComponent />
       <b-col>
-        <b-row>
+        <b-row class="rw">
           <HeaderCom title="Account" />
         </b-row>
 
@@ -514,7 +514,10 @@ width: 1400px;
   width: 1500px;
   display: flex;
 }
-
+.rw{
+  margin-left:16%;
+  width: 100%;
+}
 .tebs {
   /* background-color: #f4f4ff; */
   /* padding: 15px 15px 15px 15px; */

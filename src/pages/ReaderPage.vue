@@ -3,7 +3,7 @@
     <b-row>
       <SidebarComponent />
       <b-col>
-        <b-row>
+        <b-row class="rw">
           <HeaderCom title="Reader"/>
         </b-row>
 
@@ -522,6 +522,10 @@ export default {
   padding-right: 2%;
   padding-left: 2%;
 
+}
+.rw{
+  margin-left:16%;
+  width: 100%;
 }
 
 .tbales {

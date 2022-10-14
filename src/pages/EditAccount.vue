@@ -5,7 +5,9 @@
     </div>
     <b-row>
       <b-col xl="10" lg="9" sm="9">
-             <HeaderCom title="Account" />
+              <b-row class="rw">
+          <HeaderCom title="Account" />
+        </b-row>
         <!-- <div class="head">
           <h4>Library System/ <span>UpdateLibrarian</span></h4>
         </div> -->
@@ -297,6 +299,10 @@ div.py-2 {
 }
 .input {
   width: 520px;
+}
+.rw{
+  margin-left:16%;
+  width: 100%;
 }
 .px-3 {
   text-align: center;

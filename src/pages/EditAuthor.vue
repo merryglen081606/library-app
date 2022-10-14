@@ -4,7 +4,7 @@
       <SidebarComponent />
     </div>
     <b-row>
-      <b-row>
+      <b-row  class="rw">
           <HeaderCom title="Edit Author" />
         </b-row>
       <b-col xl="10" lg="9" sm="9">
@@ -170,6 +170,10 @@ div.py-2 {
   border-radius: 10px;
   margin-top: 15px;
   padding-left: 50px;
+}
+.rw{
+  margin-left:16%;
+  width: 100%;
 }
 .head h4 {
   font-family: montserrat;

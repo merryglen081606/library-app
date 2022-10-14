@@ -3,9 +3,12 @@
     <div class="nav">
       <SidebarComponent />
     </div>
+       <b-row class="rw">
+          <HeaderCom title="Account" />
+        </b-row>
     <b-row>
       <b-col xl="10" lg="9" sm="9">
-             <HeaderCom title="Author" />
+    
         <!-- <div class="head">
           <h4>Library System/ <span>UpdateLibrarian</span></h4>
         </div> -->
@@ -185,6 +188,10 @@ div.py-2 {
   padding-top: 10px;
   padding: 15px;
 }
+.rw{
+  margin-left:16%;
+  width: 100%;
+}
 .head h4 span {
   color: #eeb34b;
   font-family: montserrat;
@@ -208,6 +215,10 @@ div.py-2 {
 .input_box {
   margin-bottom: 10px;
   margin-left: 20px;
+}
+.rw{
+  margin-left:16%;
+  width: 100%;
 }
 .input {
   width: 520px;

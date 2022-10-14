@@ -3,7 +3,7 @@
     <b-row>
       <SidebarComponent />
       <b-col>
-        <b-row>
+        <b-row class="rw">
           <HeaderCom title="Book" />
         </b-row>
 
@@ -531,6 +531,10 @@ height: fit-content;
   /* padding-bottom: 80px; */
   
 
+}
+.rw{
+  margin-left:16%;
+  width: 100%;
 }
 .tebs {
   padding-right: 2%;

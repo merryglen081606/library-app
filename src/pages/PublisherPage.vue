@@ -3,7 +3,9 @@
     <b-row>
       <SidebarComponent />
       <b-col>
-        <HeaderCom title="Publisher" />
+       <b-row class="rw">
+          <HeaderCom title="Publisher" />
+        </b-row>
 
         <b-col class="">
           <b-container d-flex class="AddAccount">
@@ -279,6 +281,10 @@ export default {
   padding-left: 2%;
   
 
+}
+.rw{
+  margin-left:16%;
+  width: 100%;
 }
 .tbales {
  

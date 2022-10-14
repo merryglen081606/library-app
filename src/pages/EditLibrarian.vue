@@ -4,7 +4,7 @@
       <SidebarComponent />
     </div>
     <b-row>
-      <b-row>
+      <b-row class="rw">
           <HeaderCom title="Edit Librarian" />
         </b-row>
       <b-col xl="10" lg="9" sm="9">
@@ -289,6 +289,10 @@ div.py-2 {
 }
 .select {
   width: 520px;
+}
+.rw{
+  margin-left:16%;
+  width: 100%;
 }
 .input_button {
   float: right;

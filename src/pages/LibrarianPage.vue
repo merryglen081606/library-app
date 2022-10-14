@@ -3,12 +3,14 @@
     <b-row>
       <SidebarComponent />
       <b-col>
-        <b-row>
-          <HeaderCom title="Librarian" />
+        <b-row class="rw">
+              <HeaderCom title="Librarian" />
         </b-row>
-
+  
         <b-row class="container d-flex justify-content-center">
+      
           <b-container class="tebs">
+            
             <div class="tbales">
               <h1>Librarian Records</h1>
 
@@ -337,6 +339,10 @@ export default {
 }
 .mt-3 {
   margin-right: 5px;
+}
+.rw{
+  margin-left:16%;
+  width: 100%;
 }
 /* .main-tab {
   padding-left: auto;

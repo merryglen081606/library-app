@@ -4,7 +4,7 @@
       <SidebarComponent />
     </div>
     <b-row>
-      <b-row>
+      <b-row class="rw">
           <HeaderCom title="Edit Reader" />
         </b-row>
       <b-col xl="10" lg="9" sm="9">
@@ -357,6 +357,10 @@ div.py-2 {
   margin-left: 200px;
   width: 590px;
   margin-top: 50px;
+}
+.rw{
+  margin-left:16%;
+  width: 100%;
 }
 .buttons{
   margin-top:10px;

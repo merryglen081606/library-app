@@ -3,8 +3,11 @@
     <b-row>
       <SidebarComponent />
       <b-col>
-        <HeaderCom title="Transaction" />
+        <b-row class="rw" >
+  <HeaderCom title="Transaction" />
 
+        </b-row>
+      
         <b-col class="">
           <b-container d-flex class="AddAccount">
             <b-row class="rows">
@@ -563,7 +566,10 @@ export default {
   margin-right: 30px;
   margin-top: 50px;
 }
-
+.rw{
+  margin-left:16%;
+  width: 100%;
+}
 .tebs {
   background-color: #f4f4ff;
 

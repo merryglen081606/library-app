@@ -3,7 +3,9 @@
     <b-row>
       <SidebarComponent />
       <b-col>
-        <HeaderCom title="Author" />
+        <b-row class="rw">
+          <HeaderCom title="Author" />
+        </b-row>
 
         <b-col class="">
           <b-container d-flex class="AddAccount">
@@ -236,7 +238,10 @@ export default {
   outline-color: #6d6d6f;
 } */
 
-
+.rw{
+  margin-left:16%;
+  width: 100%;
+}
 .container {
   padding-top: 10px;
   margin-left: 8.8%;

@@ -4,7 +4,7 @@
       <SidebarComponent />
     </div>
     <b-row>
-      <b-row>
+      <b-row class="rw">
           <HeaderCom title="Edit Publisher" />
         </b-row>
       <b-col xl="10" lg="9" sm="9">
@@ -218,6 +218,10 @@ div.py-2 {
 .input_box {
   margin-bottom: 10px;
   margin-left: 20px;
+}
+.rw{
+  margin-left:16%;
+  width: 100%;
 }
 .input {
   width: 520px;
