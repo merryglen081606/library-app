@@ -327,15 +327,12 @@ ul {
   font-size: 40px;
   color: #11101d;
 }
-/* .content-library{
-  background: linear-gradient(to top, #a4a2ba 30%, #292648 90%) no-repeat;
 
-} */
-.banner {
+/* .banner {
   width: 100%;
   background: linear-gradient(to top, #a4a2ba 30%, #292648 90%) no-repeat;
   height: 5px;
-}
+} */
 .about {
   align-content: center;
   align-items: center;
