@@ -4,8 +4,11 @@
       <SidebarComponent />
     </div>
     <b-row>
+      <b-row class="rw"> 
+        <HeaderCom title="Boook Category" />
+      </b-row>
       <b-col xl="10" lg="9" sm="9">
-        <HeaderCom title="Author" />
+      
         <!-- <div class="head">
           <h4>Library System/ <span>UpdateLibrarian</span></h4>
         </div> -->
@@ -14,7 +17,7 @@
             <b-col xl="6" class="py-2">
               <b-col class="">
                 <b-container class="container-card rounded p-3">
-                  <h4 class="px-3">Update Librarian Information</h4>
+                  <h4 class="px-3">Sub-Category Information</h4>
                   <b-row class="form">
                     <b-col cols="12" class="mt-3">
                       <b-form v-on:submit.prevent="updateSubCategory">
@@ -148,6 +151,10 @@ div.py-2 {
   color: rgb(240, 240, 240);
   padding-top: 10px;
   padding: 15px;
+}
+.rw{
+  margin-left:16%;
+  width: 100%;
 }
 .head h4 span {
   color: #eeb34b;

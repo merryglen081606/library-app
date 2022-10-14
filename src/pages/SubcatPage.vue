@@ -2,16 +2,17 @@
   <b-container fluid id="hero">
     <b-col class="cl">
       <div class="navigation">
-        <SidebarComponent/>
+        <SidebarComponent />
       </div>
-       <b-row>
+    
+    </b-col>
+      <b-row class="rw">
         <HeaderCom title="Boook Sub-Category" />
       </b-row>
-    </b-col>
     <b-row>
+      
       <div fluid class="main-tab">
-     
-
+        
         <b-col fluid class="cd">
           <div class="contents">
             <b-card bg-variant="light" class="cards">
@@ -19,12 +20,35 @@
               <!--Start  Modal Insert Data Code-->
               <template>
                 <div>
-                  <b-button variant="dark"  class="selectbtn" v-b-modal.modal-prevent-closing>Add New</b-button>
-                  <b-button class="selectbtn"  squared variant="outline-secondary" to="/copies"><b-icon icon="journal-bookmark-fill"></b-icon> Book Copy</b-button>
-              <b-button class="selectbtn" squared variant="outline-secondary" to="/shelves"> <b-icon icon="bookshelf"></b-icon>  Book Shelf</b-button>
-              <b-button class="selectbtn" squared variant="outline-secondary" to="/category"
-                ><b-icon icon="book-half"></b-icon>  Book Category</b-button
-              >
+                  <b-button
+                    variant="dark"
+                    class="selectbtn"
+                    v-b-modal.modal-prevent-closing
+                    >Add New</b-button
+                  >
+                  <b-button
+                    class="selectbtn"
+                    squared
+                    variant="outline-secondary"
+                    to="/copies"
+                    ><b-icon icon="journal-bookmark-fill"></b-icon> Book
+                    Copy</b-button
+                  >
+                  <b-button
+                    class="selectbtn"
+                    squared
+                    variant="outline-secondary"
+                    to="/shelves"
+                  >
+                    <b-icon icon="bookshelf"></b-icon> Book Shelf</b-button
+                  >
+                  <b-button
+                    class="selectbtn"
+                    squared
+                    variant="outline-secondary"
+                    to="/category"
+                    ><b-icon icon="book-half"></b-icon> Book Category</b-button
+                  >
 
                   <b-form-fieldset
                     style="float: right; padding-bottom: 10px"
@@ -87,14 +111,14 @@
                 :current-page="currentPage"
               >
                 <template v-slot:cell(Action)="data">
-                    <router-link
-                      tag="button"
-                      :to="'/editsubcategory/' + data.item.subcategoryID"
-                      class="btn btn-success edits"
-                      >
-                      <b-icon class="edit-btn" icon="pencil-square"></b-icon>
-                    </router-link>
-                    </template>
+                  <router-link
+                    tag="button"
+                    :to="'/editsubcategory/' + data.item.subcategoryID"
+                    class="btn btn-success edits"
+                  >
+                    <b-icon class="edit-btn" icon="pencil-square"></b-icon>
+                  </router-link>
+                </template>
               </b-table>
               <!--End  DataTable Code-->
 
@@ -129,7 +153,7 @@ export default {
     return {
       perPage: 10,
       currentPage: 1,
-      filter: "", 
+      filter: "",
       name: "",
       Action: "",
       // Status: "",
@@ -176,10 +200,10 @@ export default {
     },
   },
 
-  components: { SidebarComponent,HeaderCom},
+  components: { SidebarComponent, HeaderCom },
 };
 </script>
-<style scope>
+<style scoped>
 .main-tab {
   padding-left: auto;
 }
@@ -216,6 +240,10 @@ export default {
   font-weight: bolder;
   font-size: 30px;
 }
+.rw {
+  margin-left: 16%;
+  width: 100%;
+}
 .main-tab .header h4 {
   font-family: montserrat;
   color: rgb(240, 240, 240);
@@ -239,6 +267,10 @@ h1 {
   width: 80%;
   margin-right: 20px;
   margin-left: 90px;
+}
+.rw {
+  margin-left: 16%;
+  width: 100%;
 }
 .btn {
   margin-bottom: 10px;

@@ -4,7 +4,7 @@
       <div class="navigation">
         <SidebarComponent />
       </div>
-      <b-row>
+      <b-row class="rw">
         <HeaderCom title="Boook Shelf" />
       </b-row>
     </b-col>
@@ -311,6 +311,10 @@ h1 {
 }
 .buttons {
   float: right;
+}
+.rw{
+  margin-left:16%;
+  width: 100%;
 }
 .close {
   margin-left: 10px;

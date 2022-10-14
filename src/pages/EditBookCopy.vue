@@ -4,7 +4,7 @@
       <SidebarComponent />
     </div>
        <b-row class="rw">
-          <HeaderCom title="Account" />
+          <HeaderCom title="Edit Book Copy" />
         </b-row>
     <b-row>
       <b-col xl="10" lg="9" sm="9">
@@ -17,7 +17,7 @@
             <b-col xl="6" class="py-2">
               <b-col class="">
                 <b-container class="container-card rounded p-3">
-                  <h4 class="px-3">Update Librarian Information</h4>
+                  <h4 class="px-3">Book Copy Information</h4>
                   <b-row class="form">
                     <b-col cols="12" class="mt-3">
                       <b-form v-on:submit.prevent="updateBookCopy">
@@ -174,6 +174,10 @@ nav {
 
 div.py-2 {
   padding: 0 !important;
+}
+.rw{
+  margin-left:16%;
+  width: 100%;
 }
 .head {
   margin-left: 390px;

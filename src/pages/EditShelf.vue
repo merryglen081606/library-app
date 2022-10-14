@@ -4,8 +4,11 @@
       <SidebarComponent />
     </div>
     <b-row>
+       <b-row class="rw">
+          <HeaderCom title="Edit Shelf" />
+        </b-row>
       <b-col xl="10" lg="9" sm="9">
-             <HeaderCom title="Author" />
+            
         <!-- <div class="head">
           <h4>Library System/ <span>UpdateLibrarian</span></h4>
         </div> -->
@@ -14,7 +17,7 @@
             <b-col xl="6" class="py-2">
               <b-col class="">
                 <b-container class="container-card rounded p-3">
-                  <h4 class="px-3">Update Librarian Information</h4>
+                  <h4 class="px-3">Shelf Information</h4>
                   <b-row class="form">
                     <b-col cols="12" class="mt-3">
                       <b-form v-on:submit.prevent="updateShelf">
@@ -175,7 +178,10 @@ export default {
 nav {
   padding: 10px;
 }
-
+.rw{
+  margin-left:16%;
+  width: 100%;
+}
 div.py-2 {
   padding: 0 !important;
 }

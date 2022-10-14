@@ -7,7 +7,7 @@
     </b-col>
     <b-row>
       <div fluid class="main-tab">
-        <b-row>
+        <b-row class="rw">
           <HeaderCom title="Book Copy" />
         </b-row>
         <b-col fluid class="cd">
@@ -304,6 +304,10 @@ h1 {
   width: 100%;
   display: flex;
   /* padding-bottom: 80px; */
+}
+.rw{
+  margin-left:16%;
+  width: 100%;
 }
 .tebs {
   padding-right: 2%;

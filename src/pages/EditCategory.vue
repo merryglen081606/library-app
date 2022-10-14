@@ -4,8 +4,10 @@
       <SidebarComponent />
     </div>
     <b-row>
+      <b-row class="rw">
+        <HeaderCom title="Edit Category" />
+      </b-row>
       <b-col xl="10" lg="9" sm="9">
-             <HeaderCom title="Author" />
         <!-- <div class="head">
           <h4>Library System/ <span>UpdateLibrarian</span></h4>
         </div> -->
@@ -14,51 +16,56 @@
             <b-col xl="6" class="py-2">
               <b-col class="">
                 <b-container class="container-card rounded p-3">
-                  <h4 class="px-3">Update Librarian Information</h4>
+                  <h4 class="px-3">Category Information</h4>
                   <b-row class="form">
                     <b-col cols="12" class="mt-3">
                       <b-form v-on:submit.prevent="updateCategory">
-                         <b-form-group
-                        label="Category Name"
-                        label-for="categoryName-input"
-                      >
-                        <b-form-input
-                          id="BookTitle-input"
-                          v-model="$v.categoryName.$model"
-                          :class="{
-                            'is-invalid': validationStatus($v.categoryName),
-                          }"
+                        <b-form-group
+                          label="Category Name"
+                          label-for="categoryName-input"
                         >
-                        </b-form-input>
-                        <div
-                          v-if="!$v.categoryName.required"
-                          class="invalid-feedback"
-                        >
-                          The Shelfname field is required.
-                        </div>
-                      </b-form-group>
+                          <b-form-input
+                            id="BookTitle-input"
+                            v-model="$v.categoryName.$model"
+                            :class="{
+                              'is-invalid': validationStatus($v.categoryName),
+                            }"
+                          >
+                          </b-form-input>
+                          <div
+                            v-if="!$v.categoryName.required"
+                            class="invalid-feedback"
+                          >
+                            The Shelfname field is required.
+                          </div>
+                        </b-form-group>
 
-                      <b-form-group
-                        label="Subcategory"
-                        label-for="Subcategory-input"
-                      >
-                        <b-form-input
-                          id="b_subcatergoryID-input"
-                          v-model="$v.b_subcategoryID.$model"
-                          :class="{
-                            'is-invalid': validationStatus($v.b_subcategoryID),
-                          }"
+                        <b-form-group
+                          label="Subcategory"
+                          label-for="Subcategory-input"
                         >
-                        </b-form-input>
-                        <div
-                          v-if="!$v.b_subcategoryID.required"
-                          class="invalid-feedback"
-                        >
-                          The Subcategory is required.
-                        </div>
-                      </b-form-group>
-                        <div class="buttons">
-                          <b-button class="btn-success" @click="updateCategory()"
+                          <b-form-input
+                            id="b_subcatergoryID-input"
+                            v-model="$v.b_subcategoryID.$model"
+                            :class="{
+                              'is-invalid': validationStatus(
+                                $v.b_subcategoryID
+                              ),
+                            }"
+                          >
+                          </b-form-input>
+                          <div
+                            v-if="!$v.b_subcategoryID.required"
+                            class="invalid-feedback"
+                          >
+                            The Subcategory is required.
+                          </div>
+                        </b-form-group>
+
+                        <div class="button">
+                          <b-button
+                            class="btn-success"
+                            @click="updateCategory()"
                             >Submit</b-button
                           >
                           <!-- <router-link class="close-btn" to="/account">
@@ -87,12 +94,13 @@ import axios from "axios";
 import api from "../../api";
 import { mapGetters } from "vuex";
 import HeaderCom from "../layout/HeaderCom.vue";
-import { required} from "vuelidate/lib/validators";
+import { required } from "vuelidate/lib/validators";
 
 export default {
   name: "EditCategory",
   components: {
-    SidebarComponent, HeaderCom,
+    SidebarComponent,
+    HeaderCom,
   },
   data() {
     return {
@@ -101,13 +109,13 @@ export default {
       filter: "",
       categoryName: "",
       b_subcategoryID: "",
-      categoryID:"",
+      categoryID: "",
       Action: "",
     };
   },
 
   validations: {
-   categoryName: { required },
+    categoryName: { required },
     b_subcategoryID: { required },
   },
 
@@ -123,7 +131,7 @@ export default {
         this.$store.dispatch("updateCategory", {
           categoryName: this.categoryName,
           b_subcategoryID: this.b_subcategoryID,
-          categoryID:this.categoryID,
+          categoryID: this.categoryID,
         });
         alert("Data Successfully Submitted");
       } catch (error) {
@@ -139,9 +147,9 @@ export default {
       `${api.apiurl}book-cat/` + this.$route.params.categoryID
     );
     this.categoryName = res.data.response.categoryName;
-   
+
     this.b_subcategoryID = res.data.response.b_subcategoryID;
-      this.categoryID = res.data.response.categoryID;
+    this.categoryID = res.data.response.categoryID;
   },
 
   computed: {
@@ -157,7 +165,10 @@ export default {
 nav {
   padding: 10px;
 }
-
+.rw {
+  margin-left: 16%;
+  width: 100%;
+}
 div.py-2 {
   padding: 0 !important;
 }
@@ -178,6 +189,7 @@ div.py-2 {
   color: #eeb34b;
   font-family: montserrat;
 }
+
 .container-card {
   background-color: #595959;
   align-content: center;
@@ -186,7 +198,9 @@ div.py-2 {
   width: 590px;
   margin-top: 50px;
   color: #ffff;
-  
+}
+.button {
+  margin-top: 10px;
 }
 .button-container {
   margin-right: 50px;
@@ -214,12 +228,10 @@ div.py-2 {
 .input_button {
   float: right;
 }
-@media (max-width: 1361px)
- {
-  .container-card{
-     margin-left: 80px;
-      width: 420px;
+@media (max-width: 1361px) {
+  .container-card {
+    margin-left: 80px;
+    width: 420px;
   }
-
- }
+}
 </style>

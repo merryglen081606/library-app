@@ -4,11 +4,13 @@
       <div class="navigation">
         <SidebarComponent/>
       </div>
-      <b-row>
+     <b-row class="rw"> 
         <HeaderCom title="Boook Category" />
       </b-row>
     </b-col>
+    
     <b-row>
+       
       <div fluid class="main-tab">
         
 
@@ -242,6 +244,10 @@ export default {
   border-radius: 10px;
   color: #ffffff;
 }
+.rw{
+  margin-left:16%;
+  width: 100%;
+}
 .contents {
   padding-left: 310px;
   padding-right: 10px;
@@ -287,6 +293,7 @@ h1 {
   margin-right: 20px;
   margin-left: 90px;
 }
+
 .btn {
   margin-bottom: 10px;
 }
