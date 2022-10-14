@@ -1,272 +1,198 @@
 <template>
   <body>
-    <div class="side">
-      <div class="navigation">
-        <h4 class="sidebar-title"><span></span></h4>
-
+    <div class="sidebar">
+      <div class="logo">
         <img src="../assets/LOGO1.png" alt="" class="lou-geh" />
       </div>
-      <nav class=" sidebar">
-        <b-nav vertical>
-          <!-- <router-link to="/homevue" class="nav-link" exact>
-            <b-icon
-              class="mr-3"
-              icon="person-circle"
-              aria-hidden="true"
-            ></b-icon>
-              <span class="text"> Home</span>
-          </router-link> -->
-          <router-link to="/account" class="nav-link" exact>
-            <b-icon
-              class="mr-3"
-              icon="person-circle"
-              aria-hidden="true"
-            ></b-icon>
-            <span class="text">Account</span>
-          </router-link>
-
+      <ul class="nav-bar">
+        <li>
+          <div class="icon-link">
+            <router-link to="/account" class="nav-link" exact>
+              <b-icon
+                class="mr-3"
+                icon="person-circle"
+                aria-hidden="true"
+              ></b-icon>
+              <span class="link_name">Account</span>
+            </router-link>
+          </div>
+          <!-- <ul class="sub-menu blank">
+            <li>
+              <router-link to="/librarians" class="link_name" exact
+                >Account</router-link
+              >
+            </li>
+          </ul> -->
+        </li>
+        <li>
           <router-link to="/librarians" class="nav-link" exact>
             <b-icon
               class="mr-3"
               icon="person-lines-fill"
               aria-hidden="true"
             ></b-icon>
-            <span class="text">Librarian</span>
+            <span class="link_name">Librarian</span>
           </router-link>
-
-          <router-link to="/books" class="nav-link" exact>
-            <b-icon
-              class="mr-3"
-              icon="journal-bookmark-fill"
-              aria-hidden="true"
-            ></b-icon>
-            <span class="text">Book</span>
-          </router-link>
-
+        </li>
+        <li>
+          <div class="icon-link">
+            <router-link to="/books" class="nav-link" exact>
+              <b-icon
+                class="mr-3"
+                icon="journal-bookmark-fill"
+                aria-hidden="true"
+              ></b-icon>
+              <span class="link_name">Book</span>
+              <!-- <b-icon
+                class="mr-3"
+                icon="caret-down"
+                aria-hidden="true"
+              ></b-icon> -->
+            </router-link>
+          </div>
+     
+        </li>
+        <li>
           <router-link to="/readers" class="nav-link" exact>
             <b-icon class="mr-3" icon="people-fill" aria-hidden="true"></b-icon>
-            <span class="text">Reader</span>
+            <span class="link_name">Reader</span>
           </router-link>
-
+        </li>
+        <li>
           <router-link to="/borrow" class="nav-link" exact>
             <b-icon class="mr-3" icon="folder-plus" aria-hidden="true"></b-icon>
-            <span class="text">Transaction</span>
+            <span class="link_name">Transaction</span>
           </router-link>
-
+        </li>
+        <li>
           <router-link to="/publisher" class="nav-link" exact>
             <b-icon
               class="mr-3"
               icon="file-earmark-person"
               aria-hidden="true"
             ></b-icon>
-            <span class="text">Publisher</span>
+            <span class="link_name">Publisher</span>
           </router-link>
-
+        </li>
+        <li>
           <router-link to="/author" class="nav-link" exact>
             <b-icon
               class="mr-3"
               icon="person-lines-fill"
               aria-hidden="true"
             ></b-icon>
-            <span class="text">Author</span>
+            <span class="link_name">Author</span>
           </router-link>
-
-          <!-- <b-navbar-brand class="link" href="#">
-            <div>
-              <b-icon class="mr-3" icon="stack" aria-hidden="true"></b-icon>
-              Utilities
-
-              <b-navbar-toggle target="navbar-toggle-collapse">
-                <template #default="{ expanded }">
-                  <b-icon v-if="expanded" icon="chevron-bar-up"></b-icon>
-                  <b-icon v-else icon="chevron-bar-down"></b-icon>
-                </template>
-              </b-navbar-toggle>
-            </div>
-            <b-collapse id="navbar-toggle-collapse" is-nav>
-              <b-navbar-nav class="ml-auto">
-                <b-nav-item href="#">City</b-nav-item>
-                <b-nav-item href="#">Category</b-nav-item>
-                <b-nav-item href="#">Subcategory</b-nav-item>
-              </b-navbar-nav>
-            </b-collapse>
-          </b-navbar-brand> -->
-          <!-- <button @click.prevent="handleClick" class="nav-link" exact>
+        </li>
+        <li>
+          <router-link to="/"  class="nav-link" exact>
+          <a href="/" @click="handleClick" class="log">  <b-icon
+              class="mr-3"
+              icon="person-lines-fill"
+              aria-hidden="true"
+            ></b-icon><span class="link_name">Logout</span></a>
+          </router-link>
+          
+    
+        </li>
+    
+            <!-- <li>
+          <router-link to="/" href="/" @click="handleClick"  class="nav-link" exact>
             <b-icon
               class="mr-3"
-              icon="door-open-fill"
+              icon="person-lines-fill"
               aria-hidden="true"
             ></b-icon>
-            <span class="text">Logout</span>
-          </button> -->
-        </b-nav>
-      </nav>
+            <span class="link_name">Logout</span>
+          </router-link>
+        </li> -->
+        <!-- <a href="/" @click="handleClick" class="log">Logout</a> -->
+        <li></li>
+      </ul>
     </div>
   </body>
 </template>
-
 <script>
 export default {
   name: "SidebarComponent",
   methods: {
     handleClick() {
+      // this.$router.push("/");
       localStorage.removeItem("token");
-      this.$router.push("/");
+      localStorage.removeItem("AccountID");
     },
   },
 };
 </script>
-
 <style scoped>
-.side {
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+.container {
   position: fixed;
   top: 0;
   left: 0;
   height: 100%;
-  width: 300px;
+  width: 260px;
   background: #11101d;
 }
-
-.lou-geh {
-  justify-content: center;
-  height: 240px;
-  width: 240px;
-  margin-top: 10px;
-  margin-left: 30px;
-}
-.sidebar-title {
-  color: #fff;
-  font-weight: bolder;
-  margin-top: 5px;
-  align-items: center;
-  text-align: center;
-  justify-content: center;
-}
-span {
-  color: #eeb34b;
-  font-family: montserrat;
-  align-items: center;
-  justify-content: center;
-}
 .sidebar {
-  margin-top: 30px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 260px;
+  background: #11101d;
 }
-.nav-link {
-  color: #fff;
-}
-.nav-link .text {
-  font-family: montserrat;
-  align-items: center;
+.lou-geh {
+  /* display: none; */
   justify-content: center;
-  color: #fff;
+  height: 230px;
+  width: 230px;
+  margin-top: 10px;
+  margin-left: 0px;
+}
+.sidebar .nav-bar {
+  height: 100%;
+  padding-top: 10px;
+}
+.sidebar .nav-bar li {
+  list-style: none;
+  position: relative;
+  transition: all 0.4s ease;
+}
+.sidebar .nav-bar li:hover {
+  background: #eeb34b;
   padding-left: 15px;
-  font-size: 20px;
-  font-weight: 900;
 }
-
-.sidebar .nav-link {
+.sidebar .nav-bar li .mr-3 {
+  height: 30px;
+  min-width: 78px;
+  text-align: center;
+  line-height: 50px;
   color: #fff;
-  align-items: center;
-  justify-content: center;
-  display: block;
-  padding: 12px;
-  font-weight: 900;
-  letter-spacing: 3px;
-  padding-left: 60px;
-  font-size: 17px;
+  font-size: 20px;
 }
-.sidebar .nav-link:hover {
-  background-color: #eeb34b;
-  border-radius: 7px !important;
-  /* padding-left: 80px; */
-  color: black;
-  width: 250px;
-  padding-left: 10px;
+.sidebar .nav-bar li .nav-link {
+  text-decoration: none;
+  padding-bottom: 10px;
+  padding-top: 15px;
+}
+.sidebar .nav-bar li .nav-link .link_name {
+  font-size: 18px;
+  font-weight: 400;
+  color: #fff;
 }
 .sidebar a.router-link-active {
   background-color: #eeb34b;
-  border-radius: 7px !important;
-  padding-left: 10px;
-  color: black;
-  /* width: 390px; */
-  width: 250px;
+  padding-left: 15px;
 }
-.mr-3 {
-  margin-right: 5px;
-}
-.sidebar .link {
-  color: #fff;
-  align-items: center;
-  justify-content: center;
-  display: block;
-  padding: 12px;
-  font-weight: 600;
-  letter-spacing: 2px;
-  padding-left: 40px;
-}
-
-/* .sidebar .link {
-
-  border-radius: 7px !important;
-  padding-left: 0px;
-  color: black;
-  width: 270px;
-  padding-left: 0px;
-} */
-
-@media (max-width: 1200px) {
-  .side {
-    width: 70px;
-  }
-  .sidebar .nav-link {
-    display: block;
-
-    padding-left: 15px;
-  }
-
-  .sidebar .nav-link:hover {
-    background-color: #eeb34b;
-    border-radius: 0px !important;
-    padding-left: 5px;
-    color: black;
-    width: 70px;
-  }
-  .sidebar a.router-link-active {
-    background-color: #eeb34b;
-    border-radius: 0px !important;
-    padding-left: 5px;
-    color: black;
-    width: 70px;
-  }
-  /* .sidebar span .text:hover {
-  background-color: #eeb34b;
-  border-radius: 7px !important;
-  padding-left: 5px;
-  color: black;
-  width: 70px;
-
-} */
-
-  .lou-geh {
-    /* display: none; */
-    justify-content: center;
-    height: 70px;
-    width: 70px;
-    margin-top: 10px;
-    margin-left: 0px;
-  }
-  .mr-3 {
-    float: left;
-    width: 40px;
-    height: 20px;
-  }
-  span {
-    display: none;
-  }
-}
-
 @media (max-width: 592px) {
-  .side {
+  .sidebar {
     width: 70px;
   }
   .sidebar .nav-link {
@@ -306,4 +232,58 @@ span {
     display: none;
   }
 }
+.nav-link a .link_name{
+text-decoration: none;
+}
+/* .sidebar .nav-bar li .sub-menu {
+  background-color: #1d1b31;
+  padding: 6px 6px 14px 80px;
+  margin-top: -10px;
+ 
+}
+.sidebar .nav-bar li .sub-menu .nav-link {
+  font-size: 15px;
+  padding: 5px 0;
+  color: #fff;
+  white-space: nowrap;
+  opacity: 0.6;
+  transition: all 0.3s ease;
+}
+.sidebar .nav-bar li .sub-menu .nav-link:hover {
+  opacity: 1;
+}
+.sidebar.close .nav-bar li .sub-menu {
+  position: absolute;
+  left: 100%;
+  top: -10;
+  margin-top: 0;
+  padding: 10px 20px;
+  border-radius: 0 6px 6px 0;
+  transition: all 0.4s ease;
+  opacity: 0;
+  pointer-events: none;
+}
+.sidebar.close .nav-bar li:hover .sub-menu {
+  top: 0;
+  opacity: 1;
+  pointer-events: auto;
+  
+}
+.sidebar.close .nav-bar li .sub-menu .link_name {
+  display: none;
+}
+.sidebar.close .nav-bar li .sub-menu .link_name {
+  font-size: 18px;
+  opacity: 1;
+  display: block;
+}
+.sidebar .nav-bar li .sub-menu.blank {
+  opacity: 1;
+  pointer-events: auto;
+  padding: 3px 20px 6px 16px;
+}
+.sidebar .nav-bar li:hover .sub-menu.blank {
+  top: 50%;
+  transform: translateY(-50%);
+} */
 </style>

@@ -40,7 +40,7 @@
                 </nav>
         </div>
 
-          <div fluid class=".about-lib">
+          <div fluid class="about-lib">
             <b-row class="AB">
             
               <b-col class="RCAPS">
@@ -70,9 +70,9 @@
 
                            
     </section>
-   
+   <!-- <section class="banner"></section> -->
     <section fluid class="content-library">
-        <p  class="content"><span class="txt">OUR</span> SERVICES</p>
+        <!-- <p  class="content"><span class="d-flex justify-content-center">OUR  SERVICES</span></p> -->
                 <div class="boxs" >
                   <div class="box">
                   <img src="../assets/image/card2.png" alt="" class="about" />
@@ -80,7 +80,7 @@
                 </div>
                 <div class="box">
                   <img src="../assets/image/card3.png" alt="" class="about" />
-                  <p  class="capp"> Can Read All Books Available in Library</p>
+                  <p  class="capp"> Can Read All Available Books</p>
                 </div>
                 <div class="box">
                   <img src="../assets/image/card6.png" alt="" class="about" />
@@ -88,17 +88,16 @@
                 </div>
               </div>
     </section>
-
+    
     <section fluid class="handle">
       <b-row>
         <p  class="caption"><span class="txt">BOOK CARE RULES</span> </p>
         <b-col style="width:100%">    
-        <img src="../assets/image/card1.jpeg" alt="" class="handle-book" />
+        <img src="../assets/image/lib-background6.jpeg" alt="" class="handle-book" />
         </b-col>
         <b-col>
         <div class="handle-text">
             <div class="handle-title">
-            
               <div class="handle1">
                 <b-icon  icon="caret-right-square" scale="1.3" class="rule-con"></b-icon>
                 Handle all books with care and respect.
@@ -127,9 +126,6 @@
                 <b-icon  icon="caret-right-square" scale="1.3" class="rule-con"></b-icon>
                 Always use bookmark.
               </div>
-            
-       
-             
             </div>
         </div>
       </b-col>
@@ -208,7 +204,8 @@ ul{
  .about-lib{
  width: 100%;
  padding-top:10px;
- background-color: #cbc1d2;
+ background-color: #ffffff;
+ padding-bottom:5px;
 
 
 } 
@@ -267,24 +264,30 @@ ul{
   justify-content: space-evenly;
   display: flex;
   padding-bottom: 50px;
+  padding-top:50px;
+  padding-right: 1.5%;
+  padding-left: 1.5%;
+  
+
 }
 .box{
   margin-top:10px;
   height:250px;
   width:500px;
 
-
-  border: 1px solid #11101d;
-  outline-style: solid;
+  margin-right: 2%;
+  margin-left: 2%;
+  /* border: 1px solid #11101d; */
+  /* outline-style: solid;
   outline-color: #11101d;
-  outline-width: bolder;
+  outline-width: bolder; */
   border-radius: 10px;
 
   margin-bottom: 20px;
 
 }
 .content{
-  color: #000000;
+
   font-weight: 900;
   text-align: center;
   font-size: 40px;
@@ -296,11 +299,16 @@ ul{
   font-weight: 900;
   text-align: center;
   font-size: 40px;
-  color: #eeb34b;
+  color:  #11101d;;
 }
-.content-library{
-  background: linear-gradient(to top, #c9c9ff 50%, #292648 90%) no-repeat;
+/* .content-library{
+  background: linear-gradient(to top, #a4a2ba 30%, #292648 90%) no-repeat;
 
+} */
+.banner{
+  width: 100%;
+  background: linear-gradient(to top, #a4a2ba 30%, #292648 90%) no-repeat;
+  height: 5px;
 }
 .about{
  
@@ -368,10 +376,11 @@ height: 50px;
 .handle{
   width: 100%;
   height: 50vh;
+ 
 }
 .handle-book{
-  width: 620px;
-height: 310px;
+  width: 720px;
+height: 380px;
 float: right;
 padding-right: 30px;
 }
@@ -384,7 +393,30 @@ padding-right: 30px;
 .handle1:hover{
   padding-right:50px;
 }
- 
+.cntnt{
+  font-size: 20px;
+  font-weight: 700;
+  color: #11101d;
+  
+}
+.handle1{
+  padding-bottom: 15px;
+  font-size: 20px;
+  font-weight: bolder;
+  margin-top:10px;
+
+}
+.rule-con{
+  margin-right: 15px;
+}
+.handle-title{
+  margin-top:40px;
+
+}
+.handle1:hover{
+  padding-left:50px;
+  color: #eeb34b;
+}
 
 /*HANDLE BOOKS */
 

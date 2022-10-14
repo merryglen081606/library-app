@@ -80,7 +80,7 @@
                   <b-icon class="envelope" icon="envelope"></b-icon>
                 </b-input-group-prepend>
                 <b-form-input
-                  type="text"
+                  type="password"
                   placeholder="Enter Password"
                   v-model="$v.Password.$model"
                   :class="{
@@ -95,26 +95,20 @@
 
             <b-form-group>
               <b-button
-                class="button"
+                class="logbtn"
                 @click="handleSubmit()"
                 onClick="refreshPage()"
                 >Login</b-button
               >
-              <img src="../assets//login.jpg" alt="" class="login" />
+              <!-- <img src="../assets//login.jpg" alt="" class="login" /> -->
               <!--<iput href="./books" type="submit" value="Login" />-->
               <!--<router-link to="./books" type="submit" exact value="Login"></router-link>-->
             </b-form-group>
           </b-form>
+     
         </b-col>
-      </b-row>
-      <!-- <v-container>
-            <v-form>
-              <v-text-field v-model="loginInfo.Username" label="Username"/>
-                <v-text-field v-model="loginInfo.Password" label="Passwword"/>
-            </v-form>
-          </v-container> -->
-
-      <div class="alert-container d-flex justify-content-end">
+       
+          <div class="alert-container d-flex justify-content-center">
         <b-alert
           class="alert"
           v-model="alert.showAlert"
@@ -136,6 +130,15 @@
           </div>
         </b-alert>
       </div>
+      </b-row>
+      <!-- <v-container>
+            <v-form>
+              <v-text-field v-model="loginInfo.Username" label="Username"/>
+                <v-text-field v-model="loginInfo.Password" label="Passwword"/>
+            </v-form>
+          </v-container> -->
+
+ 
     </section>
   </body>
 </template>
@@ -214,6 +217,10 @@ export default {
   padding: 0;
   margin: 0;
 }
+/* body {
+  height: 100vh;
+  
+} */
 .navs {
   padding-top: 15px;
   background-color: #11101d;
@@ -262,6 +269,7 @@ ul {
   background-size: cover;
   background-position: center;
   height: 100vh;
+  
 }
 
 .login {
@@ -275,7 +283,7 @@ ul {
   height: auto;
   background-color: rgb(255, 255, 255);
   align-content: center;
-  margin-top: 8%;
+  margin-top: 5%;
   /* margin-left: 30%; */
   padding-top: 30px;
   padding-left: 25px;
@@ -284,6 +292,7 @@ ul {
   padding-bottom: 20px;
   align-content: center;
   box-shadow: 0 8px 8px -4px lightblue;
+
 }
 /* .input{
 height: 45px;
@@ -299,11 +308,17 @@ width: 60px;
 }
 
 .alert-container {
-  margin-top: 100px !important;
-  padding: 20px !important;
+  /* margin-top: 100px !important; */
+  padding-right: 20px !important;
+  margin-top: 10px;
+ 
 }
 .alert {
   width: 500px !important;
+  height: 60px;
+ 
+ 
+
 }
 h2 {
   font-size: 45px;
@@ -320,8 +335,8 @@ h1 {
   color: #11101d;
   text-align: center;
 }
-.button {
+.logbtn {
   width: 100%;
-  height:40px;
+  height: 40px;
 }
 </style>

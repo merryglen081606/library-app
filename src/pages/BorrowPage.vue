@@ -3,7 +3,7 @@
     <b-row>
       <SidebarComponent />
       <b-col>
-        <HeaderCom title="Account" />
+        <HeaderCom title="Transaction" />
 
         <b-col class="">
           <b-container d-flex class="AddAccount">
@@ -13,161 +13,164 @@
                 <b-row
                   lass="select-button"
                   style="
-                    align-items: center;
+                    align-items:center;
                     display: flex;
                     justify-content: center;
                   "
                 >
                   <b-button
-                    v-b-modal.modal-1
-                    style="
-                      width: fit-content;
+                style="margin-left: 3px; 
+                 width: fit-content;
                       height: fit-content;
                       margin-top: 10px;
-                      margin-right: 5px;
-                      width: 120px;
-                    "
-                    >Librarian List</b-button
-                  >
+                      margin-right: 3px;
+                       margin-left: 3px;
+                      width: 100px; "
+                v-b-modal.modal-1
+                variant="secondary"
+                >Librarian</b-button
+              >
 
-                  <b-modal id="modal-1" title="Librarian List">
-                    <b-container class="tebs">
-                      <b-form-fieldset
-                        style="float: right; padding-bottom: 2px"
-                        class="col-4"
-                      >
-                        <b-input
-                          v-model="filterS"
-                          placeholder="Type here to Search..."
-                        ></b-input>
-                      </b-form-fieldset>
-                      <br /><br />
-                      <b-table
-                        responsive
-                        striped
-                        bordered
-                        hover
-                        id="my-table"
-                        :items="librarians"
-                        :filter="filterS"
-                        :fields="librarian"
-                        primary-key
-                        label-sort-asc=""
-                        label-sort-desc=""
-                        label-sort-clear=""
-                        :per-page="perPageL"
-                        :current-page="currentPageL"
-                      ></b-table>
-                      <b-pagination
-                        v-model="currentPageL"
-                        pills
-                        :total-rows="rows"
-                        :per-page="perPageL"
-                        aria-controls="my-table"
-                      ></b-pagination>
+               <b-modal
+              scrollable
+                id="modal-1"
+                hide-footer
+                class="d-flex justify-content-center"
+                size="lg"
+                title="View Librarian List"
+              >
+                <b-form-fieldset
+                  style="float: right; padding-bottom: 1px"
+                  class="col-12"
+                >
+                  <b-input
+                    v-model="filterS"
+                    placeholder="Type here to Search..."
+                  ></b-input>
+                </b-form-fieldset>
+                <br /><br />
+                <b-table
+                   class="my-3" v-for="i in 1" :key="i"
+                  responsive
+                  striped
+                  bordered
+                  hover
+                  id="my-table"
+                  :items="librarians"
+                  :filter="filterS"
+                  :fields="librarian"
+                  primary-key
+                  label-sort-asc=""
+                  label-sort-desc=""
+                  label-sort-clear=""
+                  :per-page="per"
+                  :current-page="Page"
+                ></b-table>
+             
+              </b-modal>
 
-                      <p class="currentpage">
-                        Current Page: {{ currentPageL }}
-                      </p>
-                    </b-container>
-                  </b-modal>
                   <b-button
+                   scrollable
+                    hide-footer
+                class="d-flex justify-content-center"
+                
                     v-b-modal.modal-2
                     style="
                       width: fit-content;
                       height: fit-content;
                       margin-top: 10px;
-                      margin-right: 5px;
-                      width: 110px;
+                      margin-right: 3px;
+                       margin-left: 3px;
+                      width: 100px;
                     "
-                    >Reader List</b-button
+                    >Reader</b-button
                   >
 
-                  <b-modal id="modal-2" title="Librarian List">
-                    <b-container class="tebs">
-                      <b-form-fieldset
-                        style="float: right; padding-bottom: 2px"
-                        class="col-4"
-                      >
-                        <b-input
-                          v-model="filterS"
-                          placeholder="Type here to Search..."
-                        ></b-input>
-                      </b-form-fieldset>
-                      <br /><br />
-                      <b-table
-                        responsive
-                        striped
-                        bordered
-                        hover
-                        id="my-table"
-                        :items="readers"
-                        :filter="filterR"
-                        :fields="reader"
-                        primary-key
-                        label-sort-asc=""
-                        label-sort-desc=""
-                        label-sort-clear=""
-                        :per-page="perPageR"
-                        :current-page="currentPageR"
-                      ></b-table>
-                      <b-pagination
-                        v-model="currentPageR"
-                        pills
-                        :total-rows="rows"
-                        :per-page="perPageL"
-                        aria-controls="my-table"
-                      ></b-pagination>
+              
+             <b-modal
+              scrollable
+                id="modal-2"
+                hide-footer
+                class="d-flex justify-content-center"
+                size="lg"
+                title="View Reader List"
+              >
+                <b-form-fieldset
+                  style="float: right; padding-bottom: 1px"
+                  class="col-12"
+                >
+                  <b-input
+                    v-model="filterR"
+                    placeholder="Type here to Search..."
+                  ></b-input>
+                </b-form-fieldset>
+                <br /><br />
+                <b-table
+                   class="my-3" v-for="i in 1" :key="i"
+                  responsive
+                  striped
+                  bordered
+                  hover
+                  id="my-table"
+                 :items="readers"
+                  :filter="filterR"
+                  :fields="reader"
+                  primary-key
+                  label-sort-asc=""
+                  label-sort-desc=""
+                  label-sort-clear=""
+                  :per-page="per"
+                  :current-page="Page"
+                ></b-table>
+             
+              </b-modal>
 
-                      <p class="currentpage">Current Page: {{ currentPage }}</p>
-                    </b-container>
-                  </b-modal>
+
+
+                  
                   <b-button
                     v-b-modal.modal-3
-                    style=" width: fit-content; height: fit-content; margin-top: 10px;margin-right: 5px; width: 110px;"
-                    >Book Copy</b-button>
+                    style="width: fit-content; height: fit-content;  margin-top:10px;  margin-right: 3px;width: 110px;  "  >Book Copy</b-button  >
 
-                  <b-modal id="modal-3" title="Librarian List">
-                    <b-container class="tebs">
-                      <b-form-fieldset
-                        style="float: right; padding-bottom: 2px"
-                        class="col-4"
-                      >
-                        <b-input
-                          v-model="filterS"
-                          placeholder="Type here to Search..."
-                        ></b-input>
-                      </b-form-fieldset>
-                      <br /><br />
-                      <b-table
-                        responsive
-                        striped
-                        bordered
-                        hover
-                        id="my-table"
-                        :items="bookcopy"
-                        :filter="filterS"
-                        :fields="bookcopies"
-                        primary-key
-                        label-sort-asc=""
-                        label-sort-desc=""
-                        label-sort-clear=""
-                        :per-page="perPageB"
-                        :current-page="currentPageB"
-                      ></b-table>
-                      <b-pagination
-                        v-model="currentPageB"
-                        pills
-                        :total-rows="rows"
-                        :per-page="perPageL"
-                        aria-controls="my-table"
-                      ></b-pagination>
-
-                      <p class="currentpage">
-                        Current Page: {{ currentPageB }}
-                      </p>
-                    </b-container>
-                  </b-modal>
+                   <b-modal
+              scrollable
+                id="modal-3"
+                hide-footer
+                class="d-flex justify-content-center"
+                size="lg"
+                title="View Book Copies"
+              >
+            
+                <b-form-fieldset
+                  style="float: right; padding-bottom: 1px"
+                  class="col-12"
+                >
+                 
+                  <b-input
+                    v-model="filterB"
+                    placeholder="Type here to Search..."
+                  ></b-input>
+                </b-form-fieldset>
+                <br /><br />
+                <b-table
+                   class="my-3" v-for="i in 1" :key="i"
+                  responsive
+                  striped
+                  bordered
+                  hover
+                  id="my-table"
+                  :items="bookcopy"
+                  :filter="filterB"
+                  :fields="bookcopies"
+                  primary-key
+                  label-sort-asc=""
+                  label-sort-desc=""
+                  label-sort-clear=""
+                  :per-page="per"
+                  :current-page="Page"
+                ></b-table>
+             
+              </b-modal>
                 </b-row>
 
                 <b-form v-on:submit.stop.prevent="transactionSubmit">
@@ -296,7 +299,6 @@
                     class="button-container d-flex justify-content-center"
                   >
                     <b-button
-                  
                       pill
                       class="pill"
                       variant="outline-dark"
@@ -311,7 +313,7 @@
         </b-col>
         <b-row>
           <b-container class="tebs">
-            <h1>Account Records</h1>
+            <h1>Transaction Records</h1>
             <b-form-fieldset
               style="float: right; padding-bottom: 2px"
               class="col-4"
@@ -324,8 +326,7 @@
             <br /><br />
             <b-table
               responsive
-              striped
-              bordered
+             
               hover
               id="my-table"
               :items="items"
@@ -338,22 +339,21 @@
               :per-page="perPage"
               :current-page="currentPage"
             >
-               <template v-slot:cell(Action)="data">
-                 <router-link
-                      tag="button"
-                      :to="'/edittransaction/' + data.item.BorrowerID"
-                      class="btn btn-success edits"
-                      >UPDATE
-                      <b-icon class="edit-btn" icon="pencil-square"></b-icon>
-                    </router-link> 
-            
-               </template>
-             </b-table>
+              <template v-slot:cell(Action)="data">
+                <router-link
+                  tag="button"
+                  :to="'/edittransaction/' + data.item.BorrowerID"
+                  class="btn btn-success edits"
+                >
+                  <b-icon class="edit-btn" icon="pencil-square"></b-icon>
+                </router-link>
+              </template>
+            </b-table>
             <!--End  DataTable Code-->
 
             <b-pagination
               v-model="currentPage"
-                  style="float: right;"
+              style="float: right"
               pills
               :total-rows="rows"
               :per-page="perPage"
@@ -382,7 +382,8 @@ export default {
       perPage: 10,
       currentPage: 1,
       filter: "",
-      ReaderID: "",
+      ReaderFirstname: "",
+      ReaderLastname: "",
       LibrarianID: null,
       CopyID: null,
       DateIssued: null,
@@ -396,6 +397,8 @@ export default {
       perPageL: 10,
       currentPageL: 1,
       filterS: "",
+      filterR: "",
+      filterB: "",
       Firstname: "",
       Lastname: "",
       //bookcopySubmit copyID: null,
@@ -405,8 +408,9 @@ export default {
 
       // Status: "",
       fields: [
-        { key: "BorrowerID", label: "Borrower", sortable: true },
-        { key: "ReaderID", label: "Reader", sortable: true },
+        { key: "BorrowerID", label: "ID", sortable: true },
+        { key: "ReaderFirstname", label: "Firstname", sortable: true },
+        { key: "ReaderLastname", label: "Lastname", sortable: true },
         { key: "LibrarianID", label: "Librarian", sortable: true },
         { key: "CopyID", label: "Copy ID", sortable: true },
         {
@@ -417,14 +421,22 @@ export default {
             return moment(value).format("MMM DD, YYYY");
           },
         },
-        { key: "DueDate", label: "Due Date", sortable: true,
-        formatter: (value) => {
+        {
+          key: "DueDate",
+          label: "Due Date",
+          sortable: true,
+          formatter: (value) => {
             return moment(value).format("MMM DD, YYYY");
-          }, },
-        { key: "DateReturned", label: "Date Return", sortable: true,
-           formatter: (value) => {
+          },
+        },
+        {
+          key: "DateReturned",
+          label: "Date Return",
+          sortable: true,
+          formatter: (value) => {
             return moment(value).format("MMM DD, YYYY");
-          },},
+          },
+        },
         { key: "Penalty", label: "Penalty", sortable: true },
         { key: "Status", label: "Status", sortable: true },
         { key: "remarks", label: "Remarks", sortable: true },
@@ -529,33 +541,36 @@ export default {
 <style scoped>
 .AddAccount {
   float: left;
-  margin-left: 160px;
-  width: 30%;
+  margin-left: 230px;
+  width: 24%;
+}
+#hero {
+  background: linear-gradient(to top, #fefeff 30%, #e2e2f6 90%) no-repeat;
+  width: 100%;
+  height: 100vh;
 }
 
 .from {
-  margin-left: 30%;
+  margin-left: 20%;
   display: grid;
+  background-color: #f4f4ff;
+  border-radius: 5px;
+  outline-style: solid;
+  outline-color: #6d6d6f;
   padding-left: 15px;
   padding-right: 15px;
   padding-top: 20px;
   margin-right: 30px;
   margin-top: 50px;
-  background-color: #f4f4ff;
-  border-radius: 5px;
-
-  outline-style: solid;
-  outline-color: #6d6d6f;
 }
 
 .tebs {
   background-color: #f4f4ff;
-  /* padding: 15px 15px 15px 15px; */
+
   border-radius: 5px;
   margin-top: 50px;
-  width: 1090px;
-  /* outline-style: solid; */
-  /* outline-color: #6d6d6f; */
+  width: 1150px;
+  
   margin-right: 60px;
 }
 .pill {

@@ -1,22 +1,26 @@
 <template>
-  <b-container fluid id="lib">
+<b-container fluid id="hero">
     <div class="nav">
       <SidebarComponent />
     </div>
     <b-row>
+      <b-row>
+          <HeaderCom title="Edit Book" />
+        </b-row>
       <b-col xl="10" lg="9" sm="9">
-        <div class="head">
+           
+        <!-- <div class="head">
           <h4>Library System/ <span>UpdateLibrarian</span></h4>
-        </div>
+        </div> -->
         <b-container fluid class="pt-2">
           <b-row class="d-flex justify-content-center my-3">
             <b-col xl="6" class="py-2">
               <b-col class="">
                 <b-container class="container-card rounded p-3">
-                  <h4 class="px-3">Update Librarian Information</h4>
+                  <h4 class="px-3">Update Book Information</h4>
                   <b-row class="form">
                     <b-col cols="12" class="mt-3">
-                      <b-form v-on:submit.prevent="updateBook">
+         <b-form v-on:submit.prevent="updateBook">
                         <b-form-group label="ISBN" label-for="ISBN-input">
                           <b-form-input
                             placeholder="Enter ISBN"
@@ -157,11 +161,11 @@ import axios from "axios";
 import api from "../../api";
 import { mapGetters } from "vuex";
 import { required } from "vuelidate/lib/validators";
-
+import HeaderCom from "../layout/HeaderCom.vue";
 export default {
   name: "EditBook",
   components: {
-    SidebarComponent,
+    SidebarComponent,HeaderCom
   },
   data() {
     return {
@@ -237,6 +241,7 @@ export default {
 nav {
   padding: 10px;
 }
+
 div.py-2 {
   padding: 0 !important;
 }
@@ -258,12 +263,17 @@ div.py-2 {
   font-family: montserrat;
 }
 .container-card {
-  background-color: #d4f0f7;
+   background-color: rgb(176, 176, 176);
   align-content: center;
   justify-content: center;
   margin-left: 200px;
   width: 590px;
   margin-top: 50px;
+  color: #ffff;
+  
+}
+.buttons{
+  margin-top:10px;
 }
 .button-container {
   margin-right: 50px;
@@ -280,6 +290,7 @@ div.py-2 {
 }
 .px-3 {
   text-align: center;
+  color: #11101d;
 }
 .form {
   align-content: center;
@@ -290,5 +301,18 @@ div.py-2 {
 }
 .input_button {
   float: right;
+}
+@media (max-width: 1361px)
+ {
+  .container-card{
+     margin-left: 80px;
+      width: 420px;
+  }
+
+ }
+  #hero {
+  background: linear-gradient(to top, #fefeff 30%, #e2e2f6 90%) no-repeat;
+  width: 100%;
+  height: 100vh;
 }
 </style>

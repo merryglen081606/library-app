@@ -3,92 +3,107 @@
     <b-row>
       <SidebarComponent />
       <b-col>
-        <HeaderCom title="Account" />
+        <b-row>
+          <HeaderCom title="Reader"/>
+        </b-row>
 
-        <b-col class="">
-          <b-container d-flex class="AddAccount">
-            <b-row class="rows">
-              <b-col d-flex class="from">
-                <h4 style="text-align: center">Create Reader Information</h4>
-                <b-form v-on:submit.stop.prevent="readerSubmit">
+        <b-row class="container d-flex justify-content-center">
+          <b-container class="tebs">
+            <div class="tbales">
+              <h1>Reader Records</h1>
+
+              <b-button variant="dark" v-b-modal.modal-prevent-closing
+                >Add Reader</b-button
+              >
+              <b-button
+                style="margin-left: 3px"
+                v-b-modal.modal-1
+                variant="secondary"
+                >View Librarian</b-button
+              >
+              <b-form-fieldset style="float: right" class="col-4">
+                <b-input
+                  v-model="filter"
+                  placeholder="Type here to Search..."
+                ></b-input>
+              </b-form-fieldset>
+              <b-modal
+                scrollable
+                id="modal-1"
+                hide-footer
+                class="d-flex justify-content-center"
+                size="lg"
+                title="Librarian List"
+              >
+                <b-form-fieldset
+                  style="float: right; padding-bottom: 1px"
+                  class="col-12"
+                >
+                  <b-input
+                    v-model="filterS"
+                    placeholder="Type here to Search..."
+                  ></b-input>
+                </b-form-fieldset>
+                <br /><br />
+                <b-table
+                  class="my-3"
+                  v-for="i in 1"
+                  :key="i"
+                  responsive
+                  striped
+                  bordered
+                  hover
+                  id="my-table"
+                  :items="librarians"
+                  :filter="filterS"
+                  :fields="librarian"
+                  primary-key
+                  label-sort-asc=""
+                  label-sort-desc=""
+                  label-sort-clear=""
+                  :per-page="per"
+                  :current-page="Page"
+                ></b-table>
+              </b-modal>
+
+              <!--End-->
+              <b-modal
+                hide-footer
+                id="modal-prevent-closing"
+                size="m"
+                ref="modal"
+                title="Register Librarian"
+              >
+                <b-form ref="form" v-on:submit.stop.prevent="readerSubmit">
                   <!-- <FormInput label="Invoice Number" /> -->
+                 <b-form-input
+                      id="LibrarianID-input"
+                      v-model="$v.LibrarianID.$model"
+                      :class="{
+                        'is-invalid': validationStatus($v.LibrarianID),
+                      }"
+                    >
+                    </b-form-input>
+                  <b-form-group
+                    label="Registered Librarian "
+                    label-for="LibrarianID-input"
+                  >
+                    <div
+                      v-if="!$v.LibrarianID.required"
+                      class="invalid-feedback"
+                    >
+                      Please enter Librarian. (Required Failed)
+                    </div>
+                  </b-form-group>
 
                   <b-form-group>
-                    <b-col>
-                      <b-row>
-                        <b-button
-                          v-b-modal.modal-1
-                          style=" width:fit-content;height: fit-content;margin-top: 30px; "
-                          >Librarian
-                          </b-button>
-
-                        <b-modal id="modal-1" title="Librarian List">
-                          <b-container class="tebs">
-                            <b-form-fieldset
-                              style="float: right; padding-bottom: 2px"
-                              class="col-4">
-                              <b-input
-                                v-model="filterS"
-                                placeholder="Type here to Search..."
-                              ></b-input>
-                            </b-form-fieldset>
-                            <br /><br />
-                            <b-table
-                              responsive
-                              striped
-                              bordered
-                              hover
-                              id="my-table"
-                              :items="librarians"
-                              :filter="filterS"
-                              :fields="librarian"
-                              primary-key
-                              label-sort-asc=""
-                              label-sort-desc=""
-                              label-sort-clear=""
-                              :per-page="perPageL"
-                              :current-page="currentPageL"
-                            ></b-table>
-                            <b-pagination
-                              v-model="currentPageL"
-                              pills
-                              :total-rows="rows"
-                              :per-page="perPageL"
-                              aria-controls="my-table"
-                            ></b-pagination>
-
-                            <p class="currentpage">
-                              Current Page: {{ currentPageL }}
-                            </p>
-                          </b-container>
-                        </b-modal>
-                        <b-form-group
-                          label="Registered Librarian "
-                          label-for="LibrarianID-input"
-                        >
-                          <b-form-input
-                            id="LibrarianID-input"
-                            v-model="$v.LibrarianID.$model"
-                            :class="{
-                              'is-invalid': validationStatus($v.LibrarianID),
-                            }"
-                          >
-                          </b-form-input>
-                          <div
-                            v-if="!$v.LibrarianID.required"
-                            class="invalid-feedback"
-                          >
-                            Please enter Librarian. (Required Failed)
-                          </div>
-                        </b-form-group>
-                        <!-- <FormInput
-                          class="ins col-8"
-                          label="Librarian ID"
-                          v-model="LibrarianID"
-                        /> -->
-                        <!-- <b-button class="buttom" @click="showLibrarianModal=true"  style="width:fit-content; height:fit-content; margin-top:30px;">Librarian</b-button> -->
-                      </b-row>
-                    </b-col>
+                    <b-form-select
+                      class="selected"
+                      value-field="UserID"
+                      text-field="Firstname"
+                      :options="librarians"
+                      v-model="$v.LibrarianID.$model"
+                    ></b-form-select>
                   </b-form-group>
 
                   <b-form-group label="Reader No" label-for="ReaderNo-input">
@@ -116,15 +131,15 @@
 
                   <b-form-group label="Firstname" label-for="Firstname-input">
                     <b-form-input
-                      id="Firstname-input"
-                      v-model="$v.Firstname.$model"
+                      id="Firstname1-input"
+                      v-model="$v.Firstname1.$model"
                       :class="{
-                        'is-invalid': validationStatus($v.Firstname),
+                        'is-invalid': validationStatus($v.Firstname1),
                       }"
                     >
                     </b-form-input>
-                    <div v-if="!$v.Firstname.required" class="invalid-feedback">
-                      Please enter Firstname.(Required Failed)
+                    <div v-if="!$v.Firstname1.required" class="invalid-feedback">
+                      Please enter Firstname1.(Required Failed)
                     </div>
                   </b-form-group>
 
@@ -233,21 +248,6 @@
                     </div>
                   </b-form-group>
 
-                  <!-- <b-form-group label="City ID" label-for="CityID-input">
-                        <b-form-input
-                          id="CityID-input"
-                          v-model="$v.CityID.$model"
-                          :class="{ 'is-invalid': validationStatus($v.CityID) }"
-                        >
-                        </b-form-input>
-                        <div
-                          v-if="!$v.CityID.required"
-                          class="invalid-feedback"
-                        >
-                          The City ID No name field is required.
-                        </div>
-                      </b-form-group> -->
-
                   <b-form-group label="Address" label-for="City-input">
                     <b-form-input
                       id="Address-input"
@@ -280,73 +280,62 @@
                     </div>
                   </b-form-group>
 
-                  <b-container
-                    class="button-container d-flex justify-content-center"
-                  >
-                    <b-button
-                      pill
-                      class="pill"
-                      variant="outline-dark"
-                      @click="readerSubmit()"
-                      >Submit Data</b-button
+                  <div class="buttons">
+                    <b-button class="mt-3 btn-success" @click="readerSubmit()"
+                      >Submit</b-button
                     >
-                  </b-container>
+                    <!-- <b-button class="close" to="/account"
+                          >Close</b-button
+                        > -->
+                    <b-button
+                      href="/readers"
+                      class="mt-3"
+                      variant="outline-danger"
+                      block
+                      @click="hideModal"
+                      >Close</b-button
+                    >
+                  </div>
                 </b-form>
-              </b-col>
-            </b-row>
-          </b-container>
-        </b-col>
-        <b-row>
-          <b-container class="tebs">
-            <h1>Account Records</h1>
-            <b-form-fieldset
-              style="float: right; padding-bottom: 2px"
-              class="col-4"
-            >
-              <b-input
-                v-model="filter"
-                placeholder="Type here to Search..."
-              ></b-input>
-            </b-form-fieldset>
-            <br /><br />
-            <b-table
-              responsive
-              striped
-              bordered
-              hover
-              id="my-table"
-              :items="items"
-              :filter="filter"
-              :fields="fields"
-              primary-key
-              label-sort-asc=""
-              label-sort-desc=""
-              label-sort-clear=""
-              :per-page="perPage"
-              :current-page="currentPage"
-            >
-              <template v-slot:cell(Action)="data">
+              </b-modal>
+
+              <b-table
+                class="tb"
+                responsive
+                hover
+                id="my-table"
+                :items="items"
+                :filter="filter"
+                :fields="fields"
+                primary-key
+                label-sort-asc=""
+                label-sort-desc=""
+                label-sort-clear=""
+                :per-page="perPage"
+                :current-page="currentPage"
+              >
+                <template v-slot:cell(Action)="data">
                   <router-link
-                      tag="button"
-                      :to="'/editreader/' + data.item.ReaderID"
-                      class="btn btn-success edits"
-                      >UPDATE
-                      <b-icon class="edit-btn" icon="pencil-square"></b-icon>
-                    </router-link>
-               
-              </template>
-            </b-table>
-            <!--End  DataTable Code-->
+                    tag="button"
+                    :to="'/editreader/' + data.item.ReaderID"
+                    class="btn btn-success edits"
+                  >
+                    <b-icon class="edit-btn" icon="pencil-square"></b-icon>
+                  </router-link>
+                </template>
+              </b-table>
 
-            <b-pagination
-              v-model="currentPage"
-              pills
-              :total-rows="rows"
-              :per-page="perPage"
-              aria-controls="my-table"
-            ></b-pagination>
+              <b-pagination
+                v-model="currentPage"
+                style="float: right"
+                pills
+                :total-rows="rows"
+                :per-page="perPage"
+                aria-controls="my-table"
+              ></b-pagination>
 
-            <p class="currentpage">Current Page: {{ currentPage }}</p>
+              <p class="currentpage">Current Page: {{ currentPage }}</p>
+            </div>
           </b-container>
         </b-row>
       </b-col>
@@ -365,11 +354,11 @@ export default {
   components: { SidebarComponent, HeaderCom },
   data() {
     return {
-      perPage: 5,
+      perPage: 10,
       currentPage: 1,
       filter: "",
       ReaderNo: "",
-      Firstname: "",
+      Firstname1: "",
       Lastname: "",
       Birthdate: "",
       Gender: "",
@@ -391,7 +380,7 @@ export default {
         { key: "Lastname", label: "Lastname", sortable: true },
       ],
       fields: [
-        { key: "ReaderID", label: "Reader ID", sortable: true },
+        { key: "ReaderID", label: "ID", sortable: true },
         { key: "ReaderNo", label: "Reader No", sortable: true },
         { key: "Firstname", label: "Firstname", sortable: true },
         { key: "Lastname", label: "Lastname", sortable: true },
@@ -441,7 +430,7 @@ export default {
 
   validations: {
     ReaderNo: { required, minLength: minLength(6), maxLength: maxLength(6) },
-    Firstname: { required },
+    Firstname1: { required },
     Lastname: { required },
     Birthdate: { required },
     Gender: { required },
@@ -478,18 +467,20 @@ export default {
         alert("Invalid User");
       }
     },
+    hideModal() {
+      this.$refs["modal"].hide();
+    },
   },
 };
 </script>
 <style scoped>
-.AddAccount {
+/* .AddAccount {
   float: left;
   margin-left: 190px;
   width: 30%;
-}
+} */
 
-.from {
-  margin-left: 30%;
+/* .from {
   display: grid;
   padding-left: 15px;
   padding-right: 15px;
@@ -501,19 +492,60 @@ export default {
 
   outline-style: solid;
   outline-color: #b1acd3;
-}
+} */
 
-.tebs {
+/* .tebs {
   background-color: #d7d5e4;
   padding: 15px 15px 15px 15px;
   border-radius: 10px;
   margin-top: 50px;
-
+  margin-left: 190px;
   outline-style: solid;
   outline-color: #b1acd3;
+ 
+}
+
+.pill {
+  width: 220px;
+  margin-top: 10px;
+} */
+#hero {
+  background: linear-gradient(to top, #fefeff 30%, #e2e2f6 90%) no-repeat;
+  width: 100%;
+  height: 100vh;
+}
+.tb {
+   width: 1500px;
+  display: flex;
+}
+.tebs {
+  padding-right: 2%;
+  padding-left: 2%;
+
+}
+
+.tbales {
+  
+  padding-bottom: 1%;
+  border-radius: 5px;
+   width: 1500px;
+   
+}
+
+.container {
+  padding-top: 10px;
+  margin-left: 11%;
+  width: 100%;
 }
 .pill {
   width: 220px;
   margin-top: 10px;
 }
+.selectbtn {
+  margin-right: 5px;
+}
+.mt-3 {
+  margin-right: 5px;
+}
+
 </style>

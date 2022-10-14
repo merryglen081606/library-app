@@ -3,143 +3,158 @@
     <b-row>
       <SidebarComponent />
       <b-col>
-        <HeaderCom title="Account" />
+        <HeaderCom title="Publisher" />
 
         <b-col class="">
           <b-container d-flex class="AddAccount">
-           
-             
-               
-                  <!-- <FormInput label="Invoice Number" /> -->
-               <b-container class="tebs">
-                <h1>Publisher Records</h1>
-                <div>
-              <b-button variant="dark" v-b-modal.modal-prevent-closing
-                >Add Publisher</b-button
+            <!-- <FormInput label="Invoice Number" /> -->
+            <b-container class="tebs">
+              <h1>Publisher Records</h1>
+              <div  class="tbales">
+                <b-button variant="dark" v-b-modal.modal-prevent-closing
+                  >Add Publisher</b-button
+                >
+                 <b-form-fieldset
+                style="float: right; padding-bottom: 2px"
+                class="col-4"
               >
-              <b-modal
-                hide-footer
-                id="modal-prevent-closing"
-                size="m"
-                ref="modal"
-                title="Register Publisher"
-                @hidden="resetModal"
-              >
-                <form ref="form" v-on:submit.stop.prevent="publisherSubmit">
-                  <b-form-group label="Firstname" label-for="firstname-input">
-                    <b-form-input
-                      id="firstname-input"
-                      v-model="$v.firstname.$model"
-                      :class="{
-                        'is-invalid': validationStatus($v.firstname),
-                      }"
-                    >
-                    </b-form-input>
-                    <div v-if="!$v.firstname.required" class="invalid-feedback">
-                      Please enter Firstname. (Required Failed)
-                    </div>
-                  </b-form-group>
+                <b-input
+                  v-model="filter"
+                  placeholder="Type here to Search..."
+                ></b-input>
+              </b-form-fieldset>
+                <b-modal
+                  hide-footer
+                  id="modal-prevent-closing"
+                  size="m"
+                  ref="modal"
+                  title="Register Publisher"
+                  @hidden="resetModal"
+                >
+                  <form ref="form" v-on:submit.stop.prevent="publisherSubmit">
+                    <b-form-group label="Firstname" label-for="firstname-input">
+                      <b-form-input
+                        id="firstname-input"
+                        v-model="$v.firstname.$model"
+                        :class="{
+                          'is-invalid': validationStatus($v.firstname),
+                        }"
+                      >
+                      </b-form-input>
+                      <div
+                        v-if="!$v.firstname.required"
+                        class="invalid-feedback"
+                      >
+                        Please enter Firstname. (Required Failed)
+                      </div>
+                    </b-form-group>
 
-                  <b-form-group label="Middlename" label-for="middlename-input">
-                    <b-form-input
-                      id="middlename-input"
-                      v-model="$v.middlename.$model"
+                    <b-form-group
+                      label="Middlename"
+                      label-for="middlename-input"
                     >
-                    </b-form-input>
-                  </b-form-group>
+                      <b-form-input
+                        id="middlename-input"
+                        v-model="$v.middlename.$model"
+                      >
+                      </b-form-input>
+                    </b-form-group>
 
-                  <b-form-group label="Lastname" label-for="lastname-input">
-                    <b-form-input
-                      id="lastname-input"
-                      v-model="$v.lastname.$model"
-                      :class="{
-                        'is-invalid': validationStatus($v.lastname),
-                      }"
-                    >
-                    </b-form-input>
-                    <div v-if="!$v.lastname.required" class="invalid-feedback">
-                      Please enter Lastname. (Failed Required)
-                    </div>
-                  </b-form-group>
+                    <b-form-group label="Lastname" label-for="lastname-input">
+                      <b-form-input
+                        id="lastname-input"
+                        v-model="$v.lastname.$model"
+                        :class="{
+                          'is-invalid': validationStatus($v.lastname),
+                        }"
+                      >
+                      </b-form-input>
+                      <div
+                        v-if="!$v.lastname.required"
+                        class="invalid-feedback"
+                      >
+                        Please enter Lastname. (Failed Required)
+                      </div>
+                    </b-form-group>
 
-                  <b-form-group label="Location" label-for="location-input">
-                    <b-form-input
-                      id="location-input"
-                      v-model="$v.location.$model"
-                      :class="{
-                        'is-invalid': validationStatus($v.location),
-                      }"
-                    >
-                    </b-form-input>
-                    <div v-if="!$v.location.required" class="invalid-feedback">
-                      Please select Location. (Failed Required)
-                    </div>
-                  </b-form-group>
+                    <b-form-group label="Location" label-for="location-input">
+                      <b-form-input
+                        id="location-input"
+                        v-model="$v.location.$model"
+                        :class="{
+                          'is-invalid': validationStatus($v.location),
+                        }"
+                      >
+                      </b-form-input>
+                      <div
+                        v-if="!$v.location.required"
+                        class="invalid-feedback"
+                      >
+                        Please select Location. (Failed Required)
+                      </div>
+                    </b-form-group>
 
-                  <div class="buttons">
-                    <b-button class="btn-success" @click="publisherSubmit()"
-                      >Submit</b-button
-                    >
-                    <b-button class="close" block @click="hideModal"
+                    <div class="buttons">
+                      <b-button class=" mt-3 btn-success" @click="publisherSubmit()"
+                        >Submit</b-button
+                      >
+                      <!-- <b-button class="close" block @click="hideModal"
+                        >Close</b-button
+                      > -->
+                      <b-button
+
+                      class="mt-3"
+                      href="/publisher"
+                      variant="outline-danger"
+                      block
+                      @click="hideModal"
                       >Close</b-button
                     >
-                  </div>
-                </form>
-              </b-modal>
-            </div>
-                        <b-form-fieldset
-                          style="float: right; padding-bottom: 2px"
-                          class="col-4"
-                        >
-                          <b-input
-                            v-model="filter"
-                            placeholder="Type here to Search..."
-                          ></b-input>
-                        </b-form-fieldset>
-                        <br /><br />
-                        <b-table
-                          responsive
-                          striped
-                          bordered
-                          hover
-                          id="my-table"
-                        :items="publishers"
-                          :filter="filter"
-                          :fields="fields"
-                          primary-key
-                          label-sort-asc=""
-                          label-sort-desc=""
-                          label-sort-clear=""
-                          :per-page="perPage"
-                          :current-page="currentPage"
-                        >
-                       
-                       <template v-slot:cell(Action)="data">
-                          <router-link
-                                tag="button"
-                                :to="'/editpublisher/' + data.item.publisherID"
-                                class="btn btn-success edits"
-                                >UPDATE
-                                <b-icon class="edit-btn" icon="pencil-square"></b-icon>
-                            </router-link> 
-                      
-                        </template>
-                        </b-table>
-                
+                    </div>
+                  </form>
+                </b-modal>
+              </div>
+             
+          
+              <b-table
+                responsive
+                class="tb"
+                hover
+                id="my-table"
+                :items="publishers"
+                :filter="filter"
+                :fields="fields"
+                primary-key
+                label-sort-asc=""
+                label-sort-desc=""
+                label-sort-clear=""
+                :per-page="perPage"
+                :current-page="currentPage"
+              >
+                <template v-slot:cell(Action)="data">
+                  <router-link
+                    tag="button"
+                    :to="'/editpublisher/' + data.item.publisherID"
+                    class="btn btn-success edits"
+                  >
+                    <b-icon class="edit-btn" icon="pencil-square"></b-icon>
+                  </router-link>
+                </template>
+              </b-table>
 
-                        <b-pagination
-                          v-model="currentPage"
-                          style="float: right;"
-                          pills
-                          :total-rows="rows"
-                          :per-page="perPage"
-                          aria-controls="my-table"
-                        ></b-pagination>
+              <b-pagination
+                v-model="currentPage"
+                style="float: right"
+                pills
+                :total-rows="rows"
+                :per-page="perPage"
+                aria-controls="my-table"
+              ></b-pagination>
 
-                        <p class="currentpage">Current Page: {{ currentPage }}</p>
-              </b-container>
+              <p class="currentpage">Current Page: {{ currentPage }}</p>
+            </b-container>
           </b-container>
-          </b-col>
+        </b-col>
       </b-col>
     </b-row>
   </b-container>
@@ -147,7 +162,6 @@
 <script>
 import SidebarComponent from "../components/SidebarComponent.vue";
 import HeaderCom from "../layout/HeaderCom.vue";
-
 
 import { required } from "vuelidate/lib/validators";
 
@@ -157,7 +171,7 @@ export default {
   components: { SidebarComponent, HeaderCom },
   data() {
     return {
-      perPage: 5,
+      perPage: 10,
       currentPage: 1,
       filter: "",
       firstname: "",
@@ -166,7 +180,7 @@ export default {
       location: "",
 
       // Status: "",
-     fields: [
+      fields: [
         { key: "publisherID", label: "Publisher ID", sortable: true },
         { key: "Firstname", label: "Firstname", sortable: true },
         { key: "Middlename", label: "Middlename", sortable: true },
@@ -178,14 +192,14 @@ export default {
   },
 
   computed: {
-    ...mapGetters({ publishers:  "publishers" }),
+    ...mapGetters({ publishers: "publishers" }),
 
     rows() {
-        return this.publishers.length;
+      return this.publishers.length;
     },
   },
 
- async mounted() {
+  async mounted() {
     if (localStorage.getItem("token") === null) {
       this.$router.push("/login");
     }
@@ -203,13 +217,13 @@ export default {
     validationStatus: function (validation) {
       return typeof validation != "undefined" ? validation.$error : false;
     },
-    async publisherSubmit()  {
+    async publisherSubmit() {
       this.$v.$touch();
       if (this.$v.$pendding || this.$v.$error) return;
       try {
         console.log("newsup", this.publisherList);
         this.$store.dispatch("publisherSubmit", {
-       firstname: this.firstname,
+          firstname: this.firstname,
           middlename: this.middlename,
           lastname: this.lastname,
           location: this.location,
@@ -218,6 +232,9 @@ export default {
       } catch (error) {
         alert("Invalid User");
       }
+    },
+      hideModal() {
+      this.$refs["modal"].hide();
     },
   },
 };
@@ -228,7 +245,11 @@ export default {
   margin-left: 20%;
   width: 30%;
 }
-
+#hero {
+  background: linear-gradient(to top, #fefeff 30%, #e2e2f6 90%) no-repeat;
+  width: 100%;
+  height: 100vh;
+}
 .from {
   margin-left: 30%;
   display: grid;
@@ -243,19 +264,34 @@ export default {
   outline-style: solid;
   outline-color: #6d6d6f;
 }
+.tb {
+ width: 1505px;
+  display: flex;
 
+}
+.container {
+  padding-top: 10px;
+  margin-left: 8.8%;
+  width: 100%;
+}
 .tebs {
-  background-color: #f4f4ff;
-  padding: 15px 15px 15px 15px;
+    padding-right: 2%;
+  padding-left: 2%;
+  
+
+}
+.tbales {
+ 
+  padding-bottom: 1%;
   border-radius: 5px;
-  margin-top: 50px;
-  width: 1050px;
-  /* outline-style: solid;
-  outline-color: #6d6d6f; */
-  margin-right: 60px;
+   width: 1505px;
+   
 }
 .pill {
   width: 220px;
   margin-top: 10px;
+}
+.mt-3 {
+  margin-right: 5px;
 }
 </style>

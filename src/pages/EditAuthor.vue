@@ -4,8 +4,11 @@
       <SidebarComponent />
     </div>
     <b-row>
+      <b-row>
+          <HeaderCom title="Edit Author" />
+        </b-row>
       <b-col xl="10" lg="9" sm="9">
-             <HeaderCom title="Author" />
+           
         <!-- <div class="head">
           <h4>Library System/ <span>UpdateLibrarian</span></h4>
         </div> -->
@@ -14,7 +17,7 @@
             <b-col xl="6" class="py-2">
               <b-col class="">
                 <b-container class="container-card rounded p-3">
-                  <h4 class="px-3">Update Librarian Information</h4>
+                  <h4 class="px-3"> Author Information</h4>
                   <b-row class="form">
                     <b-col cols="12" class="mt-3">
                       <b-form v-on:submit.prevent="updateAuthor">
@@ -158,9 +161,12 @@ nav {
 div.py-2 {
   padding: 0 !important;
 }
+.buttons{
+  margin-top:10px;
+}
 .head {
   margin-left: 390px;
-  background-color: #11101d;
+ background-color: rgb(176, 176, 176);
   border-radius: 10px;
   margin-top: 15px;
   padding-left: 50px;
@@ -176,7 +182,7 @@ div.py-2 {
   font-family: montserrat;
 }
 .container-card {
-  background-color: #595959;
+ background-color: rgb(176, 176, 176);
   align-content: center;
   justify-content: center;
   margin-left: 200px;
@@ -200,6 +206,7 @@ div.py-2 {
 }
 .px-3 {
   text-align: center;
+  color: #11101d;
 }
 .form {
   align-content: center;
@@ -219,4 +226,9 @@ div.py-2 {
   }
 
  }
+ #hero {
+  background: linear-gradient(to top, #fefeff 30%, #e2e2f6 90%) no-repeat;
+  width: 100%;
+  height: 100vh;
+}
 </style>

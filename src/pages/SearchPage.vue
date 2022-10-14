@@ -1,281 +1,572 @@
 <template>
   <body>
-    <div>
-      <b-row id="header" class="d-flex fixed-top justify-content-center">
-        <b-navbar type="dark" variant="dark">
-          <a
-            class="navbar-brand"
-            style="
-              font-size: 30px;
-              font-weight: bolder;
-              font-family: montserrat;
-              color: #ffffff;
-              padding-left: 210px;
-            "
-            href="#"
-            >Lou Geh<span style="color: #eeb34b; font-family: montserrat">
-              Library System</span
-            ></a
+    <section fluid id="libra">
+      <div class="navs">
+        <a
+          class="navbar-brand"
+          style=" 
+            font-size: 30px;
+            font-weight: bolder;
+            font-family: montserrat;
+            color: #ffffff;
+            padding-left: 70px;
+            padding-top: 20px;
+          "
+          href="#"
+          >Lou Geh<span
+            style="color: #eeb34b; font-family: montserrat; padding-top: 20px"
           >
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0 bg-dark">
-              <li class="nav-item">
-                <router-link to="/" class="nav-link" exact>Home</router-link>
-              </li>
-              <li class="nav-item">
-                <router-link to="/search" class="nav-link" exact
+            Library System</span
+          ></a
+        >
+
+        <nav>
+          <ul>
+            <li class="nav-item">
+              <a
+                ><router-link to="/" class="nav-link" exact
+                  >Home</router-link
+                ></a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                ><router-link to="/search" class="nav-link" exact
                   >Search</router-link
-                >
-              </li>
-              <!-- <li class="nav-item">
-                <router-link to="/login" class="nav-link" exact
+                ></a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                ><router-link to="/login" class="nav-link" exact
                   >Login</router-link
-                >
-              </li> -->
-              <li class="nav-item">
-                <router-link
-                  to="/login"
-                  class="btn btn-outline-success"
-                  role="button"
-                  style="
-                    font-family: montserrat;
-                    font-size: 20px;
-                    font-weight: 900;
-                    border-radius: 30px;
-                    color: #ffffff;
-                    padding-right: 20px;
-                    padding-left: 20px;
-                  "
-                  exact
-                  >LOGIN ACCOUNT</router-link
-                >
-              </li>
-            </ul>
-          </div>
-        </b-navbar>
-      </b-row>
-      <b-form-fieldset class="search-bar">
-        <b-icon
-          class="icon-search"
-          icon="search"
-          animation="fade"
-          font-scale="3"
-        />
-        <b-input
-          class="search-input"
-          v-model="filter"
-          placeholder="Search Books..."
-        ></b-input>
-      </b-form-fieldset>
-
-      <div class="content">
-        <b-card bg-variant="light" class="card">
-          <h1>Book Information</h1>
-          <b-table
-            responsive
-            striped
-            bordered
-            hover
-            id="my-table"
-            :items="items"
-            :filter="filter"
-            :fields="fields"
-            primary-key
-            label-sort-asc=""
-            label-sort-desc=""
-            label-sort-clear=""
-            :per-page="perPage"
-            :current-page="currentPage"
-          >
-
-          </b-table>
-          <b-pagination-hide
-            v-model="currentPage"
-            pills
-            :total-rows="rows"
-            :per-page="perPage"
-            aria-controls="my-table"
-          ></b-pagination-hide>
-          <!-- <p  class="mt-3">Current Page: {{ currentPage }}</p> -->
-        </b-card>
+                ></a
+              >
+            </li>
+            <!-- <li class="nav-item">
+                      <router-link to="/login" class="nav-link" exact
+                        >Login</router-link
+                      >
+                    </li> -->
+          </ul>
+        </nav>
       </div>
-    </div>
+     <b-row class="container d-flex justify-content-center">
+          <b-container class="tebs">
+            <div class="tbales">
+              <div class="tatblee">
+              <h1>Book Records</h1>
 
-    
-  
+              
+
+              <b-form-fieldset style="float: right" class="col-4">
+                <b-input
+                  v-model="filter"
+                  placeholder="Type here to Search..."
+                ></b-input>
+              </b-form-fieldset>
+              <b-modal
+                hide-footer
+                id="modal-prevent-closing"
+                size="m"
+                ref="modal"
+                title="Register Book Information"
+              >
+                <form ref="form" v-on:submit.stop.prevent="bookSubmit">
+                  <!-- <FormInput label="Invoice Number" /> -->
+                  <b-button
+                    style="margin-left: 30px"
+                    v-b-modal.modal-2
+                    variant="secondary"
+                    class="col-5"
+                    >View Publisher</b-button
+                  >
+                  <b-modal
+                    scrollable
+                    id="modal-2"
+                    hide-footer
+                    class="d-flex justify-content-center"
+                    size="lg"
+                    title="Librarian List"
+                  >
+                    <b-form-fieldset
+                      style="float: right; padding-bottom: 1px"
+                      class="col-12"
+                    >
+                      <b-input
+                        v-model="filterP"
+                        placeholder="Type here to Search..."
+                      ></b-input>
+                    </b-form-fieldset>
+                    <br /><br />
+                    <b-table
+                      class="my-3"
+                      v-for="i in 1"
+                      :key="i"
+                      responsive
+                      striped
+                      bordered
+                      hover
+                      id="my-table"
+                      :items="publishers"
+                      :filter="filterP"
+                      :fields="publishers"
+                      primary-key
+                      label-sort-asc=""
+                      label-sort-desc=""
+                      label-sort-clear=""
+                      :per-page="per"
+                      :current-page="Page"
+                    ></b-table>
+                    <!-- <b-pagination
+                  v-model="Page"
+                  pills
+                  :total-rows="rows"
+                  :per-page="per"
+                  aria-controls="my-table1"
+                ></b-pagination>
+
+                <p class="currentpage">Current Page: {{ Page }}</p> -->
+                  </b-modal>
+                  <b-button
+                    class="col-5"
+                    style="margin-left: 2px"
+                    v-b-modal.modal-3
+                    variant="secondary"
+                    >View Author</b-button
+                  >
+                  <b-modal
+                    scrollable
+                    id="modal-3"
+                    hide-footer
+                    class="d-flex justify-content-center"
+                    size="lg"
+                    title="Librarian List"
+                  >
+                    <b-form-fieldset
+                      style="float: right; padding-bottom: 1px"
+                      class="col-12"
+                    >
+                      <b-input
+                        v-model="filterA"
+                        placeholder="Type here to Search..."
+                      ></b-input>
+                    </b-form-fieldset>
+                    <br /><br />
+                    <b-table
+                      class="my-3"
+                      v-for="i in 1"
+                      :key="i"
+                      responsive
+                      striped
+                      bordered
+                      hover
+                      id="my-table1"
+                      :items="authors"
+                      :filter="filterA"
+                      :fields="author"
+                      primary-key
+                      label-sort-asc=""
+                      label-sort-desc=""
+                      label-sort-clear=""
+                      :per-page="per"
+                      :current-page="Page"
+                    ></b-table>
+                    <!-- <b-pagination
+                  v-model="Page"
+                  pills
+                  :total-rows="rows"
+                  :per-page="per"
+                  aria-controls="my-table1"
+                ></b-pagination>
+
+                <p class="currentpage">Current Page: {{ Page }}</p> -->
+                  </b-modal>
+                  <b-form-group label="ISBN" label-for="ISBN-input">
+                    <b-form-input
+                      placeholder="Enter Book ISBN"
+                      id="ISBN-input"
+                      v-model="$v.ISBN.$model"
+                      :class="{
+                        'is-invalid': validationStatus($v.ISBN),
+                      }"
+                    >
+                    </b-form-input>
+                    <div v-if="!$v.ISBN.required" class="invalid-feedback">
+                      Please enter ISBN. (Required Failed)
+                    </div>
+                  </b-form-group>
+                  <b-form-group label="Book Title" label-for="Title-input">
+                    <b-form-input
+                      placeholder="Enter Book Title"
+                      id="Title-input"
+                      v-model="$v.Title.$model"
+                      :class="{
+                        'is-invalid': validationStatus($v.Title),
+                      }"
+                    >
+                    </b-form-input>
+                    <div
+                      v-if="!$v.Title && !$v.required"
+                      class="invalid-feedback"
+                    >
+                      Please enter Book Title. (Required Failed)
+                    </div>
+                  </b-form-group>
+
+                  <b-form-group label="Author" label-for="AuthorID-input">
+                    <b-form-input
+                      placeholder="Enter Author ID"
+                      id="AuthorID-input"
+                      v-model="$v.AuthorID.$model"
+                      :class="{
+                        'is-invalid': validationStatus($v.AuthorID),
+                      }"
+                    >
+                    </b-form-input>
+                    <div v-if="!$v.AuthorID.required" class="invalid-feedback">
+                      Please enter Author. (Required Failed)
+                    </div>
+                  </b-form-group>
+
+                  <b-form-group
+                    label="Publisher "
+                    label-for="PublisherID-input"
+                  >
+                    <b-form-input
+                      id="PublisherID-input"
+                      placeholder="Enter Publisher ID"
+                      v-model="$v.PublisherID.$model"
+                      :class="{
+                        'is-invalid': validationStatus($v.PublisherID),
+                      }"
+                    >
+                    </b-form-input>
+                    <div
+                      v-if="!$v.PublisherID.required"
+                      class="invalid-feedback"
+                    >
+                      Please enter Publisher.(Failed Required)
+                    </div>
+                  </b-form-group>
+                  <b-form-group
+                    label="Publisher Year"
+                    label-for="YearPublish-input"
+                  >
+                    <b-form-input
+                      placeholder="Enter Publisher Year"
+                      type="number"
+                      id="YearPublish-input"
+                      v-model="$v.YearPublish.$model"
+                      :class="{
+                        'is-invalid': validationStatus($v.YearPublish),
+                      }"
+                    >
+                    </b-form-input>
+                    <div
+                      v-if="!$v.YearPublish.required"
+                      class="invalid-feedback"
+                    >
+                      Please enter the Publisher Year. (Required Failed)
+                    </div>
+                  </b-form-group>
+                  <b-form-group label="Page No" label-for="PageNo-input">
+                    <b-form-input
+                      placeholder="Enter Page No"
+                      id="PageNo-input"
+                      v-model="$v.PageNo.$model"
+                      :class="{
+                        'is-invalid': validationStatus($v.PageNo),
+                      }"
+                    >
+                    </b-form-input>
+                    <div v-if="!$v.PageNo.required" class="invalid-feedback">
+                      Please enter Page No. (Failed Required)
+                    </div>
+                  </b-form-group>
+                  <div class="buttons">
+                    <b-button class="mt-3 btn-success" @click="bookSubmit()"
+                      >Submit</b-button
+                    >
+                    <!-- <b-button class="close" to="/account"
+                          >Close</b-button
+                        > -->
+              
+                  </div>
+                </form>
+              </b-modal>
+
+              <b-table
+                class="tb"
+                responsive
+                
+                hover
+                id="my-table"
+                :items="items"
+                :filter="filter"
+                :fields="fields"
+                primary-key
+                label-sort-asc=""
+                label-sort-desc=""
+                label-sort-clear=""
+                :per-page="perPage"
+                :current-page="currentPage"
+              >
+                
+              </b-table>
+
+              <b-pagination
+                v-model="currentPage"
+                style="float: right"
+                pills
+                :total-rows="rows"
+                :per-page="perPage"
+                aria-controls="my-table"
+              ></b-pagination>
+
+              <p class="currentpage">Current Page: {{ currentPage }}</p>
+              </div>
+            </div>
+          </b-container>
+        </b-row>
+    </section>
   </body>
 </template>
 
 <script>
+import { required } from "vuelidate/lib/validators";
+import { mapGetters } from "vuex";
 export default {
   name: "SearchPage",
+  component: {},
   data() {
     return {
-      name: "",
-       ISBN: "Dick",
-          BookTitle: "Macdon",
-          AuthorID: "Mac",
-          PageNo: "578",
-          YearPiblish: "1967",
-          Publisher: "576",
-          CategoryID: "587",
-      nameState: null,
-      submittedNames: [],
-      fields: [
-        { key: "ISBN", label: "ISBN", sortable: true },
-        { key: "BookTitle", label: "Book Title", sortable: true },
-        { key: "AuthorID", label: "Author", sortable: true },
-
-      ],
-      
-      items: [
-        
-      
-        
-        {
-          isActive: true,
-          BookID: 2,
-          ISBN: "XXXXXX",
-          BookTitle: "Mald",
-          AuthorID: "Macdonald",
-          PageNo: "57",
-          YearPiblish: "1957",
-          Publisher: "Allan",
-          CategoryID: "57",
-        },
-        {
-          isActive: false,
-          BookID: 3,
-          ISBN: "XXXXXX",
-          BookTitle: "Macdonald",
-          AuthorID: "Macdonald",
-          PageNo: "57",
-          YearPiblish: "1957",
-          PublisherID: "57",
-          CategoryID: "57",
-        },
-        {
-          isActive: true,
-          BookID: 4,
-          ISBN: "XXXXXX",
-          BookTitle: "Macdonald",
-          AuthorID: "Macdonald",
-          PageNo: "57",
-          YearPiblish: "1957",
-          PublisherID: "57",
-          CategoryID: "57",
-        },
-                {
-          isActive: true,
-          BookID: 4,
-          ISBN: "XXXXXX",
-          BookTitle: "Macdonald",
-          AuthorID: "Macdonald",
-          PageNo: "57",
-          YearPiblish: "1957",
-          PublisherID: "57",
-          CategoryID: "57",
-        },
-      ],
       perPage: 10,
       currentPage: 1,
       filter: "",
+      //book
+      ISBN: "",
+      Title: "",
+      AuthorID: "",
+      PublisherID: "",
+      YearPublish: "",
+      PageNo: "",
+      Action: "",
+      perPageA: 10,
+      currentPageA: 1,
+      filterA: "",
+      perPageP: 10,
+      currentPageP: 1,
+      filterP: "",
+      AuthorFirstname: "",
+      AuthorLastname: "",
+      PublisherFirstname: "",
+      PublisherLastname: "",
+
+      // Status: "",
+      fields: [
+     
+        { key: "ISBN", label: "ISBN", sortable: true },
+        { key: "Title", label: "Book Title", sortable: true },
+        { key: "AuthorFirstname", label: "Author Firstname", sortable: true },
+        { key: "AuthorLastname", label: "Author Lastname", sortable: true },
+        {
+          key: "PublisherFirstname",
+          label: "Publisher Firstname",
+          sortable: true,
+        },
+        {
+          key: "PublisherLastname",
+          label: "Publisher Lastname",
+          sortable: true,
+        },
+        { key: "PageNo", labe: "PageNo", sortable: true },
+        { key: "YearPublish", label: "Year Publish", sortable: true },
+        { key: "PublisherID", labe: "Page No", sortable: true },
+     
+      ],
+   
     };
   },
+
   computed: {
+    ...mapGetters({
+      items: "books",
+      authors: "authors",
+      publishers: "publishers",
+    }),
+
     rows() {
-      return this.items.length;
+      return this.authors.length, this.publishers.length, this.items.length;
     },
+  },
+
+  async mounted() {
+   
+    return (
+      await this.$store.dispatch("fetchBooks"),
+      this.$store.dispatch("fetchAuthor"),
+      this.$store.dispatch("fetchPublisher")
+    );
+  },
+
+  validations: {
+    ISBN: { required },
+    Title: { required },
+    AuthorID: { required },
+    PageNo: { required },
+    YearPublish: { required },
+    PublisherID: { required },
+  },
+
+  methods: {
+    validationStatus: function (validation) {
+      return typeof validation != "undefined" ? validation.$error : false;
+    },
+    async bookSubmit() {
+      this.$v.$touch();
+      if (this.$v.$pendding || this.$v.$error) return;
+      try {
+        console.log("newsup", this.bookList);
+        this.$store.dispatch("bookSubmit", {
+          ISBN: this.ISBN,
+          Title: this.Title,
+          AuthorID: this.AuthorID,
+          PublisherID: this.PublisherID,
+          YearPublish: this.YearPublish,
+          PageNo: this.PageNo,
+        });
+        alert("Data Successfully Submitted");
+      } catch (error) {
+        alert("Invalid User");
+      }
+    },
+    hideModal() {
+      this.$refs["modal"].hide();
+    },
+    // async created(){
+    //   const res =await axios.get('books',{
+    //     headers:{
+    //       Authorization: 'Bearer ' + localStorage.getItem('token' , res.data.token)
+    //     }
+    //   });
+    // }
   },
 };
 </script>
-
 <style scoped>
 * {
-  margin: 0;
   padding: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
+  margin: 0;
 }
-
-body {
-  display: grid;
+/* body {
   height: 100vh;
-  place-items: center;
-  background-image: url(../../src/assets/image/image18.jpeg);
-  background-repeat: no-repeat;
-  background-size: cover;
+  
+} */
+.navs {
+  padding-top: 15px;
+  background-color: #11101d;
+  padding-bottom: 15px;
+  position: sticky;
 }
-.main_div {
-  width: 365px;
-  background: #fff;
-  padding: 30px;
-  border-radius: 5px;
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.15);
-  margin-bottom: 140px;
-}
-.main_div .title {
-  text-align: center;
-  font-size: 30px;
-  font-weight: 600;
+nav {
+  align-items: center;
+  justify-content: space-between;
+  float: right;
+  padding-left: 10%;
+  padding-right: 10%;
+  position: sticky;
 }
 
-.navbar {
-  background-color: #ffffff;
-  height: 75px;
-}
-.nav-item {
-  padding-right: 40px;
-  justify-content: center;
+nav ul li {
+  display: inline-block;
+  list-style-type: none;
+  padding: 0px 20px;
 }
 .nav-item .nav-link {
   font-family: montserrat;
   font-size: 20px;
   font-weight: 900;
-  padding-left: 40px;
-  padding-right: 40px;
+  padding-left: 20px;
+  padding-right: 10px;
   color: #ffffff;
 }
-/* .nav-item .nav-link:hover {
-  color: #c99811;
+nav ul .nav-item a.router-link-active {
+  color: #ffffff;
+  font-weight: bolder;
+  border: 1px solid #eeb34b;
+  outline-style: solid;
+  outline-color: #eeb34b;
+  outline-width: thin;
+  width: 100px;
+}
+ul {
+  padding-left: 2rem;
+  padding-top: 8px;
+}
+
+#libra {
+  background: url(../assets/image/lib-background.jpeg);
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+}
+
+.tebs {
+  padding-right: 2%;
+  padding-left: 2%;
+  
+
+  /* background-color: beige; */
+  /* width: 1900px; */
+}
+.tbales {
+  /* background-color: #f4f4ff; */
+  width: fit-content;
+  
+}
+/* .tbales {
+  padding-right: 2%;
+  padding-left: 2%;
+  background-color: #f4f4ff;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  border-radius: 5px;
+  width: 100%;
+ 
+  
 } */
-/* .search-input {
-  height: 690px;
-  padding-top: 40px;
+.tatblee{
+   width: 1530px;
+    background-color:rgb(255, 255, 255);
+    height:70vh;
+ 
+    padding-top:20px;
+    border-radius: 10px;
+
 }
-.search-input .search {
-  height: 50px;
-  width: 720px;
-  border-radius: 50px;
-  text-align: center;
-  font-size: 20px;
-  position: relative;
-} */
-.search-bar {
-  padding: 5px;
-  margin-bottom: 90px;
-  background-color: #023047;
-  height: 90px;
-  border-radius: 50px;
-  width: 900px;
-  justify-content: center;
+.tb {
+ width: 1500px;
+  display: flex;
+  background-color:rgb(255, 255, 255);
+  margin-top:60px;
+
+  /* padding-bottom: 80px; */
 }
-.search-input {
-  border-radius: 50px;
-  height: 50px;
-  margin-top: 12px;
-  width: 800px;
-  margin-left: 10px;
+.container {
+  padding-top: 10px;
+  margin-left: 6%;
+  width: 100%;
 }
-.icon-search {
-  color: #eeb34b;
-  float: right;
-  margin-right: 20px;
+.pill {
+  width: 220px;
+  margin-top: 10px;
 }
-h1 {
-  margin-bottom: 30px;
+.selectbtn {
+  margin-right: 5px;
 }
-.content{
-  margin-left: 40px;
+.mt-3 {
+  margin-right: 5px;
 }
 </style>

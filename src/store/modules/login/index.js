@@ -28,6 +28,7 @@ export default {
 
             })
                 .then(res => {
+                    console.log("login ", res);
                     // if (this.account.Username == "!==") {
                     //     this.errors.push("email is empty");
                     // }
@@ -38,10 +39,11 @@ export default {
                     // }
                     console.log("newsup", res.data.account);
                     localStorage.setItem("token", res.data.account.token);
+                    localStorage.AccountID = res.data.account.AccountID
                     router.push("/account")
 
                     commit("ADD_LOGIN", res.data.posted);
-                    
+
 
                     return res;
 

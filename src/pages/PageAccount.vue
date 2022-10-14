@@ -3,94 +3,105 @@
     <b-row>
       <SidebarComponent />
       <b-col>
-        <HeaderCom title="Account" />
+        <b-row>
+          <HeaderCom title="Account" />
+        </b-row>
 
-        <b-col class="">
-          <b-container d-flex class="AddAccount">
-            <b-row class="rows">
-              <b-col d-flex class="from">
-                <h4 style="text-align: center">Create Account Information</h4>
-                <b-form v-on:submit.stop.prevent="accountSubmit()">
+        <b-row class="container d-flex justify-content-center">
+          <b-container class="tebs">
+            <div class="tbales">
+              <h1>Account Records</h1>
+
+              <b-button variant="dark" v-b-modal.modal-prevent-closing
+                >Add Account</b-button
+              >
+              <b-button
+                style="margin-left: 3px"
+                v-b-modal.modal-1
+                variant="secondary"
+                >View Librarian</b-button
+              >
+              <b-form-fieldset style="float: right" class="col-4">
+                <b-input
+                  v-model="filter"
+                  placeholder="Type here to Search..."
+                ></b-input>
+              </b-form-fieldset>
+
+              <b-modal
+                scrollable
+                id="modal-1"
+                hide-footer
+                class="d-flex justify-content-center"
+                size="lg"
+                title="Librarian List"
+              >
+                <b-form-fieldset
+                  style="float: right; padding-bottom: 1px"
+                  class="col-12"
+                >
+                  <b-input
+                    v-model="filterS"
+                    placeholder="Type here to Search..."
+                  ></b-input>
+                </b-form-fieldset>
+                <br /><br />
+                <b-table
+                  class="my-3"
+                  v-for="i in 1"
+                  :key="i"
+                  responsive
+                  striped
+                  bordered
+                  hover
+                  id="my-table1"
+                  :items="librarians"
+                  :filter="filterS"
+                  :fields="librarian"
+                  primary-key
+                  label-sort-asc=""
+                  label-sort-desc=""
+                  label-sort-clear=""
+                  :per-page="per"
+                  :current-page="Page"
+                ></b-table>
+                <!-- <b-pagination
+                  v-model="Page"
+                  pills
+                  :total-rows="rows"
+                  :per-page="per"
+                  aria-controls="my-table1"
+                ></b-pagination>
+
+                <p class="currentpage">Current Page: {{ Page }}</p> -->
+              </b-modal>
+              <b-modal
+            
+                hide-footer
+                id="modal-prevent-closing"
+                size="m"
+                ref="modal"
+                title="Register Account"
+              >
+                <form ref="form" v-on:submit.stop.prevent="accountSubmit()">
                   <!-- <FormInput label="Invoice Number" /> -->
 
-                  <b-form-group label="UserID" label-for="UserID-input">
-                    <b-col>
-                      <b-row>
-                        <b-form-input
-                          style="
-                            width: 240px;
-                            height: 42px;
-                            margin-top: 30px;
-                            margin-left: 10px;
-                            margin-right: 10px;    "
-                          id="UserID-input"
-                          v-model="$v.UserID.$model"
-                          :class="{
-                            'is-invalid': validationStatus($v.Roles),
-                          }"
-                        >
-                        </b-form-input>
+                  <b-form-group label="Librarian" label-for="UserID-input">
+                    <b-form-input
+                     
+                      placeholder="Enter Librarian ID"
+                      icon="tools"
+                      id="UserID-input"
+                      v-model="$v.UserID.$model"
+                      :class="{
+                        'is-invalid': validationStatus($v.UserID),
+                      }"
+                    >
+                    </b-form-input>
 
-                        <!-- <b-button class="buttom" @click="showLibrarianModal=true"  style="width:fit-content; height:fit-content; margin-top:30px;">Librarian</b-button> -->
-
-                        <b-button
-                          v-b-modal.modal-1
-                          style="
-                            width: fit-content;
-                            height: fit-content;
-                            margin-top: 30px;
-                          "
-                          >Librarian</b-button
-                        >
-                        <div
-                          v-if="!$v.Username.required"
-                          class="invalid-feedback"
-                        >
-                          Please enter your Username.
-                        </div>
-                        <b-modal id="modal-1" title="Librarian List">
-                          <b-container class="tebs">
-                            <b-form-fieldset
-                              style="float: right; padding-bottom: 2px"
-                              class="col-4"
-                            >
-                              <b-input
-                                v-model="filterS"
-                                placeholder="Type here to Search..."
-                              ></b-input>
-                            </b-form-fieldset>
-                            <br /><br />
-                            <b-table
-                              responsive
-                              striped
-                              bordered
-                              hover
-                              id="my-table"
-                              :items="librarians"
-                              :filter="filterS"
-                              :fields="librarian"
-                              primary-key
-                              label-sort-asc=""
-                              label-sort-desc=""
-                              label-sort-clear=""
-                              :per-page="perPageL"
-                              :current-page="currentPageL"
-                            ></b-table>
-                            <b-pagination
-                              v-model="currentPageL"
-                              pills
-                              :total-rows="rows"
-                              :per-page="perPageL"
-                              aria-controls="my-table"
-                            ></b-pagination>
-
-                            <p class="currentpage">
-                              Current Page: {{ currentPageL }}
-                            </p>
-                          </b-container>
-                        </b-modal>
-                      </b-row>
-                    </b-col>
+                    <div v-if="!$v.Username.required" class="invalid-feedback">
+                      Please enter your Username.
+                    </div>
                   </b-form-group>
 
                   <b-form-group label="Roles:*">
@@ -104,12 +115,12 @@
                       <b-form-select-option :value="null"
                         >Please select an option</b-form-select-option
                       >
-                      <b-form-select-option value="Admin"
-                        >Admin</b-form-select-option
+                      <b-form-select-option value="Librarian"
+                        >Librarian</b-form-select-option
                       >
-                      <b-form-select-option value="User"
+                      <!-- <b-form-select-option value="User"
                         >User</b-form-select-option
-                      >
+                      > -->
                     </b-form-select>
                     <div v-if="!$v.Roles.required" class="invalid-feedback">
                       Please select your Role.
@@ -190,110 +201,131 @@
                       {{ $v.Password.$params.maxLength.min }}
                     </div>
                   </b-form-group>
-
-                  <b-container
-                    class="button-container d-flex justify-content-center"
-                  >
-                    <b-button
-                      pill
-                      class="pill"
-                      variant="outline-dark"
-                      @click="accountSubmit()"
-                      >Submit Data</b-button
+                  <div class="buttons">
+                    <b-button class="mt-3 btn-success" @click="accountSubmit()"
+                      >Submit</b-button
                     >
-                  </b-container>
-                </b-form>
-              </b-col>
-            </b-row>
-          </b-container>
-        </b-col>
-        <b-row>
-          <b-container class="tebs">
-            <h1>Account Records</h1>
-            <b-form-fieldset
-              style="float: right; padding-bottom: 2px"
-              class="col-4"
-            >
-              <b-input
-                v-model="filter"
-                placeholder="Type here to Search..."
-              ></b-input>
-            </b-form-fieldset>
-            <br /><br />
-            <b-table
-              responsive
-              striped
-              bordered
-              hover
-              id="my-table"
-              :items="items"
-              :filter="filter"
-              :fields="fields"
-              primary-key
-              label-sort-asc=""
-              label-sort-desc=""
-              label-sort-clear=""
-              :per-page="perPage"
-              :current-page="currentPage"
-            >
-                    <template v-slot:cell(Action)="data">
-                    <router-link
-                      tag="button"
-                      :to="'/editaccount/' + data.item.AccountID"
-                      class="btn btn-success edits"
-                      >UPDATE
-                      <b-icon class="edit-btn" icon="pencil-square"></b-icon>
-                    </router-link>
-                    <!-- <router-link :to="
-                  {
-                    name: 'EditLibrarian',
-                    params: {UserID: data.item._id}
-                  }"
-                  tag="button"
-                
-                  class="btn btn-success edits" >Update
-                  <b-icon class="edit-btn" icon="pencil-square"></b-icon>
-                  </router-link>  -->
-                  </template>
-              <!-- <template v-b-modal @click="showEditModal(account)">
-                <div class="d-flex justify-content-center">
-                          <div>
-                            <b-button  class="btn btn-success edits" v-b-modal @click="showUpdateModal(item)">
-                              <b-icon class="edit-btn" icon="pencil-square"></b-icon>
-                            </b-button>
-                          </div>
-                          </div> -->
-              <!-- <router-link
-                  tag="button"
-                  :to="'/editlibrarian/' + data.item.UserID"
-                  class="btn btn-success edits"
-                  >UPDATE
-                  <b-icon class="edit-btn" icon="pencil-square"></b-icon>
-                </router-link> -->
-              <!-- <router-link :to="
-                  {
-                    name: 'EditLibrarian',
-                    params: {UserID: data.item._id}
-                  }"
-                  tag="button"
-                
-                  class="btn btn-success edits" >Update
-                  <b-icon class="edit-btn" icon="pencil-square"></b-icon>
-                  </router-link>  -->
-              <!-- </template> -->
-            </b-table>
-            <!--End  DataTable Code-->
+                    <!-- <b-button class="close" to="/account"
+                          >Close</b-button
+                        > -->
+                    <b-button
+                      class="mt-3"
+                      href="/account"
+                      variant="outline-danger"
+                      block
+                      @click="hideModal"
+                      >Close</b-button
+                    >
+                  </div>
+                </form>
+              </b-modal>
 
-            <b-pagination
-              v-model="currentPage"
-              style="float: right;"
-              pills
-              :total-rows="rows"
-              :per-page="perPage"
-              aria-controls="my-table"
-            ></b-pagination>
+              <b-table
+                class="tb"
+                responsive
+                hover
+                id="my-table"
+                :items="items"
+                :filter="filter"
+                :fields="fields"
+                primary-key
+                label-sort-asc=""
+                label-sort-desc=""
+                label-sort-clear=""
+                :per-page="perPage"
+                :current-page="currentPage"
+              >
+                <template v-slot:cell(Action)={item}>
+                  <b-button v-b-modal @click="savelocal(item)">
+                    <b-icon class="edit-btn" icon="pencil-square"></b-icon>
+                  </b-button>
+                  <!-- <router-link
+                    tag="button"
+                    :to="savelocal(data)"
+                    class="btn btn-success edits"
+                  >
+                    <b-icon class="edit-btn" icon="pencil-square"></b-icon>
+                  </router-link> -->
+                </template>
+              </b-table>
 
-            <p class="currentpage">Current Page: {{ currentPage }}</p>
+              <b-pagination
+                v-model="currentPage"
+                style="float: right"
+                pills
+                :total-rows="rows"
+                :per-page="perPage"
+                aria-controls="my-table"
+              ></b-pagination>
+
+              <p class="currentpage">Current Page: {{ currentPage }}</p>
+
+              <!--updatwe--->
+              <b-modal
+       
+                hide-footer 
+                id="modal-form"
+                size="m"
+                ref="modal"
+                title="Update Account"
+              >
+                <form ref="form" submit="updateAccount">
+                  <!-- <FormInput label="Invoice Number" /> -->
+
+                <div>
+                <div class="modal-form__form-group mb-3">
+                    <b-form-group label="Username" class="ml-2">
+                    </b-form-group>
+                    <b-form-input id="firstname" placeholder="Enter First Name" type="text" v-model="item.Username"
+                        autocomplete="off" required>
+                    </b-form-input>
+                </div>
+                <div class="modal-form__form-group mb-3">
+                    <b-form-group label="Password" class="ml-2">
+                    </b-form-group>
+                    <b-form-input id="lastname" placeholder="Enter Last Name" type="text" v-model="item.Password"
+                        required>
+                    </b-form-input>
+                </div>
+                <div class="form-group mb-3">
+                    <b-form-group label="Phone Number" class="ml-2">
+                    </b-form-group>
+                    <b-form-input id="contact" placeholder="Enter Phone Number" type="number" v-model="item.UserID"
+                        required>
+                    </b-form-input>
+                </div>
+                <div class="form-group mb-3">
+                    <b-form-group label="Address" class="ml-2">
+                    </b-form-group>
+                    <b-form-input id="address" placeholder="Enter Address" type="text" v-model="item.Roles" required>
+                    </b-form-input>
+                </div>
+                  <div class="form-group mb-3">
+                    <b-form-group label="Address" class="ml-2">
+                    </b-form-group>
+                    <b-form-input id="address" placeholder="Enter Address" type="text" v-model="item.Status" required>
+                    </b-form-input>
+                </div>
+            </div>
+                  <div class="buttons">
+                    <b-button class="mt-3 btn-success" @click="updateAccount()"
+                      >Submit</b-button
+                    >
+                    <!-- <b-button class="close" to="/account"
+                          >Close</b-button
+                        > -->
+                    <b-button
+                      class="mt-3"
+                      href="/account"
+                      variant="outline-danger"
+                      block
+                      @click="hideModal"
+                      >Close</b-button
+                    >
+                  </div>
+                </form>
+              </b-modal>
+            </div>
           </b-container>
         </b-row>
       </b-col>
@@ -304,7 +336,6 @@
 import SidebarComponent from "../components/SidebarComponent.vue";
 import HeaderCom from "../layout/HeaderCom.vue";
 
-
 import { required, minLength, maxLength } from "vuelidate/lib/validators";
 
 import { mapGetters } from "vuex";
@@ -313,7 +344,7 @@ export default {
   components: { SidebarComponent, HeaderCom },
   data() {
     return {
-      perPage: 5,
+      perPage: 10,
       currentPage: 1,
       filter: "",
       Username: "",
@@ -322,23 +353,32 @@ export default {
       Roles: "",
       Status: "",
       Action: "",
-      perPageL: 5,
-      currentPageL: 1,
+      per: "",
+      Page: 1,
       filterS: "",
       Firstname: "",
       Lastname: "",
+      // UserID: localStorage.AccountID,
       UserID: "",
-
+      item: {
+        Username: null,
+        Password: null,
+        UserID: null,
+        Roles: null,
+        Status: null,
+      },
       // Status: "",
       librarian: [
         { key: "UserID", label: "Librarian ID", sortable: true },
         { key: "Firstname", label: "Firstname", sortable: true },
         { key: "Lastname", label: "Lastname", sortable: true },
       ],
+
       fields: [
-        { key: "AccountID", label: "ID", sortable: true },
+        { key: "AccountID", label: "Account ID", sortable: true },
         { key: "Username", label: "Username", sortable: true },
-        { key: "UserID", label: "Librarian", sortable: true },
+        { key: "Firstname", label: "Firstname", sortable: true },
+        { key: "Lastname", label: "Lastname", sortable: true },
         { key: "Roles", label: "Roles", sortable: true },
         { key: "Status", labe: "Status", sortable: true },
         { key: "Action", label: "Action", sortable: true },
@@ -370,9 +410,22 @@ export default {
     UserID: { required },
     Roles: { required },
     Status: { required },
+   
   },
 
   methods: {
+    savelocal(item) {
+      this.item = {
+        Username: item.Username,
+        Password: item.Password,
+        UserID: item.UserID,
+        Roles: item.Roles,
+        Status: item.Status,
+
+      };
+      this.$bvModal.show("modal-form");
+    localStorage.setItem('accountid',item.item.AccountID)
+    },
     validationStatus: function (validation) {
       return typeof validation != "undefined" ? validation.$error : false;
     },
@@ -393,17 +446,31 @@ export default {
         alert("Invalid User");
       }
     },
+    async updateAccount() {
+      this.$v.$touch();
+      if (this.$v.$pendding || this.$v.$error) return;
+      try {
+        console.log("newsup", this.accountList);
+        this.$store.dispatch("updateAccount", this.item);
+        alert("Data Successfully Submitted");
+      } catch (error) {
+        alert("Invalid User");
+      }
+    },
+    hideModal() {
+      this.$refs["modal"].hide();
+    },
   },
 };
 </script>
 <style scoped>
-.AddAccount {
+/* .AddAccount {
   float: left;
   margin-left: 190px;
   width: 30%;
-}
+} */
 
-.from {
+/* .from {
   margin-left: 30%;
   display: grid;
   padding-left: 15px;
@@ -416,20 +483,74 @@ export default {
 
   outline-style: solid;
   outline-color: #6d6d6f;
-}
+} */
 
-.tebs {
+/* .tebs {
   background-color: #f4f4ff;
   padding: 15px 15px 15px 15px;
   border-radius: 5px;
   margin-top: 50px;
-  width: 1050px;
-  /* outline-style: solid;
-  outline-color: #6d6d6f; */
+  width: 100%;
+  outline-style: solid;
+  outline-color: #6d6d6f;
   margin-right: 60px;
+  margin-left: 120%;
+} */
+
+/* .container {
+  width: 2300px;
+  margin-left: 16%;
+  margin-right: 4%;
+  padding-right: 2%;
+  padding-left: 2%;
+  padding-top: 3%;
+} */
+/* .tb {
+width: 1400px;
+  display: flex;
+
+} */
+.tb {
+  width: 1500px;
+  display: flex;
+}
+
+.tebs {
+  /* background-color: #f4f4ff; */
+  /* padding: 15px 15px 15px 15px; */
+  /* border-radius: 5px;
+  margin-top: 10px; */
+  /* width: 1500px; */
+  /* outline-style: solid; */
+  /* outline-color: #6d6d6f; */
+  /* margin-right: 60px; */
+  padding-right: 2%;
+  padding-left: 2%;
+}
+.tbales {
+  /* padding-right: 2%;
+  padding-left: 2%; */
+
+  /* padding-top: 1%; */
+  padding-bottom: 1%;
+  border-radius: 5px;
+  width: 1500px;
+}
+.container {
+  padding-top: 10px;
+  margin-left: 11%;
+  width: 100%;
 }
 .pill {
   width: 220px;
   margin-top: 10px;
+}
+.mt-3 {
+  margin-right: 5px;
+}
+#hero {
+  background: linear-gradient(to top, #fefeff 30%, #e2e2f6 90%) no-repeat;
+  width: 100%;
+  height: 100vh;
 }
 </style>

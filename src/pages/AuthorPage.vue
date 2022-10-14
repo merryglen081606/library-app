@@ -10,10 +10,19 @@
             <!-- <FormInput label="Invoice Number" /> -->
             <b-container class="tebs">
               <h1>Author Records</h1>
-              <div>
+              <div class="tbales">
                 <b-button variant="dark" v-b-modal.modal-prevent-closing
-                  >Add Publisher</b-button
+                  >Add Author</b-button
                 >
+                <b-form-fieldset
+                  style="float: right; padding-bottom: 2px"
+                  class="col-4"
+                >
+                  <b-input
+                    v-model="filter"
+                    placeholder="Type here to Search..."
+                  ></b-input>
+                </b-form-fieldset>
                 <b-modal
                   hide-footer
                   id="modal-prevent-closing"
@@ -68,32 +77,26 @@
                       </div>
                     </b-form-group>
 
-
                     <div class="buttons">
-                      <b-button class="btn-success" @click="authorSubmit()"
+                      <b-button class="mt-3 btn-success" @click="authorSubmit()"
                         >Submit</b-button
                       >
-                      <b-button class="close" block @click="hideModal"
+                      <b-button
+                        class="mt-3"
+                        href="/author"
+                        variant="outline-danger"
+                        block
+                        @click="hideModal"
                         >Close</b-button
                       >
                     </div>
                   </form>
                 </b-modal>
               </div>
-              <b-form-fieldset
-                style="float: right; padding-bottom: 2px"
-                class="col-4"
-              >
-                <b-input
-                  v-model="filter"
-                  placeholder="Type here to Search..."
-                ></b-input>
-              </b-form-fieldset>
-              <br /><br />
+
               <b-table
+              class="tb"
                 responsive
-                striped
-                bordered
                 hover
                 id="my-table"
                 :items="authors"
@@ -106,19 +109,19 @@
                 :per-page="perPage"
                 :current-page="currentPage"
               >
-               <template v-slot:cell(Action)="data">
-                 <router-link
-                      tag="button"
-                      :to="'/editauthor/' + data.item.AuthorID"
-                      class="btn btn-success edits"
-                      >UPDATE
-                      <b-icon class="edit-btn" icon="pencil-square"></b-icon>
-                    </router-link> 
-            
-               </template>
+                <template v-slot:cell(Action)="data">
+                  <router-link
+                    tag="button"
+                    :to="'/editauthor/' + data.item.AuthorID"
+                    class="btn btn-success edits"
+                  >
+                    <b-icon class="edit-btn" icon="pencil-square"></b-icon>
+                  </router-link>
+                </template>
               </b-table>
               <b-pagination
                 v-model="currentPage"
+                style="float: right"
                 pills
                 :total-rows="rows"
                 :per-page="perPage"
@@ -201,6 +204,9 @@ export default {
         alert("Invalid User");
       }
     },
+    hideModal() {
+      this.$refs["modal"].hide();
+    },
   },
 };
 </script>
@@ -210,8 +216,12 @@ export default {
   margin-left: 20%;
   width: 30%;
 }
-
-.from {
+.tb {
+ width: 1510px;
+  display: flex;
+  /* padding-bottom: 80px; */
+}
+/* .from {
   margin-left: 30%;
   display: grid;
   padding-left: 15px;
@@ -224,20 +234,46 @@ export default {
 
   outline-style: solid;
   outline-color: #6d6d6f;
-}
+} */
 
+
+.container {
+  padding-top: 10px;
+  margin-left: 8.8%;
+  width: 100%;
+}
 .tebs {
-  background-color: #f4f4ff;
-  padding: 15px 15px 15px 15px;
+  /* background-color: #f4f4ff; */
+  /* padding: 15px 15px 15px 1px;
   border-radius: 5px;
   margin-top: 50px;
-  width: 1050px;
+  width: 1940px; */
   /* outline-style: solid;
   outline-color: #6d6d6f; */
-  margin-right: 60px;
+  /* margin-right: 40px; */
+    padding-right: 2%;
+  padding-left: 2%;
+}
+.tbales {
+  /* padding-right: 2%;
+  padding-left: 2%; */
+
+  /* padding-top: 1%; */
+  padding-bottom: 1%;
+  border-radius: 5px;
+   width: 1505px;
+   
 }
 .pill {
   width: 220px;
   margin-top: 10px;
+}
+.mt-3 {
+  margin-right: 5px;
+}
+#hero {
+  background: linear-gradient(to top, #fefeff 30%, #e2e2f6 90%) no-repeat;
+  width: 100%;
+  height: 100vh;
 }
 </style>

@@ -1,17 +1,16 @@
 <template>
-  <b-container fluid id="lib">
+  <b-container fluid id="hero">
     <b-col class="cl">
       <div class="navigation">
-        <SideBar />
+        <SidebarComponent/>
       </div>
+       <b-row>
+        <HeaderCom title="Boook Sub-Category" />
+      </b-row>
     </b-col>
     <b-row>
       <div fluid class="main-tab">
-        <b-col>
-          <div class="header">
-            <h4>Library System/<span> Sub-Category</span></h4>
-          </div>
-        </b-col>
+     
 
         <b-col fluid class="cd">
           <div class="contents">
@@ -20,7 +19,12 @@
               <!--Start  Modal Insert Data Code-->
               <template>
                 <div>
-                  <b-button v-b-modal.modal-prevent-closing>Add New</b-button>
+                  <b-button variant="dark"  class="selectbtn" v-b-modal.modal-prevent-closing>Add New</b-button>
+                  <b-button class="selectbtn"  squared variant="outline-secondary" to="/copies"><b-icon icon="journal-bookmark-fill"></b-icon> Book Copy</b-button>
+              <b-button class="selectbtn" squared variant="outline-secondary" to="/shelves"> <b-icon icon="bookshelf"></b-icon>  Book Shelf</b-button>
+              <b-button class="selectbtn" squared variant="outline-secondary" to="/category"
+                ><b-icon icon="book-half"></b-icon>  Book Category</b-button
+              >
 
                   <b-form-fieldset
                     style="float: right; padding-bottom: 10px"
@@ -87,7 +91,7 @@
                       tag="button"
                       :to="'/editsubcategory/' + data.item.subcategoryID"
                       class="btn btn-success edits"
-                      >UPDATE
+                      >
                       <b-icon class="edit-btn" icon="pencil-square"></b-icon>
                     </router-link>
                     </template>
@@ -113,9 +117,9 @@
 
 <script>
 import { mapGetters } from "vuex";
-import SideBar from "../components/SideBar.vue";
+import SidebarComponent from "../components/SidebarComponent.vue";
 // import axios from "axios";
-
+import HeaderCom from "../layout/HeaderCom.vue";
 import { required } from "vuelidate/lib/validators";
 
 export default {
@@ -172,7 +176,7 @@ export default {
     },
   },
 
-  components: { SideBar },
+  components: { SidebarComponent,HeaderCom},
 };
 </script>
 <style scope>
@@ -273,5 +277,13 @@ h1 {
     width: 80%;
     padding-right: 30px;
   }
+}
+.selectbtn {
+  margin-right: 5px;
+}
+#hero {
+  background: linear-gradient(to top, #fefeff 30%, #e2e2f6 90%) no-repeat;
+  width: 100%;
+  height: 100vh;
 }
 </style>

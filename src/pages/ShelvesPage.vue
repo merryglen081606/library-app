@@ -1,29 +1,48 @@
 <template>
-  <b-container fluid id="lib">
+  <b-container fluid id="hero">
     <b-col class="cl">
       <div class="navigation">
-        <SideBar />
+        <SidebarComponent />
       </div>
+      <b-row>
+        <HeaderCom title="Boook Shelf" />
+      </b-row>
     </b-col>
     <b-row>
       <div fluid class="main-tab">
-        <b-col>
+        <!-- <b-col>
           <div class="header">
             <h4>Library System/<span> Shelf</span></h4>
           </div>
-        </b-col>
+        </b-col> -->
 
         <b-col fluid class="cd">
           <div class="contents">
-            <b-card bg-variant="light" class="cards">
+            <b-card class="cards">
               <div class="title">Shelves Records</div>
               <!--Start  Modal Insert Data Code-->
               <template>
                 <div>
-                  <b-button v-b-modal.modal-prevent-closing>Add Shelf</b-button>
-                   <b-button style="margin-left:5px;" href="/category">Category</b-button>
-                    <b-button href="/subcategory" style="margin-left:5px;">Sub-category</b-button>
-                
+                  <b-button variant="dark" class="selectbtn" v-b-modal.modal-prevent-closing
+                    >Add Shelf</b-button
+                  >
+                  <b-button
+                    class="selectbtn"
+                    squared
+                    variant="outline-secondary"
+                    to="/copies"
+                    ><b-icon icon="journal-bookmark-fill"></b-icon> Book
+                    Copy</b-button
+                  >
+
+                  <b-button
+                    class="selectbtn"
+                    squared
+                    variant="outline-secondary"
+                    to="/category"
+                    ><b-icon icon="book-half"></b-icon> Book Category</b-button
+                  >
+
                   <b-form-fieldset
                     style="float: right; padding-bottom: 10px"
                     class="col-4"
@@ -95,8 +114,6 @@
                         </div>
                       </b-form-group>
 
-                    
-
                       <div class="buttons">
                         <b-button class="btn-success" @click="shelfSubmit()"
                           >Submit</b-button
@@ -126,15 +143,15 @@
                 :per-page="perPage"
                 :current-page="currentPage"
               >
-               <template v-slot:cell(Action)="data">
-                    <router-link
-                      tag="button"
-                      :to="'/editshelf/' + data.item.shelfID"
-                      class="btn btn-success edits"
-                      >UPDATE
-                      <b-icon class="edit-btn" icon="pencil-square"></b-icon>
-                    </router-link>
-                    </template>
+                <template v-slot:cell(Action)="data">
+                  <router-link
+                    tag="button"
+                    :to="'/editshelf/' + data.item.shelfID"
+                    class="btn btn-success edits"
+                    >
+                    <b-icon class="edit-btn" icon="pencil-square"></b-icon>
+                  </router-link>
+                </template>
               </b-table>
               <!--End  DataTable Code-->
 
@@ -157,7 +174,8 @@
 
 <script>
 import { mapGetters } from "vuex";
-import SideBar from "../components/SideBar.vue";
+import SidebarComponent from "../components/SidebarComponent.vue";
+import HeaderCom from "../layout/HeaderCom.vue";
 // import axios from "axios";
 
 import { required } from "vuelidate/lib/validators";
@@ -224,10 +242,10 @@ export default {
     },
   },
 
-  components: { SideBar },
+  components: { SidebarComponent, HeaderCom },
 };
 </script>
-<style scope>
+<style scoped>
 .main-tab {
   padding-left: auto;
 }
@@ -325,5 +343,13 @@ h1 {
     width: 80%;
     padding-right: 30px;
   }
+}
+.selectbtn {
+  margin-right: 5px;
+}
+#hero {
+  background: linear-gradient(to top, #fefeff 30%, #e2e2f6 90%) no-repeat;
+  width: 100%;
+  height: 100vh;
 }
 </style>

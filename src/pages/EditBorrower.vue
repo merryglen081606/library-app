@@ -1,19 +1,20 @@
 <template>
-  <b-container fluid id="lib">
+  <b-container fluid id="hero">
     <div class="nav">
       <SidebarComponent />
     </div>
     <b-row>
+      <b-row>
+          <HeaderCom title="Edit Transaction" />
+        </b-row>
       <b-col xl="10" lg="9" sm="9">
-        <div class="head">
-          <h4>Library System/ <span>Update Reader</span></h4>
-        </div>
+    
         <b-container fluid class="pt-2">
           <b-row class="d-flex justify-content-center my-3">
             <b-col xl="6" class="py-2">
               <b-col class="">
                 <b-container class="container-card rounded p-3">
-                  <h4 class="px-3">Reader Information</h4>
+                  <h4 class="px-3"> Transaction Information</h4>
                   <b-row class="form">
                     <b-col cols="12" class="mt-3">
                       <b-form v-on:submit.prevent="updateBorrower">
@@ -165,13 +166,14 @@
 import SidebarComponent from "../components/SidebarComponent.vue";
 import axios from "axios";
 import api from "../../api";
+import HeaderCom from "../layout/HeaderCom.vue";
 import { mapGetters } from "vuex";
 import { required } from "vuelidate/lib/validators";
 
 export default {
   name: "EditBorrower",
   components: {
-    SidebarComponent,
+    SidebarComponent,HeaderCom
   },
   data() {
     return {
@@ -276,12 +278,15 @@ div.py-2 {
   padding-top: 10px;
   padding: 15px;
 }
+.buttons{
+  margin-top:10px;
+}
 .head h4 span {
   color: #eeb34b;
   font-family: montserrat;
 }
 .container-card {
-  background-color: #d4f0f7;
+ background-color: rgb(176, 176, 176);
   align-content: center;
   justify-content: center;
   margin-left: 200px;
@@ -303,6 +308,7 @@ div.py-2 {
 }
 .px-3 {
   text-align: center;
+  color: #11101d;
 }
 .form {
   align-content: center;
@@ -313,5 +319,10 @@ div.py-2 {
 }
 .input_button {
   float: right;
+}
+ #hero {
+  background: linear-gradient(to top, #fefeff 30%, #e2e2f6 90%) no-repeat;
+  width: 100%;
+  height: 100vh;
 }
 </style>

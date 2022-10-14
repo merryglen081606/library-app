@@ -1,17 +1,16 @@
 <template>
-  <b-container fluid id="lib">
+  <b-container fluid id="hero">
     <b-col class="cl">
       <div class="navigation">
-        <SideBar />
+        <SidebarComponent/>
       </div>
+      <b-row>
+        <HeaderCom title="Boook Category" />
+      </b-row>
     </b-col>
     <b-row>
       <div fluid class="main-tab">
-        <b-col>
-          <div class="header">
-            <h4>Library System/<span>Category</span></h4>
-          </div>
-        </b-col>
+        
 
         <b-col fluid class="cd">
           <div class="contents">
@@ -20,7 +19,14 @@
               <!--Start  Modal Insert Data Code-->
               <template>
                 <div>
-                  <b-button v-b-modal.modal-prevent-closing>Add New</b-button>
+                  <b-button class="selectbtn"   variant="dark" v-b-modal.modal-prevent-closing>Add New</b-button>
+                  <b-button class="selectbtn"  squared variant="outline-secondary" to="/copies"><b-icon icon="journal-bookmark-fill"></b-icon> Book Copy</b-button>
+              <b-button class="selectbtn" squared variant="outline-secondary" to="/shelves"> <b-icon icon="bookshelf"></b-icon>  Book Shelf</b-button>
+            
+              
+              <b-button class="selectbtn" to="/subcategory"
+               squared variant="outline-secondary" ><b-icon icon="book-fill"></b-icon>  Book Sub-category</b-button
+              >
                   <b-form-fieldset
                     style="float: right; padding-bottom: 10px"
                     class="col-4"
@@ -152,11 +158,11 @@
 
 <script>
 import { mapGetters } from "vuex";
-import SideBar from "../components/SideBar.vue";
+import SidebarComponent from "../components/SidebarComponent.vue";
 // import axios from "axios";
 
 import { required } from "vuelidate/lib/validators";
-
+import HeaderCom from "../layout/HeaderCom.vue";
 export default {
   name: "CategoryPage",
 
@@ -166,13 +172,14 @@ export default {
       currentPage: 1,
       filter: "",
       categoryName: "",
-      b_subcategoryID: "",
+    
+      name:"",
       Action: "",
       // Status: "",
       fields: [
         { key: "categoryID", label: "Category ID", sortable: true },
         { key: "categoryName", label: "Category Name", sortable: true },
-        { key: "b_subcategoryID", label: "Sub-category", sortable: true },
+        { key: "name", label: "Subcategory Name", sortable: true },
 
         { key: "Action", label: "Action", sortable: true },
       ],
@@ -216,7 +223,7 @@ export default {
     },
   },
 
-  components: { SideBar },
+  components: { SidebarComponent,HeaderCom },
 };
 </script>
 <style scope>
@@ -317,5 +324,14 @@ h1 {
     width: 80%;
     padding-right: 30px;
   }
+}
+
+.selectbtn {
+  margin-right: 5px;
+}
+#hero {
+  background: linear-gradient(to top, #fefeff 30%, #e2e2f6 90%) no-repeat;
+  width: 100%;
+  height: 100vh;
 }
 </style>

@@ -1,26 +1,18 @@
 <template>
-  <b-container fluid id="lib">
-    <b-col class="cl">
-      <div class="navigation">
-        <SidebarComponent />
-      </div>
-    </b-col>
+ <b-container fluid id="hero">
     <b-row>
-      <div fluid class="main-tab">
-        <b-col>
-          <div class="header">
-            <h4>Library System/<span>Librarian</span></h4>
-          </div>
-        </b-col>
-        <b-col fluid class="cd">
-          <div class="contents">
-            <b-card bg-variant="light" class="cards">
-              <div class="title">Librarian Records</div>
+      <SidebarComponent />
+      <b-col>
+        <b-row>
+          <HeaderCom title="Librarian" />
+        </b-row>
 
-              <!--Start  Modal Insert Data Code-->
-              <template>
-                <div>
-                  <b-button v-b-modal.modal-prevent-closing>Add Book</b-button>
+        <b-row class="container d-flex justify-content-center">
+          <b-container class="tebs">
+            <div class="tbales">
+              <h1>Librarian Records</h1>
+
+           <b-button variant="dark"  v-b-modal.modal-prevent-closing>Add Librarian</b-button>
                   <b-form-fieldset
                     style="float: right; padding-bottom: 10px"
                     class="col-4"
@@ -135,24 +127,28 @@
                         </div>
                       </b-form-group>
                       <div class="buttons">
-                        <b-button class="btn-success" @click="librarianSubmit()"
+                        <b-button
+                          class="mt-3 btn-success"
+                          @click="librarianSubmit()"
                           >Submit</b-button
                         >
-                        <b-button class="close" href="/librarians"
+                        <!-- <b-button class="close" href="/librarians"
+                          >Close</b-button
+                        > -->
+                        <b-button
+                          class="mt-3"
+                          variant="outline-danger"
+                           href="/librarians"
+                          block
+                          @click="hideModal"
                           >Close</b-button
                         >
                       </div>
                     </form>
                   </b-modal>
-                </div>
-              </template>
-              <!--End  Modal Insert Code-->
-
-              <!--Start  DataTable Code-->
-              <b-table
+                 <b-table
                 responsive
-                striped
-                bordered
+              class="tb"
                 hover
                 id="my-table"
                 :items="librarians"
@@ -165,20 +161,20 @@
                 :per-page="perPage"
                 :current-page="currentPage"
               >
-                  <template v-slot:cell(Action)="data">
-                    <router-link
-                      tag="button"
-                      :to="'/editlibrarian/' + data.item.UserID"
-                      class="btn btn-success edits"
-                      >UPDATE
-                      <b-icon class="edit-btn" icon="pencil-square"></b-icon>
-                    </router-link>
-                  </template>
+                <template v-slot:cell(Action)="data">
+                  <router-link
+                    tag="button"
+                    :to="'/editlibrarian/' + data.item.UserID"
+                    class="btn btn-success edits"
+                  >
+                    <b-icon class="edit-btn" icon="pencil-square"></b-icon>
+                  </router-link>
+                </template>
               </b-table>
-              <!--End  DataTable Code-->
 
               <b-pagination
                 v-model="currentPage"
+                style="float: right"
                 pills
                 :total-rows="rows"
                 :per-page="perPage"
@@ -186,10 +182,10 @@
               ></b-pagination>
 
               <p class="currentpage">Current Page: {{ currentPage }}</p>
-            </b-card>
-          </div>
-        </b-col>
-      </div>
+            </div>
+          </b-container>
+        </b-row>
+      </b-col>
     </b-row>
   </b-container>
 </template>
@@ -197,6 +193,7 @@
 <script>
 import { mapGetters } from "vuex";
 import SidebarComponent from "../components/SidebarComponent.vue";
+import HeaderCom from "../layout/HeaderCom.vue";
 // import axios from "axios";
 import moment from "moment";
 import { required } from "vuelidate/lib/validators";
@@ -220,14 +217,18 @@ export default {
 
       // Status: "",
       fields: [
-        { key: "UserID", label: "User ID", sortable: true },
+        { key: "UserID", label: "Librarian ID", sortable: true },
         { key: "Firstname", label: "Firstname", sortable: true },
         { key: "Middlename", label: "Middlename", sortable: true },
         { key: "Lastname", label: "Lastname", sortable: true },
-        { key: "RegisterDate", labe: "Register ate", sortable: true ,
-      formatter: (value) => {
+        {
+          key: "RegisterDate",
+          labe: "Register ate",
+          sortable: true,
+          formatter: (value) => {
             return moment(value).format("MMM DD, YYYY");
-          },},
+          },
+        },
         { key: "Gender", label: "Gender", sortable: true },
         { key: "Action", label: "Action", sortable: true },
       ],
@@ -277,14 +278,67 @@ export default {
         alert("Invalid User");
       }
     },
+    hideModal() {
+      this.$refs["modal"].hide();
+    },
   },
 
-  components: { SidebarComponent },
+  components: { SidebarComponent,HeaderCom },
 };
 </script>
 
-<style scope>
-.main-tab {
+<style scoped>
+#hero {
+  background: linear-gradient(to top, #fefeff 30%, #e2e2f6 90%) no-repeat;
+  width: 100%;
+  height: 100vh;
+}
+.tb {
+ width: 1500px;
+  display: flex;
+  /* padding-bottom: 80px; */
+}
+.tebs {
+  padding-right: 2%;
+  padding-left: 2%;
+
+  /* background-color: beige; */
+  /* width: 1900px; */
+}
+.tbales {
+  /* padding-right: 2%;
+  padding-left: 2%; */
+
+  /* padding-top: 1%; */
+  padding-bottom: 1%;
+  border-radius: 5px;
+   width: 1500px;
+   
+}
+/* .tbales {
+  padding-right: 2%;
+  padding-left: 2%;
+  background-color: #f4f4ff;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  border-radius: 5px;
+} */
+.container {
+  padding-top: 10px;
+  margin-left: 11%;
+  width: 100%;
+}
+.pill {
+  width: 220px;
+  margin-top: 10px;
+}
+.selectbtn {
+  margin-right: 5px;
+}
+.mt-3 {
+  margin-right: 5px;
+}
+/* .main-tab {
   padding-left: auto;
 }
 .header {
@@ -380,4 +434,7 @@ h1 {
     padding-right: 30px;
   }
 }
+.mt-3 {
+  margin-right: 5px;
+} */
 </style>

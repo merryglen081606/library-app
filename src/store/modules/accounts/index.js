@@ -50,13 +50,35 @@ export default {
                 })
                 .catch(err => err);
         },
+        // async editRegister({ commit }, register) {
+        //     return await axios({
+        //         method: "PUT",
+        //         url: `${api.apiurl}/user/edit/${register.user_id}`,
+        //         headers: {
+        //             Authorization: localStorage.getItem("token"),
+        //         },
+        //         data: {
+        //             firstname: register.firstname,
+        //             lastname: register.lastname,
+        //             password: register.password,
+        //         },
+        //     })
+        //         .then((response) => {
+        //             commit("UPDATE_REGISTER", response.data);
+        //         })
+        //         .catch((error) => {
+        //             console.log(error);
+        //         });
+        // },
+
+
         async updateAccount({ commit }, { Username, Password, UserID, Roles, Status, AccountID }) {
             console.log("look", Username, Password, UserID, Roles, Status, AccountID);
 
             return await axios({
                 method: "PATCH",
                 // url: `${API_URL}/api/librarian/${this.$route.params.UserID}`,
-                url: `${api.apiurl}accounts/` + AccountID,
+                url: `${api.apiurl}accounts/` + localStorage.getItem('accountid'),
                 data: {
                     Username, Password, UserID, Roles, Status, AccountID
                 }
@@ -71,6 +93,27 @@ export default {
                 })
                 .catch(err => err);
         },
+        // async updateAccount({ commit }, { Username, Password, UserID, Roles, Status, AccountID }) {
+        //     console.log("look", Username, Password, UserID, Roles, Status, AccountID);
+
+        //     return await axios({
+        //         method: "PUT",
+        //         // url: `${API_URL}/api/librarian/${this.$route.params.UserID}`,
+        //         url: `${api.apiurl}accounts/` + AccountID,
+        //         data: {
+        //             Username, Password, UserID, Roles, Status, AccountID
+        //         }
+        //     })
+
+        //         .then(res => {
+        //             console.log("supnew", res);
+
+        //             commit("UPDATE_ACCOUNT", res.data.posted);
+
+        //             return res;
+        //         })
+        //         .catch(err => err);
+        // },
 
 
     },

@@ -23,7 +23,7 @@
                 <template>
                   <div>
                     <b-button variant="dark" v-b-modal.modal-prevent-closing
-                      >Add Book</b-button
+                      >Add Account</b-button
                     >
                     <b-form-fieldset
                       style="float: right; padding-bottom: 10px"
@@ -128,7 +128,7 @@
                           </div>
                         </b-form-group> -->
 
-                        <b-form-group label="UserID" label-for="UserID-input">
+                        <b-form-group label="User ID" label-for="UserID-input">
                           <b-form-input
                             id="UserID-input"
                             v-model="$v.UserID.$model"
@@ -240,7 +240,7 @@
                       class="btn btn-success edits"
                       >UPDATE
                       <b-icon class="edit-btn" icon="pencil-square"></b-icon>
-                    </router-link>               
+                    </router-link>
                   </template>
                 </b-table>
                 <!--End  DataTable Code-->

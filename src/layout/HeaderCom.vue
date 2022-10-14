@@ -37,15 +37,15 @@ nav {
   padding: 10px 25px 10px 25px;
   margin-top: 5px;
   border-radius: 5px;
-
- 
+}
+.breadcrumb-item a {
+  text-decoration: none;
 }
 .breadcrumb-item {
   font-family: montserrat;
   text-decoration: none;
   font-size: 25px;
   font-weight: bolder;
-  
 }
 span {
   color: #eeb34b;
