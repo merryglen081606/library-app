@@ -180,7 +180,7 @@ export default {
   name: "HomePage",
 };
 </script>
-<style scope>
+<style scoped>
 * {
   padding: 0;
   margin: 0;
@@ -200,7 +200,7 @@ export default {
   position: sticky;
 }
 body {
-  background-color: #ffffff;
+  background-color: white;
 }
 nav {
   align-items: center;
