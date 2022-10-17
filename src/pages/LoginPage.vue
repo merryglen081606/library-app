@@ -30,6 +30,13 @@
               >
             </li>
             <li class="nav-item">
+                <a
+                  ><router-link to="/aboutpage" class="nav-link" exact
+                    >About</router-link
+                  ></a
+                >
+              </li>
+            <li class="nav-item">
               <a
                 ><router-link to="/search" class="nav-link" exact
                   >Search</router-link
@@ -51,8 +58,10 @@
           </ul>
         </nav>
       </div>
-      <b-row class="rw">
-        <b-col class="d-flex justify-content-center">
+     
+      <b-row class="">
+      
+        <b-col class="d-flex login-form justify-content-end">
           <b-form class="form" v-on:submit.stop.prevent="handleSubmit">
             <h2>Login Account</h2>
             <h1>Welcome to Lou Geh Library System</h1>
@@ -107,7 +116,13 @@
           </b-form>
      
         </b-col>
-       
+        <b-col>
+          <img
+           src="../assets/image/lib4.jpeg"
+           alt=""
+           class="left-image"
+         />
+        </b-col>
           <div class="alert-container d-flex justify-content-center">
         <b-alert
           class="alert"
@@ -223,7 +238,7 @@ export default {
 } */
 .navs {
   padding-top: 15px;
-  background-color: #11101d;
+  background-color: #04104d;
   padding-bottom: 15px;
   position: sticky;
 }
@@ -264,7 +279,7 @@ ul {
 }
 
 #libra {
-  background: url(../assets/image/lib-background.jpeg);
+  /* background: url(../assets/image/lib-background.jpeg); */
   width: 100%;
   background-size: cover;
   background-position: center;
@@ -279,19 +294,22 @@ ul {
   text-align: center;
 }
 .form {
-  width: 25%;
-  height: auto;
-  background-color: rgb(255, 255, 255);
-  align-content: center;
-  margin-top: 5%;
+  width: 50%;
+  height: 440px;
+  background-color:  #555e8b;;
+  /* align-content: center; */
+  margin-top: 10%;
   /* margin-left: 30%; */
-  padding-top: 30px;
+  padding-top: 40px;
   padding-left: 25px;
   padding-right: 25px;
   border-radius: 5px;
   padding-bottom: 20px;
   align-content: center;
   box-shadow: 0 8px 8px -4px lightblue;
+  float: right;
+  margin-right: 90px;
+
 
 }
 /* .input{
@@ -324,7 +342,7 @@ h2 {
   font-size: 45px;
   font-weight: bolder;
   padding-bottom: 10px;
-  color: #11101d;
+  color: #eeee;
   text-align: center;
 }
 h1 {
@@ -332,11 +350,19 @@ h1 {
   font-weight: bolder;
   padding-top: 20px;
   padding-bottom: 30px;
-  color: #11101d;
+  color: #eeee;
   text-align: center;
 }
 .logbtn {
   width: 100%;
   height: 40px;
+}
+
+.left-image{
+  /* float: left; */
+padding-top: 30px;
+    height: 100%;
+    bottom: 2px;
+    width: 100%;
 }
 </style>

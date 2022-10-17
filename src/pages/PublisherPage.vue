@@ -11,7 +11,7 @@
           <b-container d-flex class="AddAccount">
             <!-- <FormInput label="Invoice Number" /> -->
             <b-container class="tebs">
-              <h1>Publisher Records</h1>
+              <!-- <h1>Publisher Records</h1> -->
               <div  class="tbales">
                 <b-button variant="dark" v-b-modal.modal-prevent-closing
                   >Add Publisher</b-button
@@ -36,6 +36,7 @@
                   <form ref="form" v-on:submit.stop.prevent="publisherSubmit">
                     <b-form-group label="Firstname" label-for="firstname-input">
                       <b-form-input
+                      style="text-transform:capitalize"
                         id="firstname-input"
                         v-model="$v.firstname.$model"
                         :class="{
@@ -56,6 +57,7 @@
                       label-for="middlename-input"
                     >
                       <b-form-input
+                      style="text-transform:capitalize"
                         id="middlename-input"
                         v-model="$v.middlename.$model"
                       >
@@ -64,6 +66,7 @@
 
                     <b-form-group label="Lastname" label-for="lastname-input">
                       <b-form-input
+                      style="text-transform:capitalize"
                         id="lastname-input"
                         v-model="$v.lastname.$model"
                         :class="{
@@ -81,6 +84,7 @@
 
                     <b-form-group label="Location" label-for="location-input">
                       <b-form-input
+                      style="text-transform:capitalize"
                         id="location-input"
                         v-model="$v.location.$model"
                         :class="{
@@ -100,6 +104,9 @@
                       <b-button class=" mt-3 btn-success" @click="publisherSubmit()"
                         >Submit</b-button
                       >
+                      <b-button class="mt-3 btn-warning" type="reset"
+                      >Reset</b-button
+                    >
                       <!-- <b-button class="close" block @click="hideModal"
                         >Close</b-button
                       > -->
@@ -137,7 +144,7 @@
                   <router-link
                     tag="button"
                     :to="'/editpublisher/' + data.item.publisherID"
-                    class="btn btn-success edits"
+                    class="btn btn-secondary edits"
                   >
                     <b-icon class="edit-btn" icon="pencil-square"></b-icon>
                   </router-link>
@@ -266,33 +273,37 @@ export default {
   outline-style: solid;
   outline-color: #6d6d6f;
 }
-.tb {
- width: 1505px;
-  display: flex;
-
-}
-.container {
-  padding-top: 10px;
-  margin-left: 8.8%;
-  width: 100%;
-}
-.tebs {
-    padding-right: 2%;
-  padding-left: 2%;
-  
-
-}
 .rw{
-  margin-left:16%;
-  width: 100%;
+  margin-left:17%;
+  width: 83%;
+}
+/* .tebs {
+  padding-right: 2%;
+  padding-left: 2%;
 }
 .tbales {
- 
   padding-bottom: 1%;
   border-radius: 5px;
-   width: 1505px;
-   
+  width: 100%;
+} */
+.container {
+  padding-top: 10px;
+  margin-left: 11%;
+  width: 90%;
 }
+.pill {
+  width: 220px;
+  margin-top: 10px;
+}
+.mt-3 {
+  margin-right: 5px;
+}
+#hero {
+  background: linear-gradient(to top, #fefeff 30%, #e2e2f6 90%) no-repeat;
+  width: 100%;
+  height: 100vh;
+}
+
 .pill {
   width: 220px;
   margin-top: 10px;

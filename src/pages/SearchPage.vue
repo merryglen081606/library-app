@@ -1,11 +1,12 @@
 <template>
   <body>
-    <section fluid id="libra">
+    <b-container  fluid class="body-container">
+    <!-- <section fluid id="library"> -->
       <div class="navs">
         <a
           class="navbar-brand"
-          style=" 
-            font-size: 30px;
+          style="
+          font-size: 30px;
             font-weight: bolder;
             font-family: montserrat;
             color: #ffffff;
@@ -31,6 +32,13 @@
             </li>
             <li class="nav-item">
               <a
+                ><router-link to="/aboutpage" class="nav-link" exact
+                  >About</router-link
+                ></a
+              >
+            </li>
+            <li class="nav-item">
+              <a
                 ><router-link to="/search" class="nav-link" exact
                   >Search</router-link
                 ></a
@@ -44,16 +52,19 @@
               >
             </li>
             <!-- <li class="nav-item">
-                      <router-link to="/login" class="nav-link" exact
-                        >Login</router-link
-                      >
-                    </li> -->
+                    <router-link to="/login" class="nav-link" exact
+                      >Login</router-link
+                    >
+                  </li> -->
           </ul>
         </nav>
       </div>
-     <b-row class="container d-flex justify-content-center">
+      <!-- </section> -->
+      <b-container   class="table-search fluid justify-content-center">
+
+        <b-row class="container ">
           <b-container class="tebs">
-            <div class="tbales">
+            <div class="tbales ">
               <div class="tatblee">
               <h1>Book Records</h1>
 
@@ -329,10 +340,12 @@
             </div>
           </b-container>
         </b-row>
-    </section>
+           
+      </b-container>
+      
+  </b-container>
   </body>
 </template>
-
 <script>
 import { required } from "vuelidate/lib/validators";
 import { mapGetters } from "vuex";
@@ -455,19 +468,19 @@ export default {
 };
 </script>
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@900&family=Poppins&display=swap');
 * {
   padding: 0;
   margin: 0;
 }
-/* body {
-  height: 100vh;
-  
-} */
+
 .navs {
   padding-top: 15px;
-  background-color: #11101d;
+  background-color: #04104d;
   padding-bottom: 15px;
-  position: sticky;
+  width: 100%;
+  position: fixed;
+ 
 }
 nav {
   align-items: center;
@@ -475,7 +488,8 @@ nav {
   float: right;
   padding-left: 10%;
   padding-right: 10%;
-  position: sticky;
+ 
+ 
 }
 
 nav ul li {
@@ -504,60 +518,34 @@ ul {
   padding-left: 2rem;
   padding-top: 8px;
 }
+.body-container{
+  padding: 0px !important;
+  height: 100vh !important;
+}
 
-#libra {
-  background: url(../assets/image/lib-background.jpeg);
+.table-search{
   width: 100%;
-  background-size: cover;
-  background-position: center;
   height: 100vh;
 }
 
 .tebs {
   padding-right: 2%;
   padding-left: 2%;
-  
+}
 
-  /* background-color: beige; */
-  /* width: 1900px; */
-}
-.tbales {
-  /* background-color: #f4f4ff; */
-  width: fit-content;
-  
-}
-/* .tbales {
-  padding-right: 2%;
-  padding-left: 2%;
-  background-color: #f4f4ff;
-  padding-top: 1%;
-  padding-bottom: 1%;
-  border-radius: 5px;
-  width: 100%;
- 
-  
-} */
-.tatblee{
-   width: 1530px;
-    background-color:rgb(255, 255, 255);
-    height:70vh;
- 
-    padding-top:20px;
-    border-radius: 10px;
 
-}
 .tb {
- width: 1500px;
-  display: flex;
+ width: 100%;
+ display: flex;
+  justify-content: center;
   background-color:rgb(255, 255, 255);
-  margin-top:60px;
-
-  /* padding-bottom: 80px; */
 }
 .container {
-  padding-top: 10px;
-  margin-left: 6%;
+  padding-top: 3%;
   width: 100%;
+  padding-bottom: 2%;
+  display: flex;
+  justify-content: center;
 }
 .pill {
   width: 220px;

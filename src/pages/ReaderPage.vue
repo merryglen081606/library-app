@@ -2,15 +2,14 @@
   <b-container fluid id="hero">
     <b-row>
       <SidebarComponent />
+      <b-row class="rw">
+        <HeaderCom title="Reader" />
+      </b-row>
       <b-col>
-        <b-row class="rw">
-          <HeaderCom title="Reader"/>
-        </b-row>
-
         <b-row class="container d-flex justify-content-center">
           <b-container class="tebs">
             <div class="tbales">
-              <h1>Reader Records</h1>
+              <!-- <h1>Reader Records</h1> -->
 
               <b-button variant="dark" v-b-modal.modal-prevent-closing
                 >Add Reader</b-button
@@ -76,14 +75,14 @@
               >
                 <b-form ref="form" v-on:submit.stop.prevent="readerSubmit">
                   <!-- <FormInput label="Invoice Number" /> -->
-                 <b-form-input
-                      id="LibrarianID-input"
-                      v-model="$v.LibrarianID.$model"
-                      :class="{
-                        'is-invalid': validationStatus($v.LibrarianID),
-                      }"
-                    >
-                    </b-form-input>
+                  <b-form-input
+                    id="LibrarianID-input"
+                    v-model="$v.LibrarianID.$model"
+                    :class="{
+                      'is-invalid': validationStatus($v.LibrarianID),
+                    }"
+                  >
+                  </b-form-input>
                   <b-form-group
                     label="Registered Librarian "
                     label-for="LibrarianID-input"
@@ -98,7 +97,7 @@
 
                   <b-form-group>
                     <b-form-select
-                      class="selected"
+                      class="selected col-lg-12"
                       value-field="UserID"
                       text-field="Firstname"
                       :options="librarians"
@@ -119,32 +118,34 @@
                       Please enter Reader.(Required Failed)
                     </div>
                     <div v-if="!$v.ReaderNo.minLength" class="invalid-feedback">
-                      Password must have atleast{{
+                      Reader No must have atleast 4 digit{{
                         $v.ReaderNo.$params.minLength.min
                       }}
                     </div>
                     <div v-if="!$v.ReaderNo.maxLength" class="invalid-feedback">
-                      Reader No must not have greater then
+                      Reader No must not have greater then 4 digit
                       {{ $v.ReaderNo.$params.maxLength.min }}
                     </div>
                   </b-form-group>
 
                   <b-form-group label="Firstname" label-for="Firstname-input">
                     <b-form-input
+                      style="text-transform: capitalize"
                       id="Firstname1-input"
-                      v-model="$v.Firstname1.$model"
+                      v-model="$v.Firstname.$model"
                       :class="{
                         'is-invalid': validationStatus($v.Firstname1),
                       }"
                     >
                     </b-form-input>
-                    <div v-if="!$v.Firstname1.required" class="invalid-feedback">
-                      Please enter Firstname1.(Required Failed)
+                    <div v-if="!$v.Firstname.required" class="invalid-feedback">
+                      Please enter Firstname.(Required Failed)
                     </div>
                   </b-form-group>
 
                   <b-form-group label="Lastname" label-for="Lastname-input">
                     <b-form-input
+                      style="text-transform: capitalize"
                       id="Lastname-input"
                       v-model="$v.Lastname.$model"
                       :class="{
@@ -250,6 +251,7 @@
 
                   <b-form-group label="Address" label-for="City-input">
                     <b-form-input
+                      style="text-transform: capitalize"
                       id="Address-input"
                       v-model="$v.City.$model"
                       :class="{
@@ -283,6 +285,9 @@
                   <div class="buttons">
                     <b-button class="mt-3 btn-success" @click="readerSubmit()"
                       >Submit</b-button
+                    >
+                    <b-button class="mt-3 btn-warning" type="reset"
+                      >Reset</b-button
                     >
                     <!-- <b-button class="close" to="/account"
                           >Close</b-button
@@ -318,7 +323,7 @@
                   <router-link
                     tag="button"
                     :to="'/editreader/' + data.item.ReaderID"
-                    class="btn btn-success edits"
+                    class="btn btn-secondary edits"
                   >
                     <b-icon class="edit-btn" icon="pencil-square"></b-icon>
                   </router-link>
@@ -358,7 +363,7 @@ export default {
       currentPage: 1,
       filter: "",
       ReaderNo: "",
-      Firstname1: "",
+      Firstname: "",
       Lastname: "",
       Birthdate: "",
       Gender: "",
@@ -429,8 +434,8 @@ export default {
   },
 
   validations: {
-    ReaderNo: { required, minLength: minLength(6), maxLength: maxLength(6) },
-    Firstname1: { required },
+    ReaderNo: { required, minLength: minLength(4), maxLength: maxLength(4) },
+    Firstname: { required },
     Lastname: { required },
     Birthdate: { required },
     Gender: { required },
@@ -466,6 +471,8 @@ export default {
       } catch (error) {
         alert("Invalid User");
       }
+      //  console.log("readerList", this.readerList);
+      //   this.clear();
     },
     hideModal() {
       this.$refs["modal"].hide();
@@ -474,73 +481,56 @@ export default {
 };
 </script>
 <style scoped>
-/* .AddAccount {
-  float: left;
-  margin-left: 190px;
-  width: 30%;
-} */
-
-/* .from {
-  display: grid;
-  padding-left: 15px;
-  padding-right: 15px;
-  padding-top: 20px;
-  margin-right: 30px;
-  margin-top: 50px;
-  background-color: #d7d5e4;
-  border-radius: 10px;
-
-  outline-style: solid;
-  outline-color: #b1acd3;
-} */
-
-/* .tebs {
-  background-color: #d7d5e4;
-  padding: 15px 15px 15px 15px;
-  border-radius: 10px;
-  margin-top: 50px;
-  margin-left: 190px;
-  outline-style: solid;
-  outline-color: #b1acd3;
- 
-}
-
-.pill {
-  width: 220px;
-  margin-top: 10px;
-} */
 #hero {
   background: linear-gradient(to top, #fefeff 30%, #e2e2f6 90%) no-repeat;
   width: 100%;
   height: 100vh;
 }
-.tb {
-   width: 1500px;
-  display: flex;
-}
-.tebs {
+
+/* .tbales {
   padding-right: 2%;
   padding-left: 2%;
-
-}
-.rw{
-  margin-left:16%;
-  width: 100%;
-}
-
-.tbales {
-  
+  background-color: #f4f4ff;
+  padding-top: 1%;
   padding-bottom: 1%;
   border-radius: 5px;
-   width: 1500px;
-   
+} */
+.rw {
+  margin-left: 17%;
+  width: 83%;
 }
-
+/* .tebs {
+  padding-right: 2%;
+  padding-left: 2%;
+}
+.tbales {
+  padding-bottom: 1%;
+  border-radius: 5px;
+  width: 100%;
+} */
 .container {
   padding-top: 10px;
   margin-left: 11%;
-  width: 100%;
+  width: 90%;
 }
+.pill {
+  width: 220px;
+  margin-top: 10px;
+}
+.mt-3 {
+  margin-right: 5px;
+}
+#hero {
+  background: linear-gradient(to top, #fefeff 30%, #e2e2f6 90%) no-repeat;
+  width: 100%;
+  height: 100vh;
+}
+
+/* .container {
+  padding-top: 1%;
+  margin-left: 12%;
+  width: 100%;
+} */
 .pill {
   width: 220px;
   margin-top: 10px;
@@ -551,5 +541,9 @@ export default {
 .mt-3 {
   margin-right: 5px;
 }
-
+.selected {
+  border-radius: 5px;
+  height: 40px;
+  /* background-color: rgb(47, 255, 0); */
+}
 </style>

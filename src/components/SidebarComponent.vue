@@ -138,7 +138,7 @@ export default {
   left: 0;
   height: 100%;
   width: 260px;
-  background: #11101d;
+  background: #04104d;
 }
 .sidebar {
   position: fixed;
@@ -146,7 +146,7 @@ export default {
   left: 0;
   height: 100%;
   width: 260px;
-  background: #11101d;
+  background: #04104d;
 }
 .lou-geh {
   /* display: none; */

@@ -16,7 +16,7 @@ import CityPage from "../pages/CityPage.vue";
 import HomePage from "../pages/HomePage.vue";
 import SearchPage from "../pages/SearchPage.vue";
 import LoginPage from "../pages/LoginPage.vue";
-import HomeVue from "../pages/HomeVue.vue";
+import AboutPage from "../pages/AboutPage.vue";
 import CategoryPage from "../pages/CategoryPage.vue";
 import EditLibrarian from "../pages/EditLibrarian.vue";
 import PageVue from "../pages/PageVue.vue";
@@ -40,10 +40,11 @@ Vue.use(VueRouter);
 
 const routes = [
     {
-        path: "/homevue",
-        name: "HomeVue",
-        component: HomeVue,
+        path: "/aboutpage",
+        name: "AboutPage",
+        component: AboutPage,
     },
+
     {
         path: "/librarians",
         name: "LibrarianPage",

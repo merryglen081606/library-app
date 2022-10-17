@@ -165,9 +165,9 @@ export default {
 nav {
   padding: 10px;
 }
-.rw {
-  margin-left: 16%;
-  width: 100%;
+.rw{
+  margin-left:17%;
+  width: 84%;
 }
 div.py-2 {
   padding: 0 !important;
@@ -191,7 +191,7 @@ div.py-2 {
 }
 
 .container-card {
-  background-color: #595959;
+  background-color: rgb(107, 129, 190);
   align-content: center;
   justify-content: center;
   margin-left: 200px;

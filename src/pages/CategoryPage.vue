@@ -4,11 +4,11 @@
       <div class="navigation">
         <SidebarComponent/>
       </div>
-     <b-row class="rw"> 
-        <HeaderCom title="Boook Category" />
-      </b-row>
-    </b-col>
     
+    </b-col>
+  
+        <HeaderCom title="Boook Category"  class="rw" />
+      
     <b-row>
        
       <div fluid class="main-tab">
@@ -43,7 +43,7 @@
                     id="modal-prevent-closing"
                     size="m"
                     ref="modal"
-                    title="Register Librarian"
+                    title="Register Category"
                   >
                     <form ref="form" v-on:submit.stop.prevent="categorySubmit">
                       <b-form-group
@@ -86,10 +86,13 @@
       </select>  -->
 
                       <div class="buttons">
-                        <b-button class="btn-success" @click="categorySubmit()"
+                        <b-button class="mt-3 btn-success" @click="categorySubmit()"
                           >Submit</b-button
                         >
-                         <b-button class="btn-dark" to="/category">
+                        <b-button class="mt-3 btn-warning" type="reset"
+                      >Reset</b-button
+                    >
+                         <b-button class="mt-3 btn-dark" to="/category">
                             Back
                           </b-button>
                       </div>
@@ -245,8 +248,8 @@ export default {
   color: #ffffff;
 }
 .rw{
-  margin-left:16%;
-  width: 100%;
+  margin-left:17%;
+  width: 83%;
 }
 .contents {
   padding-left: 310px;
@@ -259,9 +262,11 @@ export default {
   margin-top: 30px;
   margin-left: auto;
   margin-right: auto;
-  width: 70%;
+  width: 100%;
 }
-
+.mt-3{
+  margin-left: 2px;
+}
 .title {
   text-align: center;
   color: #11101d;

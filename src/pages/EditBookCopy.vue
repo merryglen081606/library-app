@@ -176,8 +176,8 @@ div.py-2 {
   padding: 0 !important;
 }
 .rw{
-  margin-left:16%;
-  width: 100%;
+  margin-left:17%;
+  width: 84%;
 }
 .head {
   margin-left: 390px;
@@ -192,10 +192,7 @@ div.py-2 {
   padding-top: 10px;
   padding: 15px;
 }
-.rw{
-  margin-left:16%;
-  width: 100%;
-}
+
 .head h4 span {
   color: #eeb34b;
   font-family: montserrat;
@@ -220,10 +217,7 @@ div.py-2 {
   margin-bottom: 10px;
   margin-left: 20px;
 }
-.rw{
-  margin-left:16%;
-  width: 100%;
-}
+
 .input {
   width: 520px;
 }

@@ -11,7 +11,7 @@
           <b-container d-flex class="AddAccount">
             <!-- <FormInput label="Invoice Number" /> -->
             <b-container class="tebs">
-              <h1>Author Records</h1>
+              <!-- <h1>Author Records</h1> -->
               <div class="tbales">
                 <b-button variant="dark" v-b-modal.modal-prevent-closing
                   >Add Author</b-button
@@ -36,6 +36,7 @@
                   <form ref="form" v-on:submit.stop.prevent="authorSubmit">
                     <b-form-group label="Firstname" label-for="firstname-input">
                       <b-form-input
+                      style="text-transform:capitalize"
                         id="firstname-input"
                         v-model="$v.firstname.$model"
                         :class="{
@@ -56,6 +57,7 @@
                       label-for="middlename-input"
                     >
                       <b-form-input
+                      style="text-transform:capitalize"
                         id="middlename-input"
                         v-model="$v.middlename.$model"
                       >
@@ -64,6 +66,7 @@
 
                     <b-form-group label="Lastname" label-for="lastname-input">
                       <b-form-input
+                      style="text-transform:capitalize"
                         id="lastname-input"
                         v-model="$v.lastname.$model"
                         :class="{
@@ -83,6 +86,9 @@
                       <b-button class="mt-3 btn-success" @click="authorSubmit()"
                         >Submit</b-button
                       >
+                      <b-button class="mt-3 btn-warning" type="reset"
+                      >Reset</b-button
+                    >
                       <b-button
                         class="mt-3"
                         href="/author"
@@ -115,7 +121,7 @@
                   <router-link
                     tag="button"
                     :to="'/editauthor/' + data.item.AuthorID"
-                    class="btn btn-success edits"
+                    class="btn btn-secondary edits"
                   >
                     <b-icon class="edit-btn" icon="pencil-square"></b-icon>
                   </router-link>
@@ -218,11 +224,6 @@ export default {
   margin-left: 20%;
   width: 30%;
 }
-.tb {
- width: 1510px;
-  display: flex;
-  /* padding-bottom: 80px; */
-}
 /* .from {
   margin-left: 30%;
   display: grid;
@@ -239,36 +240,32 @@ export default {
 } */
 
 .rw{
-  margin-left:16%;
-  width: 100%;
+  margin-left:17%;
+  width: 83%;
 }
-.container {
-  padding-top: 10px;
-  margin-left: 8.8%;
-  width: 100%;
-}
-.tebs {
-  /* background-color: #f4f4ff; */
-  /* padding: 15px 15px 15px 1px;
-  border-radius: 5px;
-  margin-top: 50px;
-  width: 1940px; */
-  /* outline-style: solid;
-  outline-color: #6d6d6f; */
-  /* margin-right: 40px; */
-    padding-right: 2%;
+/* .tebs {
+  padding-right: 2%;
   padding-left: 2%;
 }
 .tbales {
-  /* padding-right: 2%;
-  padding-left: 2%; */
-
-  /* padding-top: 1%; */
   padding-bottom: 1%;
   border-radius: 5px;
-   width: 1505px;
-   
+  width: 100%;
+} */
+.container {
+  padding-top: 10px;
+  margin-left: 11%;
+  width: 90%;
 }
+.pill {
+  width: 220px;
+  margin-top: 10px;
+}
+.mt-3 {
+  margin-right: 5px;
+}
+
+
 .pill {
   width: 220px;
   margin-top: 10px;

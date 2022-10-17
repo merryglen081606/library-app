@@ -95,6 +95,7 @@
                           label-for="Gender-value"
                         >
                           <b-form-select
+                        
                             v-model="Gender"
                             id="Gender-select"
                             class="select"
@@ -254,7 +255,7 @@ div.py-2 {
   font-family: montserrat;
 }
 .container-card {
-   background-color: rgb(176, 176, 176);
+   background-color: rgb(107, 129, 190);
   align-content: center;
   justify-content: center;
   margin-left: 200px;
@@ -289,10 +290,12 @@ div.py-2 {
 }
 .select {
   width: 520px;
+  height: 40px;
+  border-radius: 5px;
 }
 .rw{
-  margin-left:16%;
-  width: 100%;
+  margin-left:17%;
+  width: 84%;
 }
 .input_button {
   float: right;

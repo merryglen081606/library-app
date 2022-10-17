@@ -377,7 +377,7 @@ export default {
   color: #11101d;
   font-family: monospace;
   font-weight: bolder;
-  font-size: 30px;
+  font-size: 15px;
 }
 .main-tab .header h4 {
   font-family: montserrat;

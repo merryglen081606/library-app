@@ -63,7 +63,7 @@
                     id="modal-prevent-closing"
                     size="m"
                     ref="modal"
-                    title="Register Librarian"
+                    title="Register Book Copy"
                   >
                     <form ref="form" v-on:submit.stop.prevent="bookcopySubmit">
                       <b-form-group label="Copy NO" label-for="copyNo-input">
@@ -120,9 +120,12 @@
                         </div>
                       </b-form-group>
                       <div class="buttons">
-                        <b-button class="btn-success" @click="bookcopySubmit()"
+                        <b-button class="mt-3 btn-success" @click="bookcopySubmit()"
                           >Submit</b-button
                         >
+                        <b-button class="mt-3 btn-warning" type="reset"
+                      >Reset</b-button
+                    >
                         <b-button
                           class="mt-3"
                           variant="outline-danger"
@@ -300,38 +303,112 @@ h1 {
   width: 90%;
   margin-left: 80px;
 } */
-.tb {
+.main-tab {
+  padding-left: auto;
+}
+.header {
+  margin-top: 10px;
+  margin-left: auto;
+  padding-top: 15px;
+  padding-left: 15px;
+  padding-right: 15px;
+  width: 80%;
+  height: 60px;
+  background-color: #11101d;
+  border-radius: 10px;
+  color: #ffffff;
+}
+.contents {
+  padding-left: 310px;
+  padding-right: 10px;
+  margin-top: 20px;
+  margin-left: auto;
+}
+
+.cards {
+  margin-top: 30px;
+  margin-left: auto;
+  margin-right: auto;
   width: 100%;
-  display: flex;
-  /* padding-bottom: 80px; */
+}
+
+.title {
+  text-align: center;
+  color: #11101d;
+  font-family: monospace;
+  font-weight: bolder;
+  font-size: 30px;
 }
 .rw{
-  margin-left:16%;
-  width: 100%;
+  margin-left:17%;
+  width: 84%;
 }
-.tebs {
-  padding-right: 2%;
-  padding-left: 2%;
+.main-tab .header h4 {
+  font-family: montserrat;
+  color: rgb(240, 240, 240);
+  padding-top: 3px;
+}
+.main-tab h4 span {
+  color: #eeb34b;
+  font-family: montserrat;
+}
+.button {
+  padding: 50px;
+}
+.button .btn {
+  width: auto;
+}
+h1 {
+  text-align: center;
+  color: #11101d;
+}
+.main .content {
+  width: 80%;
+  margin-right: 20px;
+  margin-left: 90px;
+}
 
-  /* background-color: beige; */
-  /* width: 1900px; */
+.btn {
+  margin-bottom: 10px;
 }
-.tbales {
-  padding-right: 2%;
-  padding-left: 2%;
-  background-color: #f4f4ff;
-  /* padding-top: 1%; */
-  padding-bottom: 1%;
-  border-radius: 5px;
+.buttons {
+  float: right;
+  padding-left:2px;
 }
-.container {
-  padding-top: 10px;
-  margin-left: 16%;
-  width: 100;
+.mt-3{
+  margin-left: 2px;
 }
-.pill {
-  width: 220px;
-  margin-top: 10px;
+.close {
+  margin-left: 10px;
+}
+@media (max-width: 1284px) {
+  .header {
+    width: 76%;
+  }
+}
+@media (max-width: 1174px) {
+  .header {
+    margin-left: 90px;
+    width: 90%;
+  }
+  .contents {
+    padding-left: 90px;
+    padding-right: 20px;
+  }
+}
+@media (max-width: 759px) {
+  .header {
+    margin-left: 90px;
+    width: 87%;
+    padding-right: 30px;
+  }
+}
+@media (max-width: 501px) {
+  .header {
+    margin-left: 90px;
+    width: 80%;
+    padding-right: 30px;
+  }
 }
 .selectbtn {
   margin-right: 5px;

@@ -153,15 +153,15 @@ div.py-2 {
   padding: 15px;
 }
 .rw{
-  margin-left:16%;
-  width: 100%;
+  margin-left:17%;
+  width: 84%;
 }
 .head h4 span {
   color: #eeb34b;
   font-family: montserrat;
 }
 .container-card {
-  background-color: #595959;
+  background-color: rgb(107, 129, 190);
   align-content: center;
   justify-content: center;
   margin-left: 200px;

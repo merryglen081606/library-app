@@ -7,10 +7,10 @@
           <HeaderCom title="Account" />
         </b-row>
 
-        <b-row class="container d-flex justify-content-center">
+        <b-row class="container fluid justify-content-center">
           <b-container class="tebs">
             <div class="tbales">
-              <h1>Account Records</h1>
+              <!-- <h1 class="text">Account Records</h1> -->
 
               <b-button variant="dark" v-b-modal.modal-prevent-closing
                 >Add Account</b-button
@@ -53,6 +53,7 @@
                   responsive
                   striped
                   bordered
+                  
                   hover
                   id="my-table1"
                   :items="librarians"
@@ -192,12 +193,12 @@
                       Please enter Password
                     </div>
                     <div v-if="!$v.Password.minLength" class="invalid-feedback">
-                      Password must have atleast{{
+                      Password must have atleast 6 digit{{
                         $v.Password.$params.minLength.min
                       }}
                     </div>
                     <div v-if="!$v.Password.maxLength" class="invalid-feedback">
-                      Password must not have greater then
+                      Password must not have greater then 15 digit
                       {{ $v.Password.$params.maxLength.min }}
                     </div>
                   </b-form-group>
@@ -208,6 +209,9 @@
                     <!-- <b-button class="close" to="/account"
                           >Close</b-button
                         > -->
+                        <b-button class="mt-3 btn-warning" type="reset"
+                      >Reset</b-button
+                    >
                     <b-button
                       class="mt-3"
                       href="/account"
@@ -221,7 +225,7 @@
               </b-modal>
 
               <b-table
-                class="tb"
+              
                 responsive
                 hover
                 id="my-table"
@@ -235,10 +239,19 @@
                 :per-page="perPage"
                 :current-page="currentPage"
               >
-                <template v-slot:cell(Action)={item}>
+              <template v-slot:cell(Action)="data">
+                  <router-link
+                    tag="button"
+                    :to="'/editaccount/' + data.item.AccountID"
+                    class="btn btn-secondary edits"
+                  >
+                    <b-icon class="edit-btn" icon="pencil-square"></b-icon>
+                  </router-link>
+                </template>
+                <!-- <template v-slot:cell(Action)={item}>
                   <b-button v-b-modal @click="savelocal(item)">
                     <b-icon class="edit-btn" icon="pencil-square"></b-icon>
-                  </b-button>
+                  </b-button> -->
                   <!-- <router-link
                     tag="button"
                     :to="savelocal(data)"
@@ -246,7 +259,7 @@
                   >
                     <b-icon class="edit-btn" icon="pencil-square"></b-icon>
                   </router-link> -->
-                </template>
+                <!-- </template> -->
               </b-table>
 
               <b-pagination
@@ -311,6 +324,7 @@
                     <b-button class="mt-3 btn-success" @click="updateAccount()"
                       >Submit</b-button
                     >
+               
                     <!-- <b-button class="close" to="/account"
                           >Close</b-button
                         > -->
@@ -464,85 +478,25 @@ export default {
 };
 </script>
 <style scoped>
-/* .AddAccount {
-  float: left;
-  margin-left: 190px;
-  width: 30%;
-} */
 
-/* .from {
-  margin-left: 30%;
-  display: grid;
-  padding-left: 15px;
-  padding-right: 15px;
-  padding-top: 20px;
-  margin-right: 30px;
-  margin-top: 50px;
-  background-color: #f4f4ff;
-  border-radius: 5px;
 
-  outline-style: solid;
-  outline-color: #6d6d6f;
-} */
-
-/* .tebs {
-  background-color: #f4f4ff;
-  padding: 15px 15px 15px 15px;
-  border-radius: 5px;
-  margin-top: 50px;
-  width: 100%;
-  outline-style: solid;
-  outline-color: #6d6d6f;
-  margin-right: 60px;
-  margin-left: 120%;
-} */
-
-/* .container {
-  width: 2300px;
-  margin-left: 16%;
-  margin-right: 4%;
-  padding-right: 2%;
-  padding-left: 2%;
-  padding-top: 3%;
-} */
-/* .tb {
-width: 1400px;
-  display: flex;
-
-} */
-.tb {
-  width: 1500px;
-  display: flex;
-}
 .rw{
-  margin-left:16%;
-  width: 100%;
+  margin-left:17%;
+  width: 83%;
 }
-.tebs {
-  /* background-color: #f4f4ff; */
-  /* padding: 15px 15px 15px 15px; */
-  /* border-radius: 5px;
-  margin-top: 10px; */
-  /* width: 1500px; */
-  /* outline-style: solid; */
-  /* outline-color: #6d6d6f; */
-  /* margin-right: 60px; */
+/* .tebs {
   padding-right: 2%;
   padding-left: 2%;
 }
 .tbales {
-  /* padding-right: 2%;
-  padding-left: 2%; */
-
-  /* padding-top: 1%; */
   padding-bottom: 1%;
   border-radius: 5px;
-  width: 1500px;
-}
+  width: 100%;
+} */
 .container {
   padding-top: 10px;
   margin-left: 11%;
-  width: 100%;
+  width: 90%;
 }
 .pill {
   width: 220px;
@@ -555,5 +509,8 @@ width: 1400px;
   background: linear-gradient(to top, #fefeff 30%, #e2e2f6 90%) no-repeat;
   width: 100%;
   height: 100vh;
+}
+.text{
+  font-size: 15px;
 }
 </style>

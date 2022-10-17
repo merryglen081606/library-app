@@ -24,9 +24,9 @@ export default {
 </script>
 <style scoped>
 nav {
-  width: 83%;
+  width: 100%;
   height: 58px;
-  background-color: #11101d;
+  background-color: #04104d;
   float: rigt;
   justify-content: space-between;
   position: sticky;

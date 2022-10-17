@@ -2,15 +2,18 @@
   <b-container fluid id="hero">
     <b-row>
       <SidebarComponent />
-      <b-col>
-        <b-row class="rw">
+      <b-row class="rw">
           <HeaderCom title="Book" />
         </b-row>
+      <b-col>
+        
 
         <b-row class="container d-flex justify-content-center">
+          
           <b-container class="tebs">
+            
             <div class="tbales">
-              <h1>Book Records</h1>
+              <!-- <h1>Book Records</h1> -->
 
               <b-button
                 variant="dark"
@@ -189,6 +192,7 @@
                   </b-form-group>
                   <b-form-group label="Book Title" label-for="Title-input">
                     <b-form-input
+                    style="text-transform:capitalize"
                       placeholder="Enter Book Title"
                       id="Title-input"
                       v-model="$v.Title.$model"
@@ -204,7 +208,7 @@
                       Please enter Book Title. (Required Failed)
                     </div>
                   </b-form-group>
-
+               
                   <b-form-group label="Author" label-for="AuthorID-input">
                     <b-form-input
                       placeholder="Enter Author ID"
@@ -279,6 +283,9 @@
                     <b-button class="mt-3 btn-success" @click="bookSubmit()"
                       >Submit</b-button
                     >
+                    <b-button class="mt-3 btn-warning" type="reset"
+                      >Reset</b-button
+                    >
                     <!-- <b-button class="close" to="/account"
                           >Close</b-button
                         > -->
@@ -314,7 +321,7 @@
                   <router-link
                     tag="button"
                     :to="'/editbook/' + data.item.bookID"
-                    class="btn btn-success edits"
+                    class="btn btn-secondary edits"
                   >
                     <b-icon class="edit-btn" icon="pencil-square"></b-icon>
                   </router-link>
@@ -456,10 +463,13 @@ export default {
           YearPublish: this.YearPublish,
           PageNo: this.PageNo,
         });
+          
         alert("Data Successfully Submitted");
+   
       } catch (error) {
         alert("Invalid User");
       }
+      
     },
     hideModal() {
       this.$refs["modal"].hide();
@@ -518,59 +528,34 @@ height: fit-content;
 .selectbtn{
   margin-right:5px;
 } */
-#hero{
-   background: linear-gradient(to top, #fefeff 30%, #e2e2f6 90%) no-repeat;
-   width: 100%;
-   height: 100vh;
-}
-.tb {
-  width: 1500px;
-  display: flex;
-  
-
-  /* padding-bottom: 80px; */
-  
-
-}
 .rw{
-  margin-left:16%;
-  width: 100%;
+  margin-left:17%;
+  width: 83%;
 }
-.tebs {
+/* .tebs {
   padding-right: 2%;
   padding-left: 2%;
-
-  /* background-color: beige; */
-  /* width: 1900px; */
 }
 .tbales {
-  /* background-color: #f4f4ff; */
-  width: fit-content;
-}
-/* .tbales {
-  padding-right: 2%;
-  padding-left: 2%;
-  background-color: #f4f4ff;
-  padding-top: 1%;
   padding-bottom: 1%;
   border-radius: 5px;
   width: 100%;
- 
-  
 } */
 .container {
   padding-top: 10px;
   margin-left: 11%;
-  width: 100%;
+  width: 90%;
 }
 .pill {
   width: 220px;
   margin-top: 10px;
 }
-.selectbtn {
-  margin-right: 5px;
-}
 .mt-3 {
   margin-right: 5px;
+}
+#hero {
+  background: linear-gradient(to top, #fefeff 30%, #e2e2f6 90%) no-repeat;
+  width: 100%;
+  height: 100vh;
 }
 </style>

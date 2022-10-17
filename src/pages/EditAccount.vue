@@ -59,7 +59,7 @@
                         </b-form-group>
 
                         <b-form-group
-                          label="Password"
+                          label="Reset Password"
                           label-for="Password-input"
                         >
                           <b-form-input
@@ -72,17 +72,12 @@
                             placeholder="Enter Password"
                           >
                           </b-form-input>
-                          <div
-                            v-if="!$v.Password.required"
-                            class="invalid-feedback"
-                          >
-                            Please enter Password
-                          </div>
+                         
                           <div
                             v-if="!$v.Password.minLength"
                             class="invalid-feedback"
                           >
-                            Password must have atleast{{
+                            Password must have atleast 6 digit{{
                               $v.Password.$params.minLength.min
                             }}
                           </div>
@@ -90,35 +85,33 @@
                             v-if="!$v.Password.maxLength"
                             class="invalid-feedback"
                           >
-                            Password must not have greater then
+                            Password must not have greater then 15 digit
                             {{ $v.Password.$params.maxLength.min }}
                           </div>
                         </b-form-group>
-                        <b-form-group label="Roles:*">
-                          <b-form-select
-                            v-model="$v.Roles.$model"
-                            class="form-control"
-                            :class="{
-                              'is-invalid': validationStatus($v.Roles),
-                            }"
-                          >
-                            <b-form-select-option :value="null"
-                              >Please select an option</b-form-select-option
-                            >
-                            <b-form-select-option value="Admin"
-                              >Admin</b-form-select-option
-                            >
-                            <b-form-select-option value="User"
-                              >User</b-form-select-option
-                            >
-                          </b-form-select>
-                          <div
-                            v-if="!$v.Roles.required"
-                            class="invalid-feedback"
-                          >
-                            Please select your Role.
-                          </div>
-                        </b-form-group>
+                     
+                  <b-form-group label="Roles:*">
+                    <b-form-select
+                      v-model="$v.Roles.$model"
+                      class="form-control"
+                      :class="{
+                        'is-invalid': validationStatus($v.Roles),
+                      }"
+                    >
+                      <b-form-select-option :value="null"
+                        >Please select an option</b-form-select-option
+                      >
+                      <b-form-select-option value="Librarian"
+                        >Librarian</b-form-select-option
+                      >
+                      <!-- <b-form-select-option value="User"
+                        >User</b-form-select-option
+                      > -->
+                    </b-form-select>
+                    <div v-if="!$v.Roles.required" class="invalid-feedback">
+                      Please select your Role.
+                    </div>
+                  </b-form-group>
 
                         <b-form-group label="Status:*">
                           <b-form-select
@@ -189,14 +182,14 @@ export default {
       Username: "",
       Password: "",
       Librarian: "",
-      Roles: "",
+      Roles: "Librarian",
       Status: "",
     };
   },
 
   validations: {
     Username: { required, minLength: minLength(6), maxLength: maxLength(18) },
-    Password: { required, minLength: minLength(8), maxLength: maxLength(18) },
+    Password: { minLength: minLength(8), maxLength: maxLength(18) },
     UserID: { required },
     Roles: { required },
     Status: { required },
@@ -267,6 +260,10 @@ div.py-2 {
   margin-top: 15px;
   padding-left: 50px;
 }
+.rw{
+  margin-left:20%;
+  width: 100%;
+}
 .head h4 {
   font-family: montserrat;
   color: rgb(240, 240, 240);
@@ -277,8 +274,11 @@ div.py-2 {
   color: #eeb34b;
   font-family: montserrat;
 }
+.buttons{
+  margin-top:10px;
+}
 .container-card {
-  background-color: #595959;
+  background-color: rgb(107, 129, 190);
   align-content: center;
   justify-content: center;
   margin-left: 200px;
@@ -300,10 +300,7 @@ div.py-2 {
 .input {
   width: 520px;
 }
-.rw{
-  margin-left:16%;
-  width: 100%;
-}
+
 .px-3 {
   text-align: center;
 }

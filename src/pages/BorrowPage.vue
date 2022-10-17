@@ -291,6 +291,7 @@
                   </b-form-group>
                   <b-form-group label="Remarks" label-for="remarks">
                     <b-form-input
+                    style="text-transform:capitalize"
                       id="remarks"
                       type="text"
                       v-model="$v.remarks.$model"
@@ -308,6 +309,7 @@
                       @click="transactionSubmit()"
                       >Submit Data</b-button
                     >
+                   
                   </b-container>
                 </b-form>
               </b-col>
@@ -316,7 +318,7 @@
         </b-col>
         <b-row>
           <b-container class="tebs">
-            <h1>Transaction Records</h1>
+            <!-- <h1>Transaction Records</h1> -->
             <b-form-fieldset
               style="float: right; padding-bottom: 2px"
               class="col-4"
@@ -346,7 +348,7 @@
                 <router-link
                   tag="button"
                   :to="'/edittransaction/' + data.item.BorrowerID"
-                  class="btn btn-success edits"
+                  class="btn btn-secondary edits"
                 >
                   <b-icon class="edit-btn" icon="pencil-square"></b-icon>
                 </router-link>
@@ -567,12 +569,12 @@ export default {
   margin-top: 50px;
 }
 .rw{
-  margin-left:16%;
-  width: 100%;
+  margin-left:17%;
+  width: 83%;
 }
 .tebs {
   background-color: #f4f4ff;
-
+padding-top: 5px;
   border-radius: 5px;
   margin-top: 50px;
   width: 1150px;

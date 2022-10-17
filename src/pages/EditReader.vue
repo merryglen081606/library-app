@@ -351,7 +351,7 @@ div.py-2 {
   font-family: montserrat;
 }
 .container-card {
- background-color: rgb(176, 176, 176);
+  background-color: rgb(107, 129, 190);
   align-content: center;
   justify-content: center;
   margin-left: 200px;
@@ -359,8 +359,8 @@ div.py-2 {
   margin-top: 50px;
 }
 .rw{
-  margin-left:16%;
-  width: 100%;
+  margin-left:17%;
+  width: 84%;
 }
 .buttons{
   margin-top:10px;

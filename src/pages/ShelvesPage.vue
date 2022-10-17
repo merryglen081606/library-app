@@ -57,7 +57,7 @@
                     id="modal-prevent-closing"
                     size="m"
                     ref="modal"
-                    title="Register Librarian"
+                    title="Register Shelf"
                   >
                     <form ref="form" v-on:submit.stop.prevent="shelfSubmit">
                       <b-form-group
@@ -113,13 +113,22 @@
                           The CategoryID is required.
                         </div>
                       </b-form-group>
-
                       <div class="buttons">
-                        <b-button class="btn-success" @click="shelfSubmit()"
+                        <b-button class="mt-3 btn-success"  @click="shelfSubmit()"
                           >Submit</b-button
                         >
-                        <b-button class="close" href="/books">Close</b-button>
+                        <b-button class="mt-3 btn-warning" type="reset"
+                      >Reset</b-button
+                    >
+                        <b-button
+                          class="mt-3"
+                          variant="outline-danger"
+                          block
+                          href="/shelves"
+                          >Close Me</b-button
+                        >
                       </div>
+                  
                     </form>
                   </b-modal>
                 </div>
@@ -197,7 +206,8 @@ export default {
         { key: "shelfID", label: "Shelf ID", sortable: true },
         { key: "Shelfname", label: "Shelf Name", sortable: true },
         { key: "Location", label: "Location", sortable: true },
-        { key: "CategoryID", label: "Category", sortable: true },
+          { key: "categoryName", label: "Category", sortable: true },
+        { key: "subcategoryName", label: "Sub-category", sortable: true },
         { key: "Action", label: "Action", sortable: true },
       ],
     };
@@ -272,7 +282,7 @@ export default {
   margin-top: 30px;
   margin-left: auto;
   margin-right: auto;
-  width: 70%;
+  width: 100%;
 }
 
 .title {
@@ -281,6 +291,9 @@ export default {
   font-family: monospace;
   font-weight: bolder;
   font-size: 30px;
+}
+.mt-3{
+  margin-left: 2px;
 }
 .main-tab .header h4 {
   font-family: montserrat;

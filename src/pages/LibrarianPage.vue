@@ -3,7 +3,7 @@
     <b-row>
       <SidebarComponent />
       <b-col>
-        <b-row class="rw">
+        <b-row class="rw d-flex justify-content-center">
               <HeaderCom title="Librarian" />
         </b-row>
   
@@ -12,7 +12,7 @@
           <b-container class="tebs">
             
             <div class="tbales">
-              <h1>Librarian Records</h1>
+              <!-- <h1>Librarian Records</h1> -->
 
            <b-button variant="dark"  v-b-modal.modal-prevent-closing>Add Librarian</b-button>
                   <b-form-fieldset
@@ -33,10 +33,12 @@
                   >
                     <form ref="form" v-on:submit.stop.prevent="librarianSubmit">
                       <b-form-group
+                      
                         label="Firstname"
                         label-for="Firstname-input"
                       >
                         <b-form-input
+                        style="text-transform:capitalize"
                           id="Firstname-input"
                           v-model="$v.Firstname.$model"
                           :class="{
@@ -57,6 +59,7 @@
                         label-for="Middlename-input"
                       >
                         <b-form-input
+                        style="text-transform:capitalize"
                           id="Middlename-input"
                           v-model="Middlename"
                         >
@@ -65,6 +68,7 @@
 
                       <b-form-group label="Lastname" label-for="Lastname-input">
                         <b-form-input
+                        style="text-transform:capitalize"
                           id="Lastname-input"
                           v-model="$v.Lastname.$model"
                           :class="{
@@ -134,6 +138,9 @@
                           @click="librarianSubmit()"
                           >Submit</b-button
                         >
+                        <b-button class="mt-3 btn-warning" type="reset"
+                      >Reset</b-button
+                    >
                         <!-- <b-button class="close" href="/librarians"
                           >Close</b-button
                         > -->
@@ -145,6 +152,7 @@
                           @click="hideModal"
                           >Close</b-button
                         >
+
                       </div>
                     </form>
                   </b-modal>
@@ -167,7 +175,7 @@
                   <router-link
                     tag="button"
                     :to="'/editlibrarian/' + data.item.UserID"
-                    class="btn btn-success edits"
+                    class="btn btn-secondary edits"
                   >
                     <b-icon class="edit-btn" icon="pencil-square"></b-icon>
                   </router-link>
@@ -295,28 +303,7 @@ export default {
   width: 100%;
   height: 100vh;
 }
-.tb {
- width: 1500px;
-  display: flex;
-  /* padding-bottom: 80px; */
-}
-.tebs {
-  padding-right: 2%;
-  padding-left: 2%;
 
-  /* background-color: beige; */
-  /* width: 1900px; */
-}
-.tbales {
-  /* padding-right: 2%;
-  padding-left: 2%; */
-
-  /* padding-top: 1%; */
-  padding-bottom: 1%;
-  border-radius: 5px;
-   width: 1500px;
-   
-}
 /* .tbales {
   padding-right: 2%;
   padding-left: 2%;
@@ -325,24 +312,35 @@ export default {
   padding-bottom: 1%;
   border-radius: 5px;
 } */
+.rw{
+  margin-left:17%;
+  width: 83%;
+}
+/* .tebs {
+  padding-right: 2%;
+  padding-left: 2%;
+}
+.tbales {
+  padding-bottom: 1%;
+  border-radius: 5px;
+  width: 100%;
+} */
 .container {
   padding-top: 10px;
   margin-left: 11%;
-  width: 100%;
+  width: 90%;
 }
 .pill {
   width: 220px;
   margin-top: 10px;
 }
-.selectbtn {
-  margin-right: 5px;
-}
 .mt-3 {
   margin-right: 5px;
 }
-.rw{
-  margin-left:16%;
+#hero {
+  background: linear-gradient(to top, #fefeff 30%, #e2e2f6 90%) no-repeat;
   width: 100%;
+  height: 100vh;
 }
 /* .main-tab {
   padding-left: auto;

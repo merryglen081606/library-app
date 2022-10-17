@@ -85,6 +85,9 @@
                         <b-button class="btn-success" @click="subcatSubmit()"
                           >Submit</b-button
                         >
+                        <b-button class="mt-3 btn-warning" type="reset"
+                      >Reset</b-button
+                    >
                         <b-button class="close" href="/books">Close</b-button>
                       </div>
                     </form>
@@ -230,7 +233,7 @@ export default {
   margin-top: 30px;
   margin-left: auto;
   margin-right: auto;
-  width: 70%;
+  width: 100%;
 }
 
 .title {
@@ -240,9 +243,9 @@ export default {
   font-weight: bolder;
   font-size: 30px;
 }
-.rw {
-  margin-left: 16%;
-  width: 100%;
+.rw{
+  margin-left:17%;
+  width: 84%;
 }
 .main-tab .header h4 {
   font-family: montserrat;
@@ -268,10 +271,7 @@ h1 {
   margin-right: 20px;
   margin-left: 90px;
 }
-.rw {
-  margin-left: 16%;
-  width: 100%;
-}
+
 .btn {
   margin-bottom: 10px;
 }
