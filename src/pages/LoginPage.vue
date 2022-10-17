@@ -30,12 +30,12 @@
               >
             </li>
             <li class="nav-item">
-                <a
-                  ><router-link to="/aboutpage" class="nav-link" exact
-                    >About</router-link
-                  ></a
-                >
-              </li>
+              <a
+                ><router-link to="/aboutpage" class="nav-link" exact
+                  >About</router-link
+                ></a
+              >
+            </li>
             <li class="nav-item">
               <a
                 ><router-link to="/search" class="nav-link" exact
@@ -58,9 +58,8 @@
           </ul>
         </nav>
       </div>
-     
-      <b-row class="">
-      
+
+      <b-row style="width: 100%" class="row-body">
         <b-col class="d-flex login-form justify-content-end">
           <b-form class="form" v-on:submit.stop.prevent="handleSubmit">
             <h2>Login Account</h2>
@@ -114,37 +113,32 @@
               <!--<router-link to="./books" type="submit" exact value="Login"></router-link>-->
             </b-form-group>
           </b-form>
-     
         </b-col>
         <b-col>
-          <img
-           src="../assets/image/lib4.jpeg"
-           alt=""
-           class="left-image"
-         />
+          <img src="../assets/image/lib4.jpeg" alt="" class="left-image" />
         </b-col>
-          <div class="alert-container d-flex justify-content-center">
-        <b-alert
-          class="alert"
-          v-model="alert.showAlert"
-          @dismissed="alert.showAlert = null"
-          :variant="alert.variant"
-        >
-          <div>
-            <b-icon
-              class="mr-2"
-              :icon="
-                alert.variant == 'success'
-                  ? 'check-lg'
-                  : 'exclamation-triangle-fill'
-              "
-              fill="black"
-            >
-            </b-icon>
-            {{ alert.message }}
-          </div>
-        </b-alert>
-      </div>
+        <div class="alert-container d-flex justify-content-center">
+          <b-alert
+            class="alert"
+            v-model="alert.showAlert"
+            @dismissed="alert.showAlert = null"
+            :variant="alert.variant"
+          >
+            <div>
+              <b-icon
+                class="mr-2"
+                :icon="
+                  alert.variant == 'success'
+                    ? 'check-lg'
+                    : 'exclamation-triangle-fill'
+                "
+                fill="black"
+              >
+              </b-icon>
+              {{ alert.message }}
+            </div>
+          </b-alert>
+        </div>
       </b-row>
       <!-- <v-container>
             <v-form>
@@ -152,8 +146,6 @@
                 <v-text-field v-model="loginInfo.Password" label="Passwword"/>
             </v-form>
           </v-container> -->
-
- 
     </section>
   </body>
 </template>
@@ -284,7 +276,6 @@ ul {
   background-size: cover;
   background-position: center;
   height: 100vh;
-  
 }
 
 .login {
@@ -296,7 +287,7 @@ ul {
 .form {
   width: 50%;
   height: 440px;
-  background-color:  #555e8b;;
+  background-color: #555e8b;
   /* align-content: center; */
   margin-top: 10%;
   /* margin-left: 30%; */
@@ -309,8 +300,6 @@ ul {
   box-shadow: 0 8px 8px -4px lightblue;
   float: right;
   margin-right: 90px;
-
-
 }
 /* .input{
 height: 45px;
@@ -329,14 +318,10 @@ width: 60px;
   /* margin-top: 100px !important; */
   padding-right: 20px !important;
   margin-top: 10px;
- 
 }
 .alert {
   width: 500px !important;
   height: 60px;
- 
- 
-
 }
 h2 {
   font-size: 45px;
@@ -358,11 +343,11 @@ h1 {
   height: 40px;
 }
 
-.left-image{
+.left-image {
   /* float: left; */
-padding-top: 30px;
-    height: 100%;
-    bottom: 2px;
-    width: 100%;
+  padding-top: 30px;
+  height: 100%;
+  bottom: 2px;
+  width: 100%;
 }
 </style>
