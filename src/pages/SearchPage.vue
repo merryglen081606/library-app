@@ -537,6 +537,7 @@ ul {
 .tb {
  width: 100%;
  display: flex;
+ margin-left:30px;
   justify-content: center;
   background-color:rgb(255, 255, 255);
 }

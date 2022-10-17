@@ -327,7 +327,7 @@ h1 {
 }
 .rw{
   margin-left:16%;
-  width: 100%;
+width: 83%;
 }
 .close {
   margin-left: 10px;
