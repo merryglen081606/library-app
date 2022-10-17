@@ -64,13 +64,13 @@
               >
                 <form ref="form" v-on:submit.stop.prevent="bookSubmit">
                   <!-- <FormInput label="Invoice Number" /> -->
-                  <b-button
+                  <!-- <b-button
                     style="margin-left: 30px"
                     v-b-modal.modal-2
                     variant="secondary"
                     class="col-5"
                     >View Publisher</b-button
-                  >
+                  > -->
                   <b-modal
                     scrollable
                     id="modal-2"
@@ -118,13 +118,13 @@
 
                 <p class="currentpage">Current Page: {{ Page }}</p> -->
                   </b-modal>
-                  <b-button
+                  <!-- <b-button
                     class="col-5"
                     style="margin-left: 2px"
                     v-b-modal.modal-3
                     variant="secondary"
                     >View Author</b-button
-                  >
+                  > -->
                   <b-modal
                     scrollable
                     id="modal-3"
