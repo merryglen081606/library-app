@@ -53,7 +53,6 @@
                   responsive
                   striped
                   bordered
-                  
                   hover
                   id="my-table1"
                   :items="librarians"
@@ -77,7 +76,6 @@
                 <p class="currentpage">Current Page: {{ Page }}</p> -->
               </b-modal>
               <b-modal
-            
                 hide-footer
                 id="modal-prevent-closing"
                 size="m"
@@ -89,7 +87,6 @@
 
                   <b-form-group label="Librarian" label-for="UserID-input">
                     <b-form-input
-                     
                       placeholder="Enter Librarian ID"
                       icon="tools"
                       id="UserID-input"
@@ -189,6 +186,7 @@
                       placeholder="Enter Password"
                     >
                     </b-form-input>
+
                     <div v-if="!$v.Password.required" class="invalid-feedback">
                       Please enter Password
                     </div>
@@ -209,7 +207,7 @@
                     <!-- <b-button class="close" to="/account"
                           >Close</b-button
                         > -->
-                        <b-button class="mt-3 btn-warning" type="reset"
+                    <b-button class="mt-3 btn-warning" type="reset"
                       >Reset</b-button
                     >
                     <b-button
@@ -225,7 +223,6 @@
               </b-modal>
 
               <b-table
-              
                 responsive
                 hover
                 id="my-table"
@@ -239,7 +236,7 @@
                 :per-page="perPage"
                 :current-page="currentPage"
               >
-              <template v-slot:cell(Action)="data">
+                <template v-slot:cell(Action)="data">
                   <router-link
                     tag="button"
                     :to="'/editaccount/' + data.item.AccountID"
@@ -252,7 +249,7 @@
                   <b-button v-b-modal @click="savelocal(item)">
                     <b-icon class="edit-btn" icon="pencil-square"></b-icon>
                   </b-button> -->
-                  <!-- <router-link
+                <!-- <router-link
                     tag="button"
                     :to="savelocal(data)"
                     class="btn btn-success edits"
@@ -275,8 +272,7 @@
 
               <!--updatwe--->
               <b-modal
-       
-                hide-footer 
+                hide-footer
                 id="modal-form"
                 size="m"
                 ref="modal"
@@ -285,46 +281,74 @@
                 <form ref="form" submit="updateAccount">
                   <!-- <FormInput label="Invoice Number" /> -->
 
-                <div>
-                <div class="modal-form__form-group mb-3">
-                    <b-form-group label="Username" class="ml-2">
-                    </b-form-group>
-                    <b-form-input id="firstname" placeholder="Enter First Name" type="text" v-model="item.Username"
-                        autocomplete="off" required>
-                    </b-form-input>
-                </div>
-                <div class="modal-form__form-group mb-3">
-                    <b-form-group label="Password" class="ml-2">
-                    </b-form-group>
-                    <b-form-input id="lastname" placeholder="Enter Last Name" type="text" v-model="item.Password"
-                        required>
-                    </b-form-input>
-                </div>
-                <div class="form-group mb-3">
-                    <b-form-group label="Phone Number" class="ml-2">
-                    </b-form-group>
-                    <b-form-input id="contact" placeholder="Enter Phone Number" type="number" v-model="item.UserID"
-                        required>
-                    </b-form-input>
-                </div>
-                <div class="form-group mb-3">
-                    <b-form-group label="Address" class="ml-2">
-                    </b-form-group>
-                    <b-form-input id="address" placeholder="Enter Address" type="text" v-model="item.Roles" required>
-                    </b-form-input>
-                </div>
-                  <div class="form-group mb-3">
-                    <b-form-group label="Address" class="ml-2">
-                    </b-form-group>
-                    <b-form-input id="address" placeholder="Enter Address" type="text" v-model="item.Status" required>
-                    </b-form-input>
-                </div>
-            </div>
+                  <div>
+                    <div class="modal-form__form-group mb-3">
+                      <b-form-group label="Username" class="ml-2">
+                      </b-form-group>
+                      <b-form-input
+                        id="firstname"
+                        placeholder="Enter First Name"
+                        type="text"
+                        v-model="item.Username"
+                        autocomplete="off"
+                        required
+                      >
+                      </b-form-input>
+                    </div>
+                    <div class="modal-form__form-group mb-3">
+                      <b-form-group label="Password" class="ml-2">
+                      </b-form-group>
+                      <b-form-input
+                        id="lastname"
+                        placeholder="Enter Last Name"
+                        type="text"
+                        v-model="item.Password"
+                        required
+                      >
+                      </b-form-input>
+                    </div>
+                    <div class="form-group mb-3">
+                      <b-form-group label="Phone Number" class="ml-2">
+                      </b-form-group>
+                      <b-form-input
+                        id="contact"
+                        placeholder="Enter Phone Number"
+                        type="number"
+                        v-model="item.UserID"
+                        required
+                      >
+                      </b-form-input>
+                    </div>
+                    <div class="form-group mb-3">
+                      <b-form-group label="Address" class="ml-2">
+                      </b-form-group>
+                      <b-form-input
+                        id="address"
+                        placeholder="Enter Address"
+                        type="text"
+                        v-model="item.Roles"
+                        required
+                      >
+                      </b-form-input>
+                    </div>
+                    <div class="form-group mb-3">
+                      <b-form-group label="Address" class="ml-2">
+                      </b-form-group>
+                      <b-form-input
+                        id="address"
+                        placeholder="Enter Address"
+                        type="text"
+                        v-model="item.Status"
+                        required
+                      >
+                      </b-form-input>
+                    </div>
+                  </div>
                   <div class="buttons">
                     <b-button class="mt-3 btn-success" @click="updateAccount()"
                       >Submit</b-button
                     >
-               
+
                     <!-- <b-button class="close" to="/account"
                           >Close</b-button
                         > -->
@@ -424,7 +448,6 @@ export default {
     UserID: { required },
     Roles: { required },
     Status: { required },
-   
   },
 
   methods: {
@@ -435,10 +458,9 @@ export default {
         UserID: item.UserID,
         Roles: item.Roles,
         Status: item.Status,
-
       };
       this.$bvModal.show("modal-form");
-    localStorage.setItem('accountid',item.item.AccountID)
+      localStorage.setItem("accountid", item.item.AccountID);
     },
     validationStatus: function (validation) {
       return typeof validation != "undefined" ? validation.$error : false;
@@ -478,10 +500,8 @@ export default {
 };
 </script>
 <style scoped>
-
-
-.rw{
-  margin-left:17%;
+.rw {
+  margin-left: 17%;
   width: 83%;
 }
 /* .tebs {
@@ -510,7 +530,7 @@ export default {
   width: 100%;
   height: 100vh;
 }
-.text{
+.text {
   font-size: 15px;
 }
 </style>

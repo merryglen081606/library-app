@@ -5,7 +5,7 @@
     </div>
     <b-row>
       <b-col xl="10" lg="9" sm="9">
-              <b-row class="rw">
+        <b-row class="rw">
           <HeaderCom title="Account" />
         </b-row>
         <!-- <div class="head">
@@ -72,7 +72,7 @@
                             placeholder="Enter Password"
                           >
                           </b-form-input>
-                         
+
                           <div
                             v-if="!$v.Password.minLength"
                             class="invalid-feedback"
@@ -89,29 +89,32 @@
                             {{ $v.Password.$params.maxLength.min }}
                           </div>
                         </b-form-group>
-                     
-                  <b-form-group label="Roles:*">
-                    <b-form-select
-                      v-model="$v.Roles.$model"
-                      class="form-control"
-                      :class="{
-                        'is-invalid': validationStatus($v.Roles),
-                      }"
-                    >
-                      <b-form-select-option :value="null"
-                        >Please select an option</b-form-select-option
-                      >
-                      <b-form-select-option value="Librarian"
-                        >Librarian</b-form-select-option
-                      >
-                      <!-- <b-form-select-option value="User"
+
+                        <b-form-group label="Roles:*">
+                          <b-form-select
+                            v-model="$v.Roles.$model"
+                            class="form-control"
+                            :class="{
+                              'is-invalid': validationStatus($v.Roles),
+                            }"
+                          >
+                            <b-form-select-option :value="null"
+                              >Please select an option</b-form-select-option
+                            >
+                            <b-form-select-option value="Librarian"
+                              >Librarian</b-form-select-option
+                            >
+                            <!-- <b-form-select-option value="User"
                         >User</b-form-select-option
                       > -->
-                    </b-form-select>
-                    <div v-if="!$v.Roles.required" class="invalid-feedback">
-                      Please select your Role.
-                    </div>
-                  </b-form-group>
+                          </b-form-select>
+                          <div
+                            v-if="!$v.Roles.required"
+                            class="invalid-feedback"
+                          >
+                            Please select your Role.
+                          </div>
+                        </b-form-group>
 
                         <b-form-group label="Status:*">
                           <b-form-select
@@ -175,7 +178,8 @@ import { required, minLength, maxLength } from "vuelidate/lib/validators";
 export default {
   name: "EditAccount",
   components: {
-    SidebarComponent, HeaderCom,
+    SidebarComponent,
+    HeaderCom,
   },
   data() {
     return {
@@ -210,7 +214,7 @@ export default {
           UserID: this.UserID,
           Roles: this.Roles,
           Status: this.Status,
-           AccountID: this.AccountID,
+          AccountID: this.AccountID,
         });
         alert("Data Successfully Submitted");
       } catch (error) {
@@ -225,15 +229,15 @@ export default {
     const res = await axios.get(
       `${api.apiurl}accounts/` + this.$route.params.AccountID
     );
-    if(res.data.response.Roles ==='User'){
-      this.Roles.select.option = 'User'
+    if (res.data.response.Roles === "User") {
+      this.Roles.select.option = "User";
     }
     this.Username = res.data.response.Username;
     this.Password = res.data.response.Password;
     this.UserID = res.data.response.UserID;
     //this.Roles.select.items = res.data.response.Roles;
     this.Status = res.data.response.Status;
-      this.AccountID = res.data.response.AccountID;
+    this.AccountID = res.data.response.AccountID;
   },
 
   computed: {
@@ -260,8 +264,8 @@ div.py-2 {
   margin-top: 15px;
   padding-left: 50px;
 }
-.rw{
-  margin-left:20%;
+.rw {
+  margin-left: 20%;
   width: 100%;
 }
 .head h4 {
@@ -274,8 +278,8 @@ div.py-2 {
   color: #eeb34b;
   font-family: montserrat;
 }
-.buttons{
-  margin-top:10px;
+.buttons {
+  margin-top: 10px;
 }
 .container-card {
   background-color: rgb(107, 129, 190);
@@ -285,7 +289,6 @@ div.py-2 {
   width: 590px;
   margin-top: 50px;
   color: #ffff;
-  
 }
 .button-container {
   margin-right: 50px;
@@ -314,12 +317,10 @@ div.py-2 {
 .input_button {
   float: right;
 }
-@media (max-width: 1361px)
- {
-  .container-card{
-     margin-left: 80px;
-      width: 420px;
+@media (max-width: 1361px) {
+  .container-card {
+    margin-left: 80px;
+    width: 420px;
   }
-
- }
+}
 </style>

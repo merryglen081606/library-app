@@ -78,14 +78,13 @@ export default {
             return await axios({
                 method: "PATCH",
                 // url: `${API_URL}/api/librarian/${this.$route.params.UserID}`,
-                url: `${api.apiurl}accounts/` + localStorage.getItem('accountid'),
+                url: `${api.apiurl}accounts/` + AccountID,
                 data: {
                     Username, Password, UserID, Roles, Status, AccountID
                 }
             })
 
                 .then(res => {
-                    console.log("supnew", res);
 
                     commit("UPDATE_ACCOUNT", res.data.posted);
 
