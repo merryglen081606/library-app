@@ -3,15 +3,11 @@
     <b-row>
       <SidebarComponent />
       <b-row class="rw">
-          <HeaderCom title="Book" />
-        </b-row>
+        <HeaderCom title="Book" />
+      </b-row>
       <b-col>
-        
-
         <b-row class="container d-flex justify-content-center">
-          
           <b-container class="tebs">
-            
             <div class="tbales">
               <!-- <h1>Book Records</h1> -->
 
@@ -163,18 +159,16 @@
                       label-sort-asc=""
                       label-sort-desc=""
                       label-sort-clear=""
-                      :per-page="per"
-                      :current-page="Page"
                     ></b-table>
                     <!-- <b-pagination
-                  v-model="Page"
-                  pills
-                  :total-rows="rows"
-                  :per-page="per"
-                  aria-controls="my-table1"
-                ></b-pagination>
+                      v-model="Page"
+                      pills
+                      :total-rows="rows"
+                      :per-page="per"
+                      aria-controls="my-table1"
+                    ></b-pagination>
 
-                <p class="currentpage">Current Page: {{ Page }}</p> -->
+                    <p class="currentpage">Current Page: {{ Page }}</p> -->
                   </b-modal>
                   <b-form-group label="ISBN" label-for="ISBN-input">
                     <b-form-input
@@ -192,7 +186,7 @@
                   </b-form-group>
                   <b-form-group label="Book Title" label-for="Title-input">
                     <b-form-input
-                    style="text-transform:capitalize"
+                      style="text-transform: capitalize"
                       placeholder="Enter Book Title"
                       id="Title-input"
                       v-model="$v.Title.$model"
@@ -208,8 +202,8 @@
                       Please enter Book Title. (Required Failed)
                     </div>
                   </b-form-group>
-               
-                  <b-form-group label="Author" label-for="AuthorID-input">
+
+                  <!-- <b-form-group label="Author" label-for="AuthorID-input">
                     <b-form-input
                       placeholder="Enter Author ID"
                       id="AuthorID-input"
@@ -222,9 +216,9 @@
                     <div v-if="!$v.AuthorID.required" class="invalid-feedback">
                       Please enter Author. (Required Failed)
                     </div>
-                  </b-form-group>
+                  </b-form-group> -->
 
-                  <b-form-group
+                  <!-- <b-form-group
                     label="Publisher "
                     label-for="PublisherID-input"
                   >
@@ -243,7 +237,72 @@
                     >
                       Please enter Publisher.(Failed Required)
                     </div>
+                  </b-form-group> -->
+                  <b-form-group
+                    label=" Publisher "
+                    label-for="LibrarianID-input"
+                  >
+                    <b-form-select
+                      class="selected"
+                      value-field="publisherID"
+                      text-field="Firstname"
+                      :options="publishers"
+                      v-model="$v.PublisherID.$model"
+                    ></b-form-select>
+                    <b-form-select
+                      class="selected"
+                      value-field="publisherID"
+                      text-field="Lastname"
+                      :options="publishers"
+                      v-model="$v.PublisherID.$model"
+                    ></b-form-select>
+                    <b-form-select-hide
+                      class="selct"
+                      value-field="publisherID"
+                      text-field="publisherID"
+                      :options="publishers"
+                      v-model="$v.PublisherID.$model"
+                    ></b-form-select-hide>
                   </b-form-group>
+                  <b-form-group>
+                    <div
+                      v-if="!$v.PublisherID.required"
+                      class="invalid-feedback"
+                    >
+                      Please enter Librarian. (Required Failed)
+                    </div>
+                  </b-form-group>
+
+                  <b-form-group label=" Author " label-for="LibrarianID-input">
+                    <b-form-select
+                      class="selected"
+                      value-field="AuthorID"
+                      text-field="Lastname"
+                      :options="authors"
+                      v-model="$v.AuthorID.$model"
+                    ></b-form-select>
+
+                    <b-form-select
+                      class="selected"
+                      value-field="AuthorID"
+                      text-field="Firstname"
+                      :options="authors"
+                      v-model="$v.AuthorID.$model"
+                    ></b-form-select>
+                    <b-form-select-hide
+                      class="selct"
+                      value-field="AuthorID"
+                      text-field="AuthorID"
+                      :options="authors"
+                      v-model="$v.AuthorID.$model"
+                    ></b-form-select-hide>
+                  </b-form-group>
+                  <b-form-group>
+                    <div v-if="!$v.AuthorID.required" class="invalid-feedback">
+                      Please enter Librarian. (Required Failed)
+                    </div>
+                  </b-form-group>
+
                   <b-form-group
                     label="Publisher Year"
                     label-for="YearPublish-input"
@@ -304,7 +363,6 @@
               <b-table
                 class="tb"
                 responsive
-                
                 hover
                 id="my-table"
                 :items="items"
@@ -463,13 +521,11 @@ export default {
           YearPublish: this.YearPublish,
           PageNo: this.PageNo,
         });
-          
+
         alert("Data Successfully Submitted");
-   
       } catch (error) {
         alert("Invalid User");
       }
-      
     },
     hideModal() {
       this.$refs["modal"].hide();
@@ -528,8 +584,8 @@ height: fit-content;
 .selectbtn{
   margin-right:5px;
 } */
-.rw{
-  margin-left:17%;
+.rw {
+  margin-left: 17%;
   width: 83%;
 }
 /* .tebs {
@@ -543,8 +599,8 @@ height: fit-content;
 } */
 .container {
   padding-top: 10px;
-  margin-left: 11%;
-  width: 90%;
+  margin-left: 17%;
+  width: 120%;
 }
 .pill {
   width: 220px;
@@ -557,5 +613,19 @@ height: fit-content;
   background: linear-gradient(to top, #fefeff 30%, #e2e2f6 90%) no-repeat;
   width: 100%;
   height: 100vh;
+}
+.selected {
+  border-radius: 5px;
+  height: 38px;
+  margin-right: 3px;
+  width: 226px;
+  /* background-color: rgb(47, 255, 0); */
+}
+.selct {
+  border-radius: 5px;
+  height: 38px;
+  margin-right: 2px;
+  width: 71px;
+  /* background-color: rgb(47, 255, 0); */
 }
 </style>

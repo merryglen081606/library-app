@@ -36,7 +36,7 @@
                   <form ref="form" v-on:submit.stop.prevent="authorSubmit">
                     <b-form-group label="Firstname" label-for="firstname-input">
                       <b-form-input
-                      style="text-transform:capitalize"
+                        style="text-transform: capitalize"
                         id="firstname-input"
                         v-model="$v.firstname.$model"
                         :class="{
@@ -57,7 +57,7 @@
                       label-for="middlename-input"
                     >
                       <b-form-input
-                      style="text-transform:capitalize"
+                        style="text-transform: capitalize"
                         id="middlename-input"
                         v-model="$v.middlename.$model"
                       >
@@ -66,7 +66,7 @@
 
                     <b-form-group label="Lastname" label-for="lastname-input">
                       <b-form-input
-                      style="text-transform:capitalize"
+                        style="text-transform: capitalize"
                         id="lastname-input"
                         v-model="$v.lastname.$model"
                         :class="{
@@ -87,8 +87,8 @@
                         >Submit</b-button
                       >
                       <b-button class="mt-3 btn-warning" type="reset"
-                      >Reset</b-button
-                    >
+                        >Reset</b-button
+                      >
                       <b-button
                         class="mt-3"
                         href="/author"
@@ -103,7 +103,7 @@
               </div>
 
               <b-table
-              class="tb"
+                class="tb"
                 responsive
                 hover
                 id="my-table"
@@ -239,8 +239,8 @@ export default {
   outline-color: #6d6d6f;
 } */
 
-.rw{
-  margin-left:17%;
+.rw {
+  margin-left: 17%;
   width: 83%;
 }
 /* .tebs {
@@ -252,10 +252,15 @@ export default {
   border-radius: 5px;
   width: 100%;
 } */
-.container {
+/* .container {
   padding-top: 10px;
   margin-left: 11%;
   width: 90%;
+} */
+.container {
+  padding-top: 10px;
+  margin-left: 13%;
+  width: 120%;
 }
 .pill {
   width: 220px;
@@ -264,7 +269,6 @@ export default {
 .mt-3 {
   margin-right: 5px;
 }
-
 
 .pill {
   width: 220px;

@@ -85,7 +85,7 @@
                 <form ref="form" v-on:submit.stop.prevent="accountSubmit()">
                   <!-- <FormInput label="Invoice Number" /> -->
 
-                  <b-form-group label="Librarian" label-for="UserID-input">
+                  <!-- <b-form-group label="Librarian" label-for="UserID-input">
                     <b-form-input
                       placeholder="Enter Librarian ID"
                       icon="tools"
@@ -100,6 +100,32 @@
                     <div v-if="!$v.Username.required" class="invalid-feedback">
                       Please enter your Username.
                     </div>
+                  </b-form-group> -->
+                  <b-form-group
+                    label="Librarian "
+                    label-for="LibrarianID-input"
+                  >
+                    <b-form-select
+                      class="selected"
+                      value-field="UserID"
+                      text-field="Firstname"
+                      :options="librarians"
+                      v-model="$v.UserID.$model"
+                    ></b-form-select>
+                    <b-form-select
+                      class="selected"
+                      value-field="UserID"
+                      text-field="Lastname"
+                      :options="librarians"
+                      v-model="$v.UserID.$model"
+                    ></b-form-select>
+                    <b-form-select-hide
+                      class="selct"
+                      value-field="UserID"
+                      text-field="UserID"
+                      :options="librarians"
+                      v-model="$v.UserID.$model"
+                    ></b-form-select-hide>
                   </b-form-group>
 
                   <b-form-group label="Roles:*">
@@ -515,8 +541,8 @@ export default {
 } */
 .container {
   padding-top: 10px;
-  margin-left: 11%;
-  width: 90%;
+  margin-left: 17%;
+  width: 120%;
 }
 .pill {
   width: 220px;
@@ -532,5 +558,12 @@ export default {
 }
 .text {
   font-size: 15px;
+}
+.selected {
+  border-radius: 5px;
+  height: 38px;
+  margin-right: 3px;
+  width: 226px;
+  /* background-color: rgb(47, 255, 0); */
 }
 </style>

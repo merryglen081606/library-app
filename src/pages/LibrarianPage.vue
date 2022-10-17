@@ -1,164 +1,147 @@
 <template>
- <b-container fluid id="hero">
+  <b-container fluid id="hero">
     <b-row>
       <SidebarComponent />
       <b-col>
         <b-row class="rw d-flex justify-content-center">
-              <HeaderCom title="Librarian" />
+          <HeaderCom title="Librarian" />
         </b-row>
-  
+
         <b-row class="container d-flex justify-content-center">
-      
           <b-container class="tebs">
-            
             <div class="tbales">
               <!-- <h1>Librarian Records</h1> -->
 
-           <b-button variant="dark"  v-b-modal.modal-prevent-closing>Add Librarian</b-button>
-                  <b-form-fieldset
-                    style="float: right; padding-bottom: 10px"
-                    class="col-4"
+              <b-button variant="dark" v-b-modal.modal-prevent-closing
+                >Add Librarian</b-button
+              >
+              <b-form-fieldset
+                style="float: right; padding-bottom: 10px"
+                class="col-4"
+              >
+                <b-input
+                  v-model="filter"
+                  placeholder="Type here to Search..."
+                ></b-input>
+              </b-form-fieldset>
+              <b-modal
+                hide-footer
+                id="modal-prevent-closing"
+                size="m"
+                ref="modal"
+                title="Register Librarian"
+              >
+                <form ref="form" v-on:submit.stop.prevent="librarianSubmit">
+                  <b-form-group label="Firstname" label-for="Firstname-input">
+                    <b-form-input
+                      style="text-transform: capitalize"
+                      id="Firstname-input"
+                      v-model="$v.Firstname.$model"
+                      :class="{
+                        'is-invalid': validationStatus($v.Firstname),
+                      }"
+                    >
+                    </b-form-input>
+                    <div v-if="!$v.Firstname.required" class="invalid-feedback">
+                      Please enter Firstname.(Required Failed)
+                    </div>
+                  </b-form-group>
+
+                  <b-form-group label="Middlename" label-for="Middlename-input">
+                    <b-form-input
+                      style="text-transform: capitalize"
+                      id="Middlename-input"
+                      v-model="Middlename"
+                    >
+                    </b-form-input>
+                  </b-form-group>
+
+                  <b-form-group label="Lastname" label-for="Lastname-input">
+                    <b-form-input
+                      style="text-transform: capitalize"
+                      id="Lastname-input"
+                      v-model="$v.Lastname.$model"
+                      :class="{
+                        'is-invalid': validationStatus($v.Lastname),
+                      }"
+                    >
+                    </b-form-input>
+                    <div v-if="!$v.Lastname.required" class="invalid-feedback">
+                      Please enter Lastname.(Required Failed)
+                    </div>
+                  </b-form-group>
+
+                  <b-form-group
+                    label="RegisterDate"
+                    label-for="RegisterDate-date"
+                    type="date"
                   >
-                    <b-input
-                      v-model="filter"
-                      placeholder="Type here to Search..."
-                    ></b-input>
-                  </b-form-fieldset>
-                  <b-modal
-                    hide-footer
-                    id="modal-prevent-closing"
-                    size="m"
-                    ref="modal"
-                    title="Register Librarian"
-                  >
-                    <form ref="form" v-on:submit.stop.prevent="librarianSubmit">
-                      <b-form-group
-                      
-                        label="Firstname"
-                        label-for="Firstname-input"
+                    <b-form-input
+                      type="date"
+                      id="RegisterDate-date"
+                      v-model="$v.RegisterDate.$model"
+                      :class="{
+                        'is-invalid': validationStatus($v.RegisterDate),
+                      }"
+                    >
+                    </b-form-input>
+                    <div
+                      v-if="!$v.RegisterDate.required"
+                      class="invalid-feedback"
+                    >
+                      Please select Registrtation Date.(Required Failed)
+                    </div>
+                  </b-form-group>
+
+                  <b-form-group label="Gender" label-for="Gender-value">
+                    <b-form-select
+                      class="form-control"
+                      v-model="$v.Gender.$model"
+                      :class="{
+                        'is-invalid': validationStatus($v.Gender),
+                      }"
+                      id="Gender-select"
+                    >
+                      <b-form-select-option
+                        >Please select an option</b-form-select-option
                       >
-                        <b-form-input
-                        style="text-transform:capitalize"
-                          id="Firstname-input"
-                          v-model="$v.Firstname.$model"
-                          :class="{
-                            'is-invalid': validationStatus($v.Firstname),
-                          }"
-                        >
-                        </b-form-input>
-                        <div
-                          v-if="!$v.Firstname.required"
-                          class="invalid-feedback"
-                        >
-                          Please enter Firstname.(Required Failed)
-                        </div>
-                      </b-form-group>
-
-                      <b-form-group
-                        label="Middlename"
-                        label-for="Middlename-input"
+                      <b-form-select-option value="Female"
+                        >Female</b-form-select-option
                       >
-                        <b-form-input
-                        style="text-transform:capitalize"
-                          id="Middlename-input"
-                          v-model="Middlename"
-                        >
-                        </b-form-input>
-                      </b-form-group>
-
-                      <b-form-group label="Lastname" label-for="Lastname-input">
-                        <b-form-input
-                        style="text-transform:capitalize"
-                          id="Lastname-input"
-                          v-model="$v.Lastname.$model"
-                          :class="{
-                            'is-invalid': validationStatus($v.Lastname),
-                          }"
-                        >
-                        </b-form-input>
-                        <div
-                          v-if="!$v.Lastname.required"
-                          class="invalid-feedback"
-                        >
-                          Please enter Lastname.(Required Failed)
-                        </div>
-                      </b-form-group>
-
-                      <b-form-group
-                        label="RegisterDate"
-                        label-for="RegisterDate-date"
-                        type="date"
+                      <b-form-select-option value="Male"
+                        >Male</b-form-select-option
                       >
-                        <b-form-input
-                          type="date"
-                          id="RegisterDate-date"
-                          v-model="$v.RegisterDate.$model"
-                          :class="{
-                            'is-invalid': validationStatus($v.RegisterDate),
-                          }"
-                        >
-                        </b-form-input>
-                        <div
-                          v-if="!$v.RegisterDate.required"
-                          class="invalid-feedback"
-                        >
-                          Please select Registrtation Date.(Required Failed)
-                        </div>
-                      </b-form-group>
-
-                      <b-form-group label="Gender" label-for="Gender-value">
-                        <b-form-select
-                          class="form-control"
-                          v-model="$v.Gender.$model"
-                          :class="{
-                            'is-invalid': validationStatus($v.Gender),
-                          }"
-                          id="Gender-select"
-                        >
-                          <b-form-select-option
-                            >Please select an option</b-form-select-option
-                          >
-                          <b-form-select-option value="Female"
-                            >Female</b-form-select-option
-                          >
-                          <b-form-select-option value="Male"
-                            >Male</b-form-select-option
-                          >
-                        </b-form-select>
-                        <div
-                          v-if="!$v.Gender.required"
-                          class="invalid-feedback"
-                        >
-                          Please Select Gender.(Required Failed)
-                        </div>
-                      </b-form-group>
-                      <div class="buttons">
-                        <b-button
-                          class="mt-3 btn-success"
-                          @click="librarianSubmit()"
-                          >Submit</b-button
-                        >
-                        <b-button class="mt-3 btn-warning" type="reset"
+                    </b-form-select>
+                    <div v-if="!$v.Gender.required" class="invalid-feedback">
+                      Please Select Gender.(Required Failed)
+                    </div>
+                  </b-form-group>
+                  <div class="buttons">
+                    <b-button
+                      class="mt-3 btn-success"
+                      @click="librarianSubmit()"
+                      >Submit</b-button
+                    >
+                    <b-button class="mt-3 btn-warning" type="reset"
                       >Reset</b-button
                     >
-                        <!-- <b-button class="close" href="/librarians"
+                    <!-- <b-button class="close" href="/librarians"
                           >Close</b-button
                         > -->
-                        <b-button
-                          class="mt-3"
-                          variant="outline-danger"
-                           href="/librarians"
-                          block
-                          @click="hideModal"
-                          >Close</b-button
-                        >
-
-                      </div>
-                    </form>
-                  </b-modal>
-                 <b-table
+                    <b-button
+                      class="mt-3"
+                      variant="outline-danger"
+                      href="/librarians"
+                      block
+                      @click="hideModal"
+                      >Close</b-button
+                    >
+                  </div>
+                </form>
+              </b-modal>
+              <b-table
                 responsive
-              class="tb"
+                class="tb"
                 hover
                 id="my-table"
                 :items="librarians"
@@ -293,7 +276,7 @@ export default {
     },
   },
 
-  components: { SidebarComponent,HeaderCom },
+  components: { SidebarComponent, HeaderCom },
 };
 </script>
 
@@ -312,8 +295,8 @@ export default {
   padding-bottom: 1%;
   border-radius: 5px;
 } */
-.rw{
-  margin-left:17%;
+.rw {
+  margin-left: 17%;
   width: 83%;
 }
 /* .tebs {
@@ -327,8 +310,8 @@ export default {
 } */
 .container {
   padding-top: 10px;
-  margin-left: 11%;
-  width: 90%;
+  margin-left: 17%;
+  width: 120%;
 }
 .pill {
   width: 220px;

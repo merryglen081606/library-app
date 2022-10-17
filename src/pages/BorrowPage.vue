@@ -3,11 +3,10 @@
     <b-row>
       <SidebarComponent />
       <b-col>
-        <b-row class="rw" >
-  <HeaderCom title="Transaction" />
-
+        <b-row class="rw">
+          <HeaderCom title="Transaction" />
         </b-row>
-      
+
         <b-col class="">
           <b-container d-flex class="AddAccount">
             <b-row class="rows">
@@ -16,164 +15,170 @@
                 <b-row
                   lass="select-button"
                   style="
-                    align-items:center;
+                    align-items: center;
                     display: flex;
                     justify-content: center;
                   "
                 >
                   <b-button
-                style="margin-left: 3px; 
-                 width: fit-content;
+                    style="
+                      margin-left: 3px;
+                      width: fit-content;
                       height: fit-content;
                       margin-top: 10px;
                       margin-right: 3px;
-                       margin-left: 3px;
-                      width: 100px; "
-                v-b-modal.modal-1
-                variant="secondary"
-                >Librarian</b-button
-              >
+                      margin-left: 3px;
+                      width: 100px;
+                    "
+                    v-b-modal.modal-1
+                    variant="secondary"
+                    >Librarian</b-button
+                  >
 
-               <b-modal
-              scrollable
-                id="modal-1"
-                hide-footer
-                class="d-flex justify-content-center"
-                size="lg"
-                title="View Librarian List"
-              >
-                <b-form-fieldset
-                  style="float: right; padding-bottom: 1px"
-                  class="col-12"
-                >
-                  <b-input
-                    v-model="filterS"
-                    placeholder="Type here to Search..."
-                  ></b-input>
-                </b-form-fieldset>
-                <br /><br />
-                <b-table
-                   class="my-3" v-for="i in 1" :key="i"
-                  responsive
-                  striped
-                  bordered
-                  hover
-                  id="my-table"
-                  :items="librarians"
-                  :filter="filterS"
-                  :fields="librarian"
-                  primary-key
-                  label-sort-asc=""
-                  label-sort-desc=""
-                  label-sort-clear=""
-                  :per-page="per"
-                  :current-page="Page"
-                ></b-table>
-             
-              </b-modal>
+                  <b-modal
+                    scrollable
+                    id="modal-1"
+                    hide-footer
+                    class="d-flex justify-content-center"
+                    size="lg"
+                    title="View Librarian List"
+                  >
+                    <b-form-fieldset
+                      style="float: right; padding-bottom: 1px"
+                      class="col-12"
+                    >
+                      <b-input
+                        v-model="filterS"
+                        placeholder="Type here to Search..."
+                      ></b-input>
+                    </b-form-fieldset>
+                    <br /><br />
+                    <b-table
+                      class="my-3"
+                      v-for="i in 1"
+                      :key="i"
+                      responsive
+                      striped
+                      bordered
+                      hover
+                      id="my-table"
+                      :items="librarians"
+                      :filter="filterS"
+                      :fields="librarian"
+                      primary-key
+                      label-sort-asc=""
+                      label-sort-desc=""
+                      label-sort-clear=""
+                      :per-page="per"
+                      :current-page="Page"
+                    ></b-table>
+                  </b-modal>
 
                   <b-button
-                   scrollable
+                    scrollable
                     hide-footer
-                class="d-flex justify-content-center"
-                
+                    class="d-flex justify-content-center"
                     v-b-modal.modal-2
                     style="
                       width: fit-content;
                       height: fit-content;
                       margin-top: 10px;
                       margin-right: 3px;
-                       margin-left: 3px;
+                      margin-left: 3px;
                       width: 100px;
                     "
                     >Reader</b-button
                   >
 
-              
-             <b-modal
-              scrollable
-                id="modal-2"
-                hide-footer
-                class="d-flex justify-content-center"
-                size="lg"
-                title="View Reader List"
-              >
-                <b-form-fieldset
-                  style="float: right; padding-bottom: 1px"
-                  class="col-12"
-                >
-                  <b-input
-                    v-model="filterR"
-                    placeholder="Type here to Search..."
-                  ></b-input>
-                </b-form-fieldset>
-                <br /><br />
-                <b-table
-                   class="my-3" v-for="i in 1" :key="i"
-                  responsive
-                  striped
-                  bordered
-                  hover
-                  id="my-table"
-                 :items="readers"
-                  :filter="filterR"
-                  :fields="reader"
-                  primary-key
-                  label-sort-asc=""
-                  label-sort-desc=""
-                  label-sort-clear=""
-                  :per-page="per"
-                  :current-page="Page"
-                ></b-table>
-             
-              </b-modal>
+                  <b-modal
+                    scrollable
+                    id="modal-2"
+                    hide-footer
+                    class="d-flex justify-content-center"
+                    size="lg"
+                    title="View Reader List"
+                  >
+                    <b-form-fieldset
+                      style="float: right; padding-bottom: 1px"
+                      class="col-12"
+                    >
+                      <b-input
+                        v-model="filterR"
+                        placeholder="Type here to Search..."
+                      ></b-input>
+                    </b-form-fieldset>
+                    <br /><br />
+                    <b-table
+                      class="my-3"
+                      v-for="i in 1"
+                      :key="i"
+                      responsive
+                      striped
+                      bordered
+                      hover
+                      id="my-table"
+                      :items="readers"
+                      :filter="filterR"
+                      :fields="reader"
+                      primary-key
+                      label-sort-asc=""
+                      label-sort-desc=""
+                      label-sort-clear=""
+                      :per-page="per"
+                      :current-page="Page"
+                    ></b-table>
+                  </b-modal>
 
-
-
-                  
                   <b-button
                     v-b-modal.modal-3
-                    style="width: fit-content; height: fit-content;  margin-top:10px;  margin-right: 3px;width: 110px;  "  >Book Copy</b-button  >
+                    style="
+                      width: fit-content;
+                      height: fit-content;
+                      margin-top: 10px;
+                      margin-right: 3px;
+                      width: 110px;
+                    "
+                    >Book Copy</b-button
+                  >
 
-                   <b-modal
-              scrollable
-                id="modal-3"
-                hide-footer
-                class="d-flex justify-content-center"
-                size="lg"
-                title="View Book Copies"
-              >
-            
-                <b-form-fieldset
-                  style="float: right; padding-bottom: 1px"
-                  class="col-12"
-                >
-                 
-                  <b-input
-                    v-model="filterB"
-                    placeholder="Type here to Search..."
-                  ></b-input>
-                </b-form-fieldset>
-                <br /><br />
-                <b-table
-                   class="my-3" v-for="i in 1" :key="i"
-                  responsive
-                  striped
-                  bordered
-                  hover
-                  id="my-table"
-                  :items="bookcopy"
-                  :filter="filterB"
-                  :fields="bookcopies"
-                  primary-key
-                  label-sort-asc=""
-                  label-sort-desc=""
-                  label-sort-clear=""
-                  :per-page="per"
-                  :current-page="Page"
-                ></b-table>
-             
-              </b-modal>
+                  <b-modal
+                    scrollable
+                    id="modal-3"
+                    hide-footer
+                    class="d-flex justify-content-center"
+                    size="lg"
+                    title="View Book Copies"
+                  >
+                    <b-form-fieldset
+                      style="float: right; padding-bottom: 1px"
+                      class="col-12"
+                    >
+                      <b-input
+                        v-model="filterB"
+                        placeholder="Type here to Search..."
+                      ></b-input>
+                    </b-form-fieldset>
+                    <br /><br />
+                    <b-table
+                      class="my-3"
+                      v-for="i in 1"
+                      :key="i"
+                      responsive
+                      striped
+                      bordered
+                      hover
+                      id="my-table"
+                      :items="bookcopy"
+                      :filter="filterB"
+                      :fields="bookcopies"
+                      primary-key
+                      label-sort-asc=""
+                      label-sort-desc=""
+                      label-sort-clear=""
+                      :per-page="per"
+                      :current-page="Page"
+                    ></b-table>
+                  </b-modal>
                 </b-row>
 
                 <b-form v-on:submit.stop.prevent="transactionSubmit">
@@ -206,7 +211,7 @@
                     </div>
                   </b-form-group>
 
-                  <b-form-group label="Librarian" label-for="LibrarianID-input">
+                  <!-- <b-form-group label="Librarian" label-for="LibrarianID-input">
                     <b-form-input
                       id="LibrarianID-input"
                       v-model="$v.LibrarianID.$model"
@@ -220,6 +225,40 @@
                       class="invalid-feedback"
                     >
                       Please enter Librarian.(Required Failed)
+                    </div>
+                  </b-form-group> -->
+                  <b-form-group
+                    label="Librarian "
+                    label-for="LibrarianID-input"
+                  >
+                    <b-form-select
+                      class="selected"
+                      value-field="UserID"
+                      text-field="Firstname"
+                      :options="librarians"
+                      v-model="$v.LibrarianID.$model"
+                    ></b-form-select>
+                    <b-form-select
+                      class="selected"
+                      value-field="UserID"
+                      text-field="Lastname"
+                      :options="librarians"
+                      v-model="$v.LibrarianID.$model"
+                    ></b-form-select>
+                    <b-form-select-hide
+                      class="selct"
+                      value-field="UserID"
+                      text-field="UserID"
+                      :options="librarians"
+                      v-model="$v.LibrarianID.$model"
+                    ></b-form-select-hide>
+                  </b-form-group>
+                  <b-form-group>
+                    <div
+                      v-if="!$v.LibrarianID.required"
+                      class="invalid-feedback"
+                    >
+                      Please enter Librarian. (Required Failed)
                     </div>
                   </b-form-group>
 
@@ -291,7 +330,7 @@
                   </b-form-group>
                   <b-form-group label="Remarks" label-for="remarks">
                     <b-form-input
-                    style="text-transform:capitalize"
+                      style="text-transform: capitalize"
                       id="remarks"
                       type="text"
                       v-model="$v.remarks.$model"
@@ -309,7 +348,6 @@
                       @click="transactionSubmit()"
                       >Submit Data</b-button
                     >
-                   
                   </b-container>
                 </b-form>
               </b-col>
@@ -331,7 +369,6 @@
             <br /><br />
             <b-table
               responsive
-             
               hover
               id="my-table"
               :items="items"
@@ -568,21 +605,28 @@ export default {
   margin-right: 30px;
   margin-top: 50px;
 }
-.rw{
-  margin-left:17%;
+.rw {
+  margin-left: 17%;
   width: 83%;
 }
 .tebs {
   background-color: #f4f4ff;
-padding-top: 5px;
+  padding-top: 5px;
   border-radius: 5px;
   margin-top: 50px;
   width: 1150px;
-  
+
   margin-right: 60px;
 }
 .pill {
   width: 220px;
   margin-top: 10px;
+}
+.selected {
+  border-radius: 5px;
+  height: 38px;
+  margin-right: 3px;
+  width: 148px;
+  /* backg1ound-color: rgb(47, 255, 0); */
 }
 </style>

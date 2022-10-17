@@ -119,13 +119,35 @@
                           The Shelf title No is required.
                         </div>
                       </b-form-group>
+                      <!-- <b-form-group
+                        label="Shelf Location "
+                        label-for="b_shelfID-input"
+                      >
+                        <b-form-select
+                          class="selected"
+                          value-field="b_shelfID"
+                          text-field="location"
+                          :options="shelf"
+                          v-model="$v.b_shelfID.$model"
+                        ></b-form-select>
+
+                        <b-form-select-hide
+                          class="selct"
+                          value-field="b_shelfID"
+                          text-field="b_shelfID"
+                          :options="shelf"
+                          v-model="$v.b_shelfID.$model"
+                        ></b-form-select-hide>
+                      </b-form-group> -->
                       <div class="buttons">
-                        <b-button class="mt-3 btn-success" @click="bookcopySubmit()"
+                        <b-button
+                          class="mt-3 btn-success"
+                          @click="bookcopySubmit()"
                           >Submit</b-button
                         >
                         <b-button class="mt-3 btn-warning" type="reset"
-                      >Reset</b-button
-                    >
+                          >Reset</b-button
+                        >
                         <b-button
                           class="mt-3"
                           variant="outline-danger"
@@ -201,6 +223,8 @@ export default {
       copyNo: null,
       b_bookID: null,
       b_shelfID: null,
+      location: null,
+
       Action: null,
       fields: [
         { key: "copyID", label: "Copy ID", sortable: true },
@@ -208,6 +232,10 @@ export default {
         { key: "Title", label: "Book Title", sortable: true },
         { key: "location", label: "Shelf Location", sortable: true },
         { key: "Action", label: "Action", sortable: true },
+      ],
+      shelf: [
+        { key: "shelfID", label: "Shelf ID", sortable: true },
+        { key: "location", label: "Shelf Location", sortable: true },
       ],
       // items: {
       //   CopyID: null,
@@ -219,15 +247,18 @@ export default {
   },
 
   computed: {
-    ...mapGetters({ bookcopy: "bookcopy" }),
+    ...mapGetters({ bookcopy: "bookcopy", items: "shelf" }),
 
     rows() {
-      return this.bookcopy.length;
+      return this.bookcopy.length, this.items.length;
     },
   },
 
   async mounted() {
-    return await this.$store.dispatch("fetchBookcopy");
+    return (
+      await this.$store.dispatch("fetchBookcopy"),
+      this.$store.dispatch("fetchShelf")
+    );
   },
 
   validations: {
@@ -339,8 +370,8 @@ h1 {
   font-weight: bolder;
   font-size: 30px;
 }
-.rw{
-  margin-left:17%;
+.rw {
+  margin-left: 17%;
   width: 84%;
 }
 .main-tab .header h4 {
@@ -367,15 +398,22 @@ h1 {
   margin-right: 20px;
   margin-left: 90px;
 }
+.selected {
+  border-radius: 5px;
+  height: 38px;
+  margin-right: 3px;
+  width: 226px;
+  /* backg1ound-color: rgb(47, 255, 0); */
+}
 
 .btn {
   margin-bottom: 10px;
 }
 .buttons {
   float: right;
-  padding-left:2px;
+  padding-left: 2px;
 }
-.mt-3{
+.mt-3 {
   margin-left: 2px;
 }
 .close {

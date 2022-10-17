@@ -286,10 +286,15 @@ export default {
   border-radius: 5px;
   width: 100%;
 } */
-.container {
+/* .container {
   padding-top: 10px;
   margin-left: 11%;
   width: 90%;
+} */
+.container {
+  padding-top: 10px;
+  margin-left: 13%;
+  width: 120%;
 }
 .pill {
   width: 220px;

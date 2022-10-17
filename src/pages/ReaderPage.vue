@@ -71,22 +71,38 @@
                 id="modal-prevent-closing"
                 size="m"
                 ref="modal"
-                title="Register Librarian"
+                title="Register Reader"
               >
                 <b-form ref="form" v-on:submit.stop.prevent="readerSubmit">
                   <!-- <FormInput label="Invoice Number" /> -->
-                  <b-form-input
-                    id="LibrarianID-input"
-                    v-model="$v.LibrarianID.$model"
-                    :class="{
-                      'is-invalid': validationStatus($v.LibrarianID),
-                    }"
-                  >
-                  </b-form-input>
+
                   <b-form-group
-                    label="Registered Librarian "
+                    label="Librarian "
                     label-for="LibrarianID-input"
                   >
+                    <b-form-select
+                      class="selected"
+                      value-field="UserID"
+                      text-field="Firstname"
+                      :options="librarians"
+                      v-model="$v.LibrarianID.$model"
+                    ></b-form-select>
+                    <b-form-select
+                      class="selected"
+                      value-field="UserID"
+                      text-field="Lastname"
+                      :options="librarians"
+                      v-model="$v.LibrarianID.$model"
+                    ></b-form-select>
+                    <b-form-select-hide
+                      class="selct"
+                      value-field="UserID"
+                      text-field="UserID"
+                      :options="librarians"
+                      v-model="$v.LibrarianID.$model"
+                    ></b-form-select-hide>
+                  </b-form-group>
+                  <b-form-group>
                     <div
                       v-if="!$v.LibrarianID.required"
                       class="invalid-feedback"
@@ -95,15 +111,39 @@
                     </div>
                   </b-form-group>
 
-                  <b-form-group>
+                  <!-- <b-form-group inline>
                     <b-form-select
-                      class="selected col-lg-12"
+                      class="selected"
                       value-field="UserID"
                       text-field="Firstname"
                       :options="librarians"
                       v-model="$v.LibrarianID.$model"
                     ></b-form-select>
-                  </b-form-group>
+                    <b-form-select
+                      class="selected"
+                      value-field="UserID"
+                      text-field="Lastname"
+                      :options="librarians"
+                      v-model="$v.LibrarianID.$model"
+                    ></b-form-select>
+                    <b-form-select
+                      disabled="true"
+                      class="selct"
+                      value-field="UserID"
+                      text-field="UserID"
+                      :options="librarians"
+                      v-model="$v.LibrarianID.$model"
+                    ></b-form-select>
+                      </b-form-group> -->
+                  <!-- <b-form-input
+                      class="selct"
+                      id="LibrarianID-input"
+                      v-model="$v.LibrarianID.$model"
+                      :class="{
+                        'is-invalid': validationStatus($v.LibrarianID),
+                      }"
+                    >
+                    </b-form-input> -->
 
                   <b-form-group label="Reader No" label-for="ReaderNo-input">
                     <b-form-input
@@ -131,10 +171,10 @@
                   <b-form-group label="Firstname" label-for="Firstname-input">
                     <b-form-input
                       style="text-transform: capitalize"
-                      id="Firstname1-input"
+                      id="Firstname-input"
                       v-model="$v.Firstname.$model"
                       :class="{
-                        'is-invalid': validationStatus($v.Firstname1),
+                        'is-invalid': validationStatus($v.Firstname),
                       }"
                     >
                     </b-form-input>
@@ -510,8 +550,8 @@ export default {
 } */
 .container {
   padding-top: 10px;
-  margin-left: 11%;
-  width: 90%;
+  margin-left: 17%;
+  width: 120%;
 }
 .pill {
   width: 220px;
@@ -543,7 +583,16 @@ export default {
 }
 .selected {
   border-radius: 5px;
-  height: 40px;
+  height: 38px;
+  margin-right: 3px;
+  width: 226px;
+  /* backg1ound-color: rgb(47, 255, 0); */
+}
+.selct {
+  border-radius: 5px;
+  height: 38px;
+  margin-right: 2px;
+  width: 71px;
   /* background-color: rgb(47, 255, 0); */
 }
 </style>

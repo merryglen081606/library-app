@@ -50,7 +50,6 @@
               ></b-icon> -->
             </router-link>
           </div>
-     
         </li>
         <li>
           <router-link to="/readers" class="nav-link" exact>
@@ -85,18 +84,21 @@
           </router-link>
         </li>
         <li>
-          <router-link to="/"  class="nav-link" exact>
-          <a href="/" @click="handleClick" class="log">  <b-icon
-              class="mr-3"
-              icon="person-lines-fill"
-              aria-hidden="true"
-            ></b-icon><span class="link_name">Logout</span></a>
+          <router-link to="/" class="nav-link" exact>
+            <a  style="text-decoration: none" href="/" @click="handleClick" class="log">
+              <b-icon
+                class="mr-3"
+                icon="door-open"
+                aria-hidden="true"
+              ></b-icon
+              ><span style="text-decoration: none" class="link_name"
+                >Logout</span
+              ></a
+            >
           </router-link>
-          
-    
         </li>
-    
-            <!-- <li>
+
+        <!-- <li>
           <router-link to="/" href="/" @click="handleClick"  class="nav-link" exact>
             <b-icon
               class="mr-3"
@@ -232,8 +234,8 @@ export default {
     display: none;
   }
 }
-.nav-link a .link_name{
-text-decoration: none;
+.nav-link a .link_name {
+  text-decoration: none;
 }
 /* .sidebar .nav-bar li .sub-menu {
   background-color: #1d1b31;
