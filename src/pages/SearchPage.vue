@@ -534,6 +534,8 @@ ul {
   padding-bottom: 2%;
   display: flex;
   justify-content: center;
+  margin-left: 9%;
+  margin-right: 8%;
 }
 .pill {
   width: 220px;
