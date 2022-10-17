@@ -282,7 +282,7 @@ export default {
   margin-top: 30px;
   margin-left: auto;
   margin-right: auto;
-  width: 100%;
+  width: 82%;
 }
 
 .title {
@@ -326,7 +326,7 @@ h1 {
   float: right;
 }
 .rw{
-  margin-left:16%;
+ margin-left: 15%;
 width: 83%;
 }
 .close {

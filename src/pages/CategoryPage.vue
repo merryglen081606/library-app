@@ -248,7 +248,7 @@ export default {
   color: #ffffff;
 }
 .rw{
-  margin-left:17%;
+  margin-left: 16%;
   width: 83%;
 }
 .contents {
@@ -262,7 +262,7 @@ export default {
   margin-top: 30px;
   margin-left: auto;
   margin-right: auto;
-  width: 100%;
+  width: 82%;
 }
 .mt-3{
   margin-left: 2px;

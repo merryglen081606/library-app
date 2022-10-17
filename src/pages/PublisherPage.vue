@@ -274,7 +274,7 @@ export default {
   outline-color: #6d6d6f;
 }
 .rw{
-  margin-left:17%;
+   margin-left: 15%;
   width: 83%;
 }
 /* .tebs {

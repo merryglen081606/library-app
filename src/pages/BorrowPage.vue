@@ -605,9 +605,9 @@ export default {
   margin-right: 30px;
   margin-top: 50px;
 }
-.rw {
-  margin-left: 17%;
-  width: 83%;
+.rw{
+  margin-left:15%;
+  width: 80%;
 }
 .tebs {
   background-color: #f4f4ff;

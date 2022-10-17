@@ -293,9 +293,9 @@ div.py-2 {
   height: 40px;
   border-radius: 5px;
 }
-.rw{
-  margin-left:17%;
-  width: 84%;
+.rw {
+   margin-left: 15%;
+  width: 83%;
 }
 .input_button {
   float: right;

@@ -4,11 +4,10 @@
       <SidebarComponent />
     </div>
     <b-row>
-       <b-row class="rw">
-          <HeaderCom title="Edit Shelf" />
-        </b-row>
+      <b-row class="rw">
+        <HeaderCom title="Edit Shelf" />
+      </b-row>
       <b-col xl="10" lg="9" sm="9">
-            
         <!-- <div class="head">
           <h4>Library System/ <span>UpdateLibrarian</span></h4>
         </div> -->
@@ -21,59 +20,65 @@
                   <b-row class="form">
                     <b-col cols="12" class="mt-3">
                       <b-form v-on:submit.prevent="updateShelf">
-                         <b-form-group
-                        label="Shelf Name"
-                        label-for="shelfname-input"
-                      >
-                        <b-form-input
-                          id="BookTitle-input"
-                          v-model="$v.shelfname.$model"
-                          :class="{
-                            'is-invalid': validationStatus($v.shelfname),
-                          }"
+                        <b-form-group
+                          label="Shelf Name"
+                          label-for="shelfname-input"
                         >
-                        </b-form-input>
-                        <div
-                          v-if="!$v.shelfname.required"
-                          class="invalid-feedback"
-                        >
-                          The Shelfname field is required.
-                        </div>
-                      </b-form-group>
+                          <b-form-input
+                            id="BookTitle-input"
+                            v-model="$v.shelfname.$model"
+                            :class="{
+                              'is-invalid': validationStatus($v.shelfname),
+                            }"
+                          >
+                          </b-form-input>
+                          <div
+                            v-if="!$v.shelfname.required"
+                            class="invalid-feedback"
+                          >
+                            The Shelfname field is required.
+                          </div>
+                        </b-form-group>
 
-                      <b-form-group label="Location" label-for="Location-input">
-                        <b-form-input
-                          id="location-input"
-                          v-model="$v.location.$model"
-                          :class="{
-                            'is-invalid': validationStatus($v.location),
-                          }"
+                        <b-form-group
+                          label="Location"
+                          label-for="Location-input"
                         >
-                        </b-form-input>
-                        <div
-                          v-if="!$v.location.required"
-                          class="invalid-feedback"
-                        >
-                          The Location is required.
-                        </div>
-                      </b-form-group>
+                          <b-form-input
+                            id="location-input"
+                            v-model="$v.location.$model"
+                            :class="{
+                              'is-invalid': validationStatus($v.location),
+                            }"
+                          >
+                          </b-form-input>
+                          <div
+                            v-if="!$v.location.required"
+                            class="invalid-feedback"
+                          >
+                            The Location is required.
+                          </div>
+                        </b-form-group>
 
-                      <b-form-group label="Category" label-for="Category-input">
-                        <b-form-input
-                          id="PageNo-input"
-                          v-model="$v.CategoryID.$model"
-                          :class="{
-                            'is-invalid': validationStatus($v.CategoryID),
-                          }"
+                        <b-form-group
+                          label="Category"
+                          label-for="Category-input"
                         >
-                        </b-form-input>
-                        <div
-                          v-if="!$v.CategoryID.required"
-                          class="invalid-feedback"
-                        >
-                          The CategoryID is required.
-                        </div>
-                      </b-form-group>
+                          <b-form-input
+                            id="PageNo-input"
+                            v-model="$v.CategoryID.$model"
+                            :class="{
+                              'is-invalid': validationStatus($v.CategoryID),
+                            }"
+                          >
+                          </b-form-input>
+                          <div
+                            v-if="!$v.CategoryID.required"
+                            class="invalid-feedback"
+                          >
+                            The CategoryID is required.
+                          </div>
+                        </b-form-group>
 
                         <div class="buttons">
                           <b-button class="btn-success" @click="updateShelf()"
@@ -105,12 +110,13 @@ import axios from "axios";
 import api from "../../api";
 import { mapGetters } from "vuex";
 import HeaderCom from "../layout/HeaderCom.vue";
-import { required} from "vuelidate/lib/validators";
+import { required } from "vuelidate/lib/validators";
 
 export default {
   name: "EditShelf",
   components: {
-    SidebarComponent, HeaderCom,
+    SidebarComponent,
+    HeaderCom,
   },
   data() {
     return {
@@ -120,13 +126,13 @@ export default {
       shelfname: "",
       location: "",
       CategoryID: "",
-      shelfID:"",
+      shelfID: "",
       Action: "",
     };
   },
 
   validations: {
-  shelfname: { required },
+    shelfname: { required },
     location: { required },
     CategoryID: { required },
   },
@@ -141,7 +147,7 @@ export default {
       try {
         console.log("newsup", this.shelfList);
         this.$store.dispatch("updateShelf", {
-            shelfID: this.shelfID,
+          shelfID: this.shelfID,
           shelfname: this.shelfname,
           location: this.location,
           CategoryID: this.CategoryID,
@@ -162,7 +168,7 @@ export default {
     this.shelfname = res.data.response.shelfname;
     this.location = res.data.response.location;
     this.CategoryID = res.data.response.CategoryID;
-      this.shelfID = res.data.response.shelfID;
+    this.shelfID = res.data.response.shelfID;
   },
 
   computed: {
@@ -178,8 +184,8 @@ export default {
 nav {
   padding: 10px;
 }
-.rw{
-  margin-left:17%;
+.rw {
+  margin-left: 15%;
   width: 84%;
 }
 div.py-2 {
@@ -210,7 +216,6 @@ div.py-2 {
   width: 590px;
   margin-top: 50px;
   color: #ffff;
-  
 }
 .button-container {
   margin-right: 50px;
@@ -238,12 +243,10 @@ div.py-2 {
 .input_button {
   float: right;
 }
-@media (max-width: 1361px)
- {
-  .container-card{
-     margin-left: 80px;
-      width: 420px;
+@media (max-width: 1361px) {
+  .container-card {
+    margin-left: 80px;
+    width: 420px;
   }
-
- }
+}
 </style>

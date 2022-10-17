@@ -4,15 +4,12 @@
       <div class="navigation">
         <SidebarComponent />
       </div>
-    
     </b-col>
-      <b-row class="rw">
-        <HeaderCom title="Boook Sub-Category" />
-      </b-row>
+    <b-row class="rw">
+      <HeaderCom title="Boook Sub-Category" />
+    </b-row>
     <b-row>
-      
       <div fluid class="main-tab">
-        
         <b-col fluid class="cd">
           <div class="contents">
             <b-card bg-variant="light" class="cards">
@@ -86,8 +83,8 @@
                           >Submit</b-button
                         >
                         <b-button class="mt-3 btn-warning" type="reset"
-                      >Reset</b-button
-                    >
+                          >Reset</b-button
+                        >
                         <b-button class="close" href="/books">Close</b-button>
                       </div>
                     </form>
@@ -233,7 +230,7 @@ export default {
   margin-top: 30px;
   margin-left: auto;
   margin-right: auto;
-  width: 100%;
+  width: 82%;
 }
 
 .title {
@@ -243,8 +240,8 @@ export default {
   font-weight: bolder;
   font-size: 30px;
 }
-.rw{
-  margin-left:17%;
+.rw {
+  margin-left: 17%;
   width: 84%;
 }
 .main-tab .header h4 {

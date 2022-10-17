@@ -360,7 +360,7 @@ h1 {
   margin-top: 30px;
   margin-left: auto;
   margin-right: auto;
-  width: 100%;
+    width: 82%;
 }
 
 .title {
@@ -371,7 +371,7 @@ h1 {
   font-size: 30px;
 }
 .rw {
-  margin-left: 17%;
+  margin-left: 15%;
   width: 84%;
 }
 .main-tab .header h4 {

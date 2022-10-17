@@ -359,7 +359,7 @@ div.py-2 {
   margin-top: 50px;
 }
 .rw{
-  margin-left:17%;
+  margin-left:15%;
   width: 84%;
 }
 .buttons{

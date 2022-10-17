@@ -3,12 +3,11 @@
     <div class="nav">
       <SidebarComponent />
     </div>
-       <b-row class="rw">
-          <HeaderCom title="Edit Book Copy" />
-        </b-row>
+    <b-row class="rw">
+      <HeaderCom title="Edit Book Copy" />
+    </b-row>
     <b-row>
       <b-col xl="10" lg="9" sm="9">
-    
         <!-- <div class="head">
           <h4>Library System/ <span>UpdateLibrarian</span></h4>
         </div> -->
@@ -21,59 +20,64 @@
                   <b-row class="form">
                     <b-col cols="12" class="mt-3">
                       <b-form v-on:submit.prevent="updateBookCopy">
-                          <b-form-group label="Copy NO" label-for="copyNo-input">
-                      <b-form-input
-                        id="Copy No-input"
-                        v-model="$v.copyNo.$model"
-                        :class="{
-                          'is-invalid': validationStatus($v.copyNo),
-                        }"
-                      >
-                      </b-form-input>
-                      <div
-                        v-if="!$v.copyNo.required"
-                        class="invalid-feedback"
-                      >
-                        The Copy No is required.
-                      </div>
-                    </b-form-group>
+                        <b-form-group label="Copy NO" label-for="copyNo-input">
+                          <b-form-input
+                            id="Copy No-input"
+                            v-model="$v.copyNo.$model"
+                            :class="{
+                              'is-invalid': validationStatus($v.copyNo),
+                            }"
+                          >
+                          </b-form-input>
+                          <div
+                            v-if="!$v.copyNo.required"
+                            class="invalid-feedback"
+                          >
+                            The Copy No is required.
+                          </div>
+                        </b-form-group>
 
-                      <b-form-group label="Book Title" label-for="b_bookID-input">
-                      <b-form-input
-                        id="b_bookID-input"
-                        v-model="$v.b_bookID.$model"
-                        :class="{
-                          'is-invalid': validationStatus($v.b_bookID),
-                        }"
-                      >
-                      </b-form-input>
-                      <div
-                        v-if="!$v.b_bookID.required"
-                        class="invalid-feedback"
-                      >
-                        The Book title No is required.
-                      </div>
-                    </b-form-group>
+                        <b-form-group
+                          label="Book Title"
+                          label-for="b_bookID-input"
+                        >
+                          <b-form-input
+                            id="b_bookID-input"
+                            v-model="$v.b_bookID.$model"
+                            :class="{
+                              'is-invalid': validationStatus($v.b_bookID),
+                            }"
+                          >
+                          </b-form-input>
+                          <div
+                            v-if="!$v.b_bookID.required"
+                            class="invalid-feedback"
+                          >
+                            The Book title No is required.
+                          </div>
+                        </b-form-group>
 
-                      <b-form-group label="Shelf" label-for="b_shelfID-input">
-                      <b-form-input
-                        id="b_shelfID-input"
-                        v-model="$v.b_shelfID.$model"
-                        :class="{
-                          'is-invalid': validationStatus($v.b_shelfID),
-                        }"
-                      >
-                      </b-form-input>
-                      <div
-                        v-if="!$v.b_shelfID.required"
-                        class="invalid-feedback"
-                      >
-                        The Shelf title No is required.
-                      </div>
-                    </b-form-group>
+                        <b-form-group label="Shelf" label-for="b_shelfID-input">
+                          <b-form-input
+                            id="b_shelfID-input"
+                            v-model="$v.b_shelfID.$model"
+                            :class="{
+                              'is-invalid': validationStatus($v.b_shelfID),
+                            }"
+                          >
+                          </b-form-input>
+                          <div
+                            v-if="!$v.b_shelfID.required"
+                            class="invalid-feedback"
+                          >
+                            The Shelf title No is required.
+                          </div>
+                        </b-form-group>
 
                         <div class="buttons">
-                          <b-button class="btn-success" @click="updateBookCopy()"
+                          <b-button
+                            class="btn-success"
+                            @click="updateBookCopy()"
                             >Submit</b-button
                           >
                           <!-- <router-link class="close-btn" to="/account">
@@ -102,12 +106,13 @@ import axios from "axios";
 import api from "../../api";
 import { mapGetters } from "vuex";
 import HeaderCom from "../layout/HeaderCom.vue";
-import { required} from "vuelidate/lib/validators";
+import { required } from "vuelidate/lib/validators";
 
 export default {
   name: "EditBookCopy",
   components: {
-    SidebarComponent, HeaderCom,
+    SidebarComponent,
+    HeaderCom,
   },
   data() {
     return {
@@ -119,7 +124,7 @@ export default {
   },
 
   validations: {
-  copyNo: { required },
+    copyNo: { required },
     b_bookID: { required },
     b_shelfID: { required },
   },
@@ -134,10 +139,10 @@ export default {
       try {
         console.log("newsup", this.bookCopyList);
         this.$store.dispatch("updateBookCopy", {
-           copyID: this.copyID,
+          copyID: this.copyID,
           copyNo: this.copyNo,
           b_bookID: this.b_bookID,
-            b_shelfID: this.b_shelfID,
+          b_shelfID: this.b_shelfID,
         });
         alert("Data Successfully Submitted");
       } catch (error) {
@@ -155,7 +160,7 @@ export default {
     this.copyID = res.data.response.copyID;
     this.copyNo = res.data.response.copyNo;
     this.b_bookID = res.data.response.b_bookID;
-      this.b_shelfID = res.data.response.b_shelfID;
+    this.b_shelfID = res.data.response.b_shelfID;
   },
 
   computed: {
@@ -175,9 +180,9 @@ nav {
 div.py-2 {
   padding: 0 !important;
 }
-.rw{
-  margin-left:17%;
-  width: 84%;
+.rw {
+  margin-left: 10%;
+  width: 80%;
 }
 .head {
   margin-left: 390px;
@@ -205,7 +210,6 @@ div.py-2 {
   width: 590px;
   margin-top: 50px;
   color: #ffff;
-  
 }
 .button-container {
   margin-right: 50px;
@@ -234,12 +238,10 @@ div.py-2 {
 .input_button {
   float: right;
 }
-@media (max-width: 1361px)
- {
-  .container-card{
-     margin-left: 80px;
-      width: 420px;
+@media (max-width: 1361px) {
+  .container-card {
+    margin-left: 80px;
+    width: 420px;
   }
-
- }
+}
 </style>

@@ -6,7 +6,7 @@
     <b-row>
       <b-col xl="10" lg="9" sm="9">
         <b-row class="rw">
-          <HeaderCom title="Account" />
+          <HeaderCom title="Edit  Account" />
         </b-row>
         <!-- <div class="head">
           <h4>Library System/ <span>UpdateLibrarian</span></h4>
@@ -187,7 +187,7 @@ export default {
       Password: "",
       Librarian: "",
       Roles: "Librarian",
-      Status: "",
+      Status: "Working",
     };
   },
 
@@ -265,9 +265,10 @@ div.py-2 {
   padding-left: 50px;
 }
 .rw {
-  margin-left: 20%;
+  margin-left: 18%;
   width: 100%;
 }
+
 .head h4 {
   font-family: montserrat;
   color: rgb(240, 240, 240);

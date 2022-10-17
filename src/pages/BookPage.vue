@@ -585,7 +585,7 @@ height: fit-content;
   margin-right:5px;
 } */
 .rw {
-  margin-left: 17%;
+   margin-left: 15%;
   width: 83%;
 }
 /* .tebs {
